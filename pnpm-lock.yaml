@@ -35,6 +35,9 @@ importers:
       '@clack/prompts':
         specifier: ^1.0.1
         version: 1.0.1
+      '@onelib/skills':
+        specifier: workspace:*
+        version: link:../skills
       '@onelib/templates':
         specifier: workspace:*
         version: link:../templates

@@ -22,6 +22,7 @@
 	},
 	"dependencies": {
 		"@clack/prompts": "^1.0.1",
+		"@onelib/skills": "workspace:*",
 		"@onelib/templates": "workspace:*",
 		"fs-extra": "^11.3.3",
 		"picocolors": "^1.1.1"
