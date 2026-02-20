@@ -1,4 +1,4 @@
-const MIN_NODE_VERSION = 20;
+import { MIN_NODE_VERSION } from "../constants.js";
 
 export function parseNodeVersion(versionString: string): number {
 	const cleaned = versionString.replace(/^v/, "");

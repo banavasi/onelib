@@ -111,12 +111,10 @@ export async function main(): Promise<void> {
 				`Installed ${skillsResult.installed.length} skills, ${skillsResult.failed.length} failed`,
 			),
 		);
-		if (skillsResult.failed.length > 0) {
-			p.note(
-				skillsResult.failed.map((s) => `  - ${s}`).join("\n"),
-				"Failed skills (install manually with npx skills add <skill>)",
-			);
-		}
+		p.note(
+			skillsResult.failed.map((s) => `  - ${s}`).join("\n"),
+			"Failed skills (install manually with npx skills add <skill>)",
+		);
 	}
 
 	// Git init
@@ -144,4 +142,7 @@ export async function main(): Promise<void> {
 	);
 }
 
-main();
+main().catch((error) => {
+	console.error(error);
+	process.exit(1);
+});
