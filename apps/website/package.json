@@ -1,0 +1,13 @@
+{
+	"name": "@onelib/website",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"build": "echo 'TODO: build website'",
+		"dev": "echo 'TODO: dev website'",
+		"lint": "biome check .",
+		"format": "biome check --write .",
+		"check-types": "tsc --noEmit",
+		"clean": "rm -rf dist .next .turbo node_modules"
+	}
+}

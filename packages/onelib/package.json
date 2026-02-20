@@ -1,0 +1,26 @@
+{
+	"name": "onelib",
+	"version": "0.1.0",
+	"description": "Public wrapper package – re-exports Onelib registries",
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc --watch",
+		"lint": "biome check .",
+		"format": "biome check --write .",
+		"check-types": "tsc --noEmit",
+		"test": "vitest run",
+		"clean": "rm -rf dist .turbo node_modules"
+	},
+	"devDependencies": {
+		"typescript": "^5.8.0"
+	}
+}
