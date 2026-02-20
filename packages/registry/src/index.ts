@@ -20,6 +20,7 @@ export { SkillSchema } from "./schemas/skill.js";
 
 // Types
 export type { Component, Layout, RegistryManifest, Skill } from "./types.js";
+export type { EntityType, RegistryItem } from "./utils/resolve.js";
 
 // Utils
 export {
@@ -31,6 +32,7 @@ export {
 	resolveWithDependencies,
 	searchRegistry,
 } from "./utils/resolve.js";
+export type { BumpType } from "./utils/version.js";
 export { bumpVersion, compareVersions } from "./utils/version.js";
 
 // Constants

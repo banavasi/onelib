@@ -1,4 +1,4 @@
-type BumpType = "patch" | "minor" | "major";
+export type BumpType = "patch" | "minor" | "major";
 
 function parseSemver(version: string): [number, number, number] {
 	const parts = version.split(".").map(Number);

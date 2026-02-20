@@ -206,4 +206,42 @@ describe("resolveWithDependencies", () => {
 		const buttonCount = result.filter((r) => r.name === "button").length;
 		expect(buttonCount).toBe(1);
 	});
+
+	it("throws on circular dependencies", () => {
+		const circularManifest: RegistryManifest = {
+			version: "0.1.0",
+			updatedAt: "2026-02-20T00:00:00.000Z",
+			components: [
+				{
+					name: "a",
+					displayName: "A",
+					description: "Component A",
+					version: "1.0.0",
+					source: "onelib",
+					category: "ui",
+					dependencies: ["b"],
+					files: ["a.tsx"],
+					devOnly: false,
+					tags: [],
+				},
+				{
+					name: "b",
+					displayName: "B",
+					description: "Component B",
+					version: "1.0.0",
+					source: "onelib",
+					category: "ui",
+					dependencies: ["a"],
+					files: ["b.tsx"],
+					devOnly: false,
+					tags: [],
+				},
+			],
+			layouts: [],
+			skills: [],
+		};
+		expect(() => resolveWithDependencies(circularManifest, "a")).toThrow(
+			"Circular dependency detected",
+		);
+	});
 });

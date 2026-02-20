@@ -1,7 +1,7 @@
 import type { Component, Layout, RegistryManifest, Skill } from "../types.js";
 
-type EntityType = "components" | "layouts" | "skills";
-type RegistryItem = Component | Layout | Skill;
+export type EntityType = "components" | "layouts" | "skills";
+export type RegistryItem = Component | Layout | Skill;
 
 export function getComponent(manifest: RegistryManifest, name: string): Component | undefined {
 	return manifest.components.find((c) => c.name === name);
@@ -85,21 +85,28 @@ export function resolveWithDependencies(manifest: RegistryManifest, name: string
 
 	const resolved: RegistryItem[] = [];
 	const visited = new Set<string>();
+	const resolving = new Set<string>();
 
 	function resolve(itemName: string): void {
 		if (visited.has(itemName)) return;
-		visited.add(itemName);
+		if (resolving.has(itemName)) {
+			throw new Error(`Circular dependency detected: ${itemName}`);
+		}
+		resolving.add(itemName);
 
 		const current = allItems.get(itemName);
 		if (!current) {
 			throw new Error(`Dependency not found: ${itemName}`);
 		}
 
-		const deps = hasDependencies(current) ? current.dependencies : [];
-		for (const dep of deps) {
-			resolve(dep);
+		if (hasDependencies(current)) {
+			for (const dep of current.dependencies) {
+				resolve(dep);
+			}
 		}
 
+		resolving.delete(itemName);
+		visited.add(itemName);
 		resolved.push(current);
 	}
 
