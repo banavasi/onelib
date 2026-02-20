@@ -79,6 +79,10 @@ importers:
         version: 5.9.3
 
   packages/skills:
+    dependencies:
+      '@onelib/registry':
+        specifier: workspace:*
+        version: link:../registry
     devDependencies:
       typescript:
         specifier: ^5.8.0
