@@ -1,2 +1,8 @@
-// onelib – public wrapper package
+import type { OnelibConfig } from "./types.js";
+
+export function defineConfig(config: OnelibConfig): OnelibConfig {
+	return config;
+}
+
+export type { OnelibConfig };
 export const VERSION = "0.1.0";
