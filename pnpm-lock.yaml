@@ -98,6 +98,9 @@ importers:
       '@onelib/skills':
         specifier: workspace:*
         version: link:../../packages/skills
+      onelib:
+        specifier: workspace:*
+        version: link:../../packages/onelib
       picocolors:
         specifier: ^1.1.1
         version: 1.1.1

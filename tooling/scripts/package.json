@@ -25,6 +25,7 @@
 	},
 	"dependencies": {
 		"@onelib/skills": "workspace:*",
+		"onelib": "workspace:*",
 		"picocolors": "^1.1.1"
 	},
 	"devDependencies": {
