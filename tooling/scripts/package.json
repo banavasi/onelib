@@ -1,0 +1,20 @@
+{
+	"name": "@onelib/scripts",
+	"version": "0.1.0",
+	"private": true,
+	"description": "Sync, registry, and skills utilities",
+	"type": "module",
+	"main": "./dist/index.js",
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc --watch",
+		"lint": "biome check .",
+		"format": "biome check --write .",
+		"check-types": "tsc --noEmit",
+		"test": "vitest run",
+		"clean": "rm -rf dist .turbo node_modules"
+	},
+	"devDependencies": {
+		"typescript": "^5.8.0"
+	}
+}

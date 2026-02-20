@@ -1,0 +1,12 @@
+{
+	"name": "@onelib/templates",
+	"version": "0.1.0",
+	"private": true,
+	"description": "Base Next.js template for generated projects",
+	"scripts": {
+		"build": "echo 'Template package – no build step'",
+		"lint": "biome check .",
+		"format": "biome check --write .",
+		"clean": "rm -rf .turbo node_modules"
+	}
+}
