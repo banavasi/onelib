@@ -27,20 +27,14 @@ describe("SkillSchema", () => {
 	});
 
 	it("rejects invalid skill source", () => {
-		expect(() =>
-			SkillSchema.parse({ ...validSkill, source: "shadcn" }),
-		).toThrow();
+		expect(() => SkillSchema.parse({ ...validSkill, source: "shadcn" })).toThrow();
 	});
 
 	it("rejects invalid skill category", () => {
-		expect(() =>
-			SkillSchema.parse({ ...validSkill, category: "ui" }),
-		).toThrow();
+		expect(() => SkillSchema.parse({ ...validSkill, category: "ui" })).toThrow();
 	});
 
 	it("rejects invalid version", () => {
-		expect(() =>
-			SkillSchema.parse({ ...validSkill, version: "abc" }),
-		).toThrow();
+		expect(() => SkillSchema.parse({ ...validSkill, version: "abc" })).toThrow();
 	});
 });

@@ -61,14 +61,7 @@ describe("LayoutCategorySchema", () => {
 
 describe("SkillCategorySchema", () => {
 	it("accepts valid categories", () => {
-		for (const cat of [
-			"coding",
-			"testing",
-			"debugging",
-			"architecture",
-			"workflow",
-			"tooling",
-		]) {
+		for (const cat of ["coding", "testing", "debugging", "architecture", "workflow", "tooling"]) {
 			expect(SkillCategorySchema.parse(cat)).toBe(cat);
 		}
 	});

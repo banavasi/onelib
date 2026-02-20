@@ -37,14 +37,10 @@ describe("LayoutSchema", () => {
 	});
 
 	it("rejects invalid layout category", () => {
-		expect(() =>
-			LayoutSchema.parse({ ...validLayout, category: "ui" }),
-		).toThrow();
+		expect(() => LayoutSchema.parse({ ...validLayout, category: "ui" })).toThrow();
 	});
 
 	it("rejects invalid version", () => {
-		expect(() =>
-			LayoutSchema.parse({ ...validLayout, version: "bad" }),
-		).toThrow();
+		expect(() => LayoutSchema.parse({ ...validLayout, version: "bad" })).toThrow();
 	});
 });

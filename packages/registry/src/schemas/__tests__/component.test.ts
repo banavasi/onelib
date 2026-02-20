@@ -45,20 +45,14 @@ describe("ComponentSchema", () => {
 	});
 
 	it("rejects invalid source", () => {
-		expect(() =>
-			ComponentSchema.parse({ ...validComponent, source: "invalid" }),
-		).toThrow();
+		expect(() => ComponentSchema.parse({ ...validComponent, source: "invalid" })).toThrow();
 	});
 
 	it("rejects invalid version", () => {
-		expect(() =>
-			ComponentSchema.parse({ ...validComponent, version: "not-semver" }),
-		).toThrow();
+		expect(() => ComponentSchema.parse({ ...validComponent, version: "not-semver" })).toThrow();
 	});
 
 	it("rejects invalid category", () => {
-		expect(() =>
-			ComponentSchema.parse({ ...validComponent, category: "invalid" }),
-		).toThrow();
+		expect(() => ComponentSchema.parse({ ...validComponent, category: "invalid" })).toThrow();
 	});
 });

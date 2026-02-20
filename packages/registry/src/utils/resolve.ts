@@ -3,24 +3,15 @@ import type { Component, Layout, RegistryManifest, Skill } from "../types.js";
 type EntityType = "components" | "layouts" | "skills";
 type RegistryItem = Component | Layout | Skill;
 
-export function getComponent(
-	manifest: RegistryManifest,
-	name: string,
-): Component | undefined {
+export function getComponent(manifest: RegistryManifest, name: string): Component | undefined {
 	return manifest.components.find((c) => c.name === name);
 }
 
-export function getLayout(
-	manifest: RegistryManifest,
-	name: string,
-): Layout | undefined {
+export function getLayout(manifest: RegistryManifest, name: string): Layout | undefined {
 	return manifest.layouts.find((l) => l.name === name);
 }
 
-export function getSkill(
-	manifest: RegistryManifest,
-	name: string,
-): Skill | undefined {
+export function getSkill(manifest: RegistryManifest, name: string): Skill | undefined {
 	return manifest.skills.find((s) => s.name === name);
 }
 
@@ -55,10 +46,7 @@ function hasTags(item: RegistryItem): item is Component | Layout {
 	return "tags" in item;
 }
 
-export function searchRegistry(
-	manifest: RegistryManifest,
-	query: string,
-): RegistryItem[] {
+export function searchRegistry(manifest: RegistryManifest, query: string): RegistryItem[] {
 	const lowerQuery = query.toLowerCase();
 	const results: RegistryItem[] = [];
 
@@ -82,10 +70,7 @@ function hasDependencies(item: RegistryItem): item is Component | Layout {
 	return "dependencies" in item;
 }
 
-export function resolveWithDependencies(
-	manifest: RegistryManifest,
-	name: string,
-): RegistryItem[] {
+export function resolveWithDependencies(manifest: RegistryManifest, name: string): RegistryItem[] {
 	const allItems = new Map<string, RegistryItem>();
 	for (const type of ["components", "layouts", "skills"] as const) {
 		for (const item of getItems(manifest, type)) {
