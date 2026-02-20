@@ -94,6 +94,13 @@ importers:
   packages/templates: {}
 
   tooling/scripts:
+    dependencies:
+      '@onelib/skills':
+        specifier: workspace:*
+        version: link:../../packages/skills
+      picocolors:
+        specifier: ^1.1.1
+        version: 1.1.1
     devDependencies:
       typescript:
         specifier: ^5.8.0
