@@ -1,6 +1,8 @@
 import { execFile } from "node:child_process";
 
-type ExecResult = { ok: true; stdout: string; stderr: string } | { ok: false; message: string };
+export type ExecResult =
+	| { ok: true; stdout: string; stderr: string }
+	| { ok: false; message: string };
 
 interface ExecOptions {
 	cwd?: string;
