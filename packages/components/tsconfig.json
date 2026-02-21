@@ -6,5 +6,13 @@
 		"jsx": "react-jsx"
 	},
 	"include": ["src"],
-	"exclude": ["src/**/__tests__", "src/buttons", "src/backgrounds", "src/text-animations"]
+	"exclude": [
+		"src/**/__tests__",
+		"src/buttons",
+		"src/backgrounds",
+		"src/text-animations",
+		"src/sections",
+		"src/gallery",
+		"src/lib"
+	]
 }
