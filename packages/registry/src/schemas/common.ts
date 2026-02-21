@@ -1,15 +1,14 @@
 import { z } from "zod";
 
-export const SourceSchema = z.enum(["shadcn", "magicui", "aceternity", "onelib", "custom"]);
+export const SourceSchema = z.enum([
+	"shadcn", "magicui", "aceternity", "onelib", "custom",
+	"seraui", "reactbits", "skiperui", "buouui",
+]);
 
 export const ComponentCategorySchema = z.enum([
-	"ui",
-	"layout",
-	"data-display",
-	"feedback",
-	"navigation",
-	"overlay",
-	"form",
+	"ui", "layout", "data-display", "feedback", "navigation", "overlay", "form",
+	"buttons", "effects", "accordions", "cards", "sections", "pages",
+	"backgrounds", "text-animations", "gallery",
 ]);
 
 export const LayoutCategorySchema = z.enum([
