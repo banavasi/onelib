@@ -1,0 +1,148 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as DecryptingTextStories from './decrypting-text.stories';
+
+<Meta of={DecryptingTextStories} />
+
+# Decrypting Text
+
+Text reveal animation that scrambles characters before decoding to the target text. Characters cycle through random symbols before settling into final positions. Uses motion for fade-in opacity animation.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Text Animations
+- **Dependencies:** `motion` (included in template)
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Slow Decode
+
+Slow decryption with reduced speed for dramatic reveal.
+
+<Canvas of={DecryptingTextStories.SlowDecode} />
+
+### Fast Decode
+
+Fast decryption that resolves almost instantly.
+
+<Canvas of={DecryptingTextStories.FastDecode} />
+
+### Custom Style
+
+Custom styled text with a different CSS class.
+
+<Canvas of={DecryptingTextStories.CustomStyle} />
+
+### Multi Line
+
+Multiple lines displayed together (re-mount to replay animation).
+
+<Canvas of={DecryptingTextStories.MultiLine} />
+
+## Usage
+
+Copy the component into your project at `src/components/text-animations/decrypting-text/decrypting-text.tsx`:
+
+```tsx
+// Requires: motion (included in template)
+import { DecryptingText } from "@/components/text-animations/decrypting-text";
+
+export default function HeroSection() {
+  return (
+    <div className="flex flex-col items-center gap-2">
+      <DecryptingText
+        targetText="Welcome to the future"
+        speed={8}
+      />
+    </div>
+  );
+}
+```
+
+## Component Source
+
+Copy this file to `src/components/text-animations/decrypting-text/decrypting-text.tsx`:
+
+<Source code={`// Source: Sera UI (seraui.com)
+"use client";
+
+import { motion } from "motion/react";
+import type React from "react";
+import { useEffect, useState } from "react";
+
+const CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()-+=[]{}|;:,.<>?";
+
+interface DecryptingTextProps {
+  targetText: string;
+  speed?: number;
+  className?: string;
+}
+
+const DecryptingText: React.FC<DecryptingTextProps> = ({ targetText, speed = 8, className }) => {
+  const [currentText, setCurrentText] = useState<string>("");
+
+  useEffect(() => {
+    let animationFrameId: number;
+    let iteration = 0;
+    let isMounted = true;
+
+    const animationSpeed = Math.max(1, speed);
+
+    const scramble = () => {
+      if (!isMounted) return;
+
+      const newText = targetText
+        .split("")
+        .map((char, index) => {
+          if (iteration / animationSpeed > index) {
+            return targetText[index];
+          }
+          if (char === " ") return " ";
+          return CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)];
+        })
+        .join("");
+
+      setCurrentText(newText);
+
+      if (iteration < targetText.length * animationSpeed) {
+        iteration += 1;
+        animationFrameId = requestAnimationFrame(scramble);
+      } else {
+        setCurrentText(targetText);
+      }
+    };
+
+    scramble();
+
+    return () => {
+      isMounted = false;
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
+  }, [targetText, speed]);
+
+  return (
+    <motion.p
+      className={
+        className ??
+        "text-2xl md:text-4xl lg:text-5xl font-bold text-center break-words z-10 text-gray-200"
+      }
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      {currentText}
+    </motion.p>
+  );
+};
+
+export { DecryptingText };
+export default DecryptingText;
+`} language="tsx" />

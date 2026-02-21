@@ -10,7 +10,6 @@ import { Marquee } from "./marquee";
 const meta = {
 	title: "Sections/Marquee",
 	component: Marquee,
-	tags: ["autodocs"],
 	argTypes: {
 		speed: {
 			control: { type: "number", min: 10, max: 200, step: 10 },
@@ -40,13 +39,6 @@ const meta = {
 		vertical: false,
 		repeat: 4,
 	},
-	decorators: [
-		(Story) => (
-			<div className="w-full max-w-3xl overflow-hidden">
-				<Story />
-			</div>
-		),
-	],
 } satisfies Meta<typeof Marquee>;
 
 export default meta;

@@ -8,8 +8,11 @@ const storybookRoot = join(__dirname, "..");
 
 export default defineMain({
 	framework: "@storybook/react-vite",
-	stories: ["../../../packages/components/src/**/*.stories.tsx"],
-	addons: ["@storybook/addon-themes"],
+	stories: [
+		"../../../packages/components/src/**/*.mdx",
+		"../../../packages/components/src/**/*.stories.tsx",
+	],
+	addons: ["@storybook/addon-docs", "@storybook/addon-themes"],
 	viteFinal: async (config) => {
 		config.resolve = config.resolve || {};
 
@@ -21,6 +24,9 @@ export default defineMain({
 		config.resolve.alias = {
 			...config.resolve.alias,
 			"@/": join(storybookRoot, "../../packages/components/src/"),
+			// Storybook doc blocks — needed for MDX files in packages/components/
+			"@storybook/addon-docs/blocks": join(sbModules, "@storybook/addon-docs/dist/blocks.js"),
+			// Component peer dependencies
 			"clsx": join(sbModules, "clsx"),
 			"tailwind-merge": join(sbModules, "tailwind-merge"),
 			"motion/react": join(sbModules, "motion/react"),

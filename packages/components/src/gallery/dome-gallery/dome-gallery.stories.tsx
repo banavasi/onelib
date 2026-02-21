@@ -10,7 +10,6 @@ import DomeGallery from "./dome-gallery";
 const meta = {
 	title: "Gallery/Dome Gallery",
 	component: DomeGallery,
-	tags: ["autodocs"],
 	argTypes: {
 		images: {
 			control: "object",
@@ -55,7 +54,7 @@ const meta = {
 	},
 	decorators: [
 		(Story) => (
-			<div className="w-full h-[600px] relative rounded-lg overflow-hidden bg-black">
+			<div className="w-full h-[600px] relative overflow-hidden bg-black">
 				<Story />
 			</div>
 		),

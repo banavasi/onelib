@@ -10,7 +10,6 @@ import Aurora from "./aurora";
 const meta = {
 	title: "Backgrounds/Aurora",
 	component: Aurora,
-	tags: ["autodocs"],
 	argTypes: {
 		colorStops: {
 			control: "object",
@@ -37,7 +36,7 @@ const meta = {
 	},
 	decorators: [
 		(Story) => (
-			<div className="w-full h-[500px] relative rounded-lg overflow-hidden bg-black">
+			<div className="w-full h-[500px] relative overflow-hidden bg-black">
 				<Story />
 			</div>
 		),

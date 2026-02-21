@@ -5,14 +5,14 @@ import "./tailwind.css";
 const preview: Preview = {
 	parameters: {
 		backgrounds: { disable: true },
-		layout: "centered",
+		layout: "fullscreen",
 	},
 	decorators: [
 		(Story, context) => {
 			const theme = context.globals["theme"] || "dark";
 			return (
 				<div className={theme === "dark" ? "dark" : ""}>
-					<div className="min-h-screen bg-white dark:bg-gray-950 p-8 text-gray-900 dark:text-gray-100">
+					<div className="min-h-screen w-full bg-white dark:bg-gray-950 p-6 text-gray-900 dark:text-gray-100">
 						<Story />
 					</div>
 				</div>

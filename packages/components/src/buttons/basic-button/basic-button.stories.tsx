@@ -9,7 +9,6 @@ import { BasicButton } from "./basic-button";
 const meta = {
 	title: "Buttons/Basic Button",
 	component: BasicButton,
-	tags: ["autodocs"],
 	argTypes: {
 		variant: {
 			control: "select",

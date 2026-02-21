@@ -10,7 +10,6 @@ import { Silk } from "./silk";
 const meta = {
 	title: "Backgrounds/Silk",
 	component: Silk,
-	tags: ["autodocs"],
 	argTypes: {
 		speed: {
 			control: { type: "number", min: 0.5, max: 20, step: 0.5 },
@@ -42,7 +41,7 @@ const meta = {
 	},
 	decorators: [
 		(Story) => (
-			<div className="w-full h-[500px] relative rounded-lg overflow-hidden">
+			<div className="w-full h-[500px] relative overflow-hidden">
 				<Story />
 			</div>
 		),

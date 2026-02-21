@@ -1,0 +1,204 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as MarqueeStories from './marquee.stories';
+
+<Meta of={MarqueeStories} />
+
+# Marquee
+
+Smooth infinite scrolling marquee with configurable speed, direction, pause-on-hover, and vertical orientation support. Content is repeated for seamless looping.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Sections
+- **Dependencies:** `clsx`, `tailwind-merge` (included in template)
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Reversed
+
+Marquee scrolling in reverse (right-to-left becomes left-to-right).
+
+<Canvas of={MarqueeStories.Reversed} />
+
+### Vertical
+
+Vertical scrolling marquee.
+
+<Canvas of={MarqueeStories.Vertical} />
+
+### Pause On Hover
+
+Hover to pause the scrolling animation.
+
+<Canvas of={MarqueeStories.PauseOnHover} />
+
+### Double Row
+
+Double-row marquee with opposing directions.
+
+<Canvas of={MarqueeStories.DoubleRow} />
+
+## Usage
+
+Copy the component into your project at `src/components/sections/marquee/marquee.tsx`:
+
+```tsx
+import { Marquee } from "@/components/sections/marquee";
+
+export default function LogoBar() {
+  return (
+    <Marquee speed={50} pauseOnHover>
+      <img src="/logo1.svg" alt="Logo 1" className="h-10" />
+      <img src="/logo2.svg" alt="Logo 2" className="h-10" />
+      <img src="/logo3.svg" alt="Logo 3" className="h-10" />
+    </Marquee>
+  );
+}
+```
+
+## Component Source
+
+Copy this file to `src/components/sections/marquee/marquee.tsx`:
+
+<Source code={`// Source: Sera UI (seraui.com)
+"use client";
+
+import type React from "react";
+import { useCallback, useEffect, useRef } from "react";
+import { cn } from "@/lib/utils";
+
+const useAnimationFrame = (callback: (time: number, delta: number) => void) => {
+  const requestRef = useRef<number | null>(null);
+  const previousTimeRef = useRef<number | null>(null);
+
+  const animate = useCallback(
+    (time: number) => {
+      if (previousTimeRef.current !== null && previousTimeRef.current !== undefined) {
+        const delta = time - previousTimeRef.current;
+        callback(time, delta);
+      }
+      previousTimeRef.current = time;
+      requestRef.current = requestAnimationFrame(animate);
+    },
+    [callback],
+  );
+
+  useEffect(() => {
+    requestRef.current = requestAnimationFrame(animate);
+    return () => {
+      if (requestRef.current) {
+        cancelAnimationFrame(requestRef.current);
+      }
+    };
+  }, [animate]);
+};
+
+interface MarqueeProps extends React.ComponentPropsWithoutRef<"div"> {
+  className?: string;
+  reverse?: boolean;
+  pauseOnHover?: boolean;
+  children: React.ReactNode;
+  speed?: number;
+  vertical?: boolean;
+  repeat?: number;
+}
+
+function Marquee({
+  className,
+  reverse = false,
+  pauseOnHover = false,
+  children,
+  speed = 50,
+  vertical = false,
+  repeat = 4,
+  ...props
+}: MarqueeProps) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const contentRef = useRef<HTMLDivElement | null>(null);
+  const singleContentBlockRef = useRef<HTMLDivElement | null>(null);
+  const animX = useRef<number>(0);
+  const isPaused = useRef<boolean>(false);
+
+  useAnimationFrame((_t, delta) => {
+    if (!containerRef.current || !contentRef.current || !singleContentBlockRef.current) return;
+
+    if (pauseOnHover && isPaused.current) {
+      return;
+    }
+
+    const singleContentBlockSize = vertical
+      ? singleContentBlockRef.current.offsetHeight
+      : singleContentBlockRef.current.offsetWidth;
+
+    const contentStyle = window.getComputedStyle(contentRef.current);
+    const computedGap = parseFloat(
+      vertical ? contentStyle.rowGap || "0" : contentStyle.columnGap || "0",
+    );
+    const loopDistance = singleContentBlockSize + computedGap;
+    const dx = (speed * delta) / 1000;
+    const effectiveDx = reverse ? dx : -dx;
+    animX.current += effectiveDx;
+
+    if (Math.abs(animX.current) >= loopDistance) {
+      animX.current = animX.current % loopDistance;
+    }
+
+    if (vertical) {
+      contentRef.current.style.transform = \\\`translateY(\${animX.current}px)\\\`;
+    } else {
+      contentRef.current.style.transform = \\\`translateX(\${animX.current}px)\\\`;
+    }
+  });
+
+  const handleMouseEnter = useCallback(() => {
+    if (pauseOnHover) {
+      isPaused.current = true;
+    }
+  }, [pauseOnHover]);
+
+  const handleMouseLeave = useCallback(() => {
+    if (pauseOnHover) {
+      isPaused.current = false;
+    }
+  }, [pauseOnHover]);
+
+  return (
+    <div
+      {...props}
+      ref={containerRef}
+      className={cn(
+        "group flex overflow-hidden p-2 [--gap:2rem] [gap:var(--gap)]" +
+          (vertical ? " flex-col" : " flex-row"),
+        className,
+      )}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div
+        ref={contentRef}
+        className={cn(
+          "flex shrink-0 justify-around [gap:var(--gap)]" + (vertical ? " flex-col" : " flex-row"),
+        )}
+      >
+        {Array(repeat)
+          .fill(0)
+          .map((_, i) => (
+            <div key={i} ref={i === 0 ? singleContentBlockRef : null} className="flex gap-8">
+              {children}
+            </div>
+          ))}
+      </div>
+    </div>
+  );
+}
+
+export { Marquee };
+export default Marquee;
+`} language="tsx" />

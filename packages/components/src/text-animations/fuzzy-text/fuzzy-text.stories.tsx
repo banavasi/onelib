@@ -10,7 +10,6 @@ import { FuzzyText } from "./fuzzy-text";
 const meta = {
 	title: "Text Animations/Fuzzy Text",
 	component: FuzzyText,
-	tags: ["autodocs"],
 	argTypes: {
 		text: {
 			control: "text",

@@ -1,0 +1,126 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as DomeGalleryStories from './dome-gallery.stories';
+
+<Meta of={DomeGalleryStories} />
+
+# Dome Gallery
+
+Interactive 3D spherical image gallery with drag navigation and click-to-enlarge. Images are mapped onto a dome surface that responds to mouse/touch drag gestures.
+
+- **Source:** [ReactBits](https://reactbits.dev)
+- **Category:** Gallery
+- **Peer Dependencies:** `@use-gesture/react` — install with `pnpm add @use-gesture/react`
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Few Images
+
+Gallery with fewer images showing more spacing on the dome.
+
+<Canvas of={DomeGalleryStories.FewImages} />
+
+### Grayscale
+
+Grayscale filter applied to all images.
+
+<Canvas of={DomeGalleryStories.Grayscale} />
+
+### Warm Overlay
+
+Custom overlay color giving a warmer edge effect.
+
+<Canvas of={DomeGalleryStories.WarmOverlay} />
+
+## Usage
+
+Copy the component into your project at `src/components/gallery/dome-gallery/dome-gallery.tsx`:
+
+```tsx
+// Install peer dependency: pnpm add @use-gesture/react
+import DomeGallery from "@/components/gallery/dome-gallery";
+
+const images = [
+  "https://picsum.photos/seed/1/400/300",
+  "https://picsum.photos/seed/2/400/300",
+  "https://picsum.photos/seed/3/400/300",
+  "https://picsum.photos/seed/4/400/300",
+];
+
+export default function GalleryPage() {
+  return (
+    <div className="w-full h-screen bg-black">
+      <DomeGallery images={images} />
+    </div>
+  );
+}
+```
+
+## Component Source
+
+This is a large component (849 lines). Copy this file to `src/components/gallery/dome-gallery/dome-gallery.tsx`:
+
+<Source code={`// Source: ReactBits (reactbits.dev)
+"use client";
+
+import { useGesture } from "@use-gesture/react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
+
+// Full source: 849 lines
+// See the component file at packages/components/src/gallery/dome-gallery/dome-gallery.tsx
+// or browse the source in the Onelib repository.
+
+// Key exports:
+// - default export: DomeGallery component
+// - named export: { DomeGallery }
+
+// Props:
+// - images?: (string | { src?: string; alt?: string })[]
+// - fit?: number (default: 0.5)
+// - segments?: number (default: 35)
+// - dragSensitivity?: number (default: 20)
+// - grayscale?: boolean (default: true)
+// - overlayBlurColor?: string (default: "#060010")
+// - imageBorderRadius?: string (default: "30px")
+// - openedImageBorderRadius?: string (default: "30px")
+// - openedImageWidth?: string (default: "250px")
+// - openedImageHeight?: string (default: "350px")
+
+interface DomeGalleryProps {
+  images?: (string | { src?: string; alt?: string })[];
+  fit?: number;
+  fitBasis?: "auto" | "min" | "max" | "width" | "height";
+  minRadius?: number;
+  maxRadius?: number;
+  padFactor?: number;
+  overlayBlurColor?: string;
+  maxVerticalRotationDeg?: number;
+  dragSensitivity?: number;
+  enlargeTransitionMs?: number;
+  segments?: number;
+  dragDampening?: number;
+  openedImageWidth?: string;
+  openedImageHeight?: string;
+  imageBorderRadius?: string;
+  openedImageBorderRadius?: string;
+  grayscale?: boolean;
+}
+
+export default function DomeGallery(props: DomeGalleryProps) {
+  // ... 849 lines of implementation
+  // Copy the full source from the repository
+}
+
+export { DomeGallery };
+`} language="tsx" />
+
+> **Note:** The Dome Gallery component is 849 lines. The full source is available in the Onelib
+> repository at `packages/components/src/gallery/dome-gallery/dome-gallery.tsx`. When scaffolding
+> a project with `create-onelib`, this component is automatically included.

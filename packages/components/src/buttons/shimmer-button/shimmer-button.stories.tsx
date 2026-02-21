@@ -9,7 +9,6 @@ import { ShimmerButton } from "./shimmer-button";
 const meta = {
 	title: "Buttons/Shimmer Button",
 	component: ShimmerButton,
-	tags: ["autodocs"],
 	argTypes: {
 		children: {
 			control: "text",

@@ -10,7 +10,6 @@ import { DecryptingText } from "./decrypting-text";
 const meta = {
 	title: "Text Animations/Decrypting Text",
 	component: DecryptingText,
-	tags: ["autodocs"],
 	argTypes: {
 		targetText: {
 			control: "text",
