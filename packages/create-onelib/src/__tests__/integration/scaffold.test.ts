@@ -81,6 +81,26 @@ describe("scaffoldProject", () => {
 		expect(fs.existsSync(path.join(projectDir, ".codex/config.yaml"))).toBe(true);
 	});
 
+	it("copies component .tsx files into src/components/", async () => {
+		const projectDir = path.join(tmpDir, "my-project");
+		await scaffoldProject(projectDir, "my-project");
+
+		// Check that at least the sample components exist
+		const buttonsDir = path.join(projectDir, "src/components/buttons");
+		const backgroundsDir = path.join(projectDir, "src/components/backgrounds");
+
+		expect(fs.existsSync(buttonsDir)).toBe(true);
+		expect(fs.existsSync(backgroundsDir)).toBe(true);
+	});
+
+	it("creates .onelib/components.lock", async () => {
+		const projectDir = path.join(tmpDir, "my-project");
+		await scaffoldProject(projectDir, "my-project");
+
+		const lockPath = path.join(projectDir, "src/.onelib/components.lock");
+		expect(fs.existsSync(lockPath)).toBe(true);
+	});
+
 	it("does not leave any {{PROJECT_NAME}} placeholders", async () => {
 		const projectDir = path.join(tmpDir, "my-project");
 		await scaffoldProject(projectDir, "my-project");

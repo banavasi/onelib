@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { scaffoldComponents } from "@onelib/components";
 import fse from "fs-extra";
 import { TEMPLATE_FILES_WITH_PLACEHOLDERS, TEMPLATE_RENAME_MAP } from "../constants.js";
 import { type PlaceholderValues, replacePlaceholders } from "./placeholders.js";
@@ -9,6 +10,12 @@ function getTemplatePath(): string {
 	const currentDir = path.dirname(fileURLToPath(import.meta.url));
 	// Navigate from src/utils/ or dist/utils/ to packages/templates/base/
 	return path.resolve(currentDir, "../../../templates/base");
+}
+
+function getComponentsSourcePath(): string {
+	const currentDir = path.dirname(fileURLToPath(import.meta.url));
+	// Navigate from src/utils/ or dist/utils/ to packages/components/src/
+	return path.resolve(currentDir, "../../../components/src");
 }
 
 export async function scaffoldProject(projectDir: string, projectName: string): Promise<void> {
@@ -40,4 +47,9 @@ export async function scaffoldProject(projectDir: string, projectName: string): 
 			fs.unlinkSync(fromPath);
 		}
 	}
+
+	// Copy component .tsx files into src/components/
+	const componentsSourceDir = getComponentsSourcePath();
+	const targetComponentsDir = path.join(projectDir, "src/components");
+	scaffoldComponents(componentsSourceDir, targetComponentsDir);
 }
