@@ -8,6 +8,7 @@ export const ComponentSchema = z.object({
 	version: SemverSchema,
 	source: SourceSchema,
 	category: ComponentCategorySchema,
+	sourceUrl: z.string().url().optional(),
 	dependencies: z.array(z.string()).default([]),
 	files: z.array(z.string()).min(1),
 	devOnly: z.boolean().default(false),

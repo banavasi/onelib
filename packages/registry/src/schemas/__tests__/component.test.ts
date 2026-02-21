@@ -55,4 +55,17 @@ describe("ComponentSchema", () => {
 	it("rejects invalid category", () => {
 		expect(() => ComponentSchema.parse({ ...validComponent, category: "invalid" })).toThrow();
 	});
+
+	it("accepts sourceUrl when provided", () => {
+		const result = ComponentSchema.parse({
+			...validComponent,
+			sourceUrl: "https://seraui.com/docs/buttons/basic",
+		});
+		expect(result.sourceUrl).toBe("https://seraui.com/docs/buttons/basic");
+	});
+
+	it("defaults sourceUrl to undefined when omitted", () => {
+		const result = ComponentSchema.parse(validComponent);
+		expect(result.sourceUrl).toBeUndefined();
+	});
 });
