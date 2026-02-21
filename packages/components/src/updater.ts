@@ -12,6 +12,7 @@ export interface UpdateReport {
 	skipped: string[];
 	added: string[];
 	upToDate: string[];
+	peerDependencies: Record<string, string>;
 }
 
 /**
@@ -37,6 +38,7 @@ export function updateComponents(
 		skipped: [],
 		added: [],
 		upToDate: [],
+		peerDependencies: {},
 	};
 
 	// Scan source components
@@ -102,6 +104,29 @@ export function updateComponents(
 					installedAt: new Date().toISOString(),
 				};
 				report.updated.push(componentName);
+			}
+		}
+	}
+
+	// Collect peer dependencies from registry for added/updated components
+	const changedComponents = [...report.added, ...report.updated];
+	if (changedComponents.length > 0) {
+		const registryCandidates = [
+			join(sourceDir, "registry.json"),
+			join(sourceDir, "../registry.json"),
+		];
+		const registryPath = registryCandidates.find((p) => existsSync(p));
+		if (registryPath) {
+			const registryData = JSON.parse(readFileSync(registryPath, "utf-8"));
+			if (Array.isArray(registryData.components)) {
+				for (const entry of registryData.components) {
+					if (
+						changedComponents.includes(entry.name) &&
+						entry.peerDependencies
+					) {
+						Object.assign(report.peerDependencies, entry.peerDependencies);
+					}
+				}
 			}
 		}
 	}

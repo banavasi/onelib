@@ -133,4 +133,42 @@ describe("updateComponents", () => {
 		expect(report.upToDate).toContain("btn");
 		expect(report.updated).toHaveLength(0);
 	});
+
+	it("collects peer dependencies from newly added components", () => {
+		mkdirSync(join(SOURCE_DIR, "backgrounds/aurora"), { recursive: true });
+		writeFileSync(
+			join(SOURCE_DIR, "backgrounds/aurora/aurora.tsx"),
+			"export function Aurora() { return <div />; }",
+		);
+
+		const registry = {
+			version: "0.1.0",
+			components: [
+				{
+					name: "aurora",
+					displayName: "Aurora",
+					category: "backgrounds",
+					source: "reactbits",
+					sourceUrl: "https://reactbits.dev/backgrounds/aurora",
+					version: "0.1.0",
+					description: "Aurora",
+					files: ["backgrounds/aurora/aurora.tsx"],
+					peerDependencies: { ogl: "^1.0.0" },
+					dependencies: [],
+					tags: ["background"],
+				},
+			],
+		};
+		writeFileSync(join(SOURCE_DIR, "registry.json"), JSON.stringify(registry));
+
+		mkdirSync(COMPONENTS_DIR, { recursive: true });
+		const lock: ComponentsLock = { version: "0.1.0", components: {} };
+		mkdirSync(join(PROJECT_DIR, ".onelib"), { recursive: true });
+		writeFileSync(LOCK_PATH, JSON.stringify(lock), "utf-8");
+
+		const report = updateComponents(SOURCE_DIR, PROJECT_DIR);
+
+		expect(report.added).toContain("aurora");
+		expect(report.peerDependencies).toEqual({ ogl: "^1.0.0" });
+	});
 });
