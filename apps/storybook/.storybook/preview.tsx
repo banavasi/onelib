@@ -2,6 +2,58 @@ import type { Preview } from "@storybook/react-vite";
 import React from "react";
 import "./tailwind.css";
 
+interface ThemePreset {
+	label: string;
+	background: string;
+	text: string;
+	dark: boolean;
+}
+
+const themes: Record<string, ThemePreset> = {
+	dark: {
+		label: "Dark",
+		background: "#030712",
+		text: "#f3f4f6",
+		dark: true,
+	},
+	light: {
+		label: "Light",
+		background: "#ffffff",
+		text: "#111827",
+		dark: false,
+	},
+	midnight: {
+		label: "Midnight",
+		background: "#0f172a",
+		text: "#e2e8f0",
+		dark: true,
+	},
+	slate: {
+		label: "Slate",
+		background: "#1e293b",
+		text: "#cbd5e1",
+		dark: true,
+	},
+	warm: {
+		label: "Warm",
+		background: "#1c1917",
+		text: "#e7e5e4",
+		dark: true,
+	},
+	ocean: {
+		label: "Ocean",
+		background: "#0c1424",
+		text: "#bfdbfe",
+		dark: true,
+	},
+	neutral: {
+		label: "Neutral",
+		background: "#374151",
+		text: "#d1d5db",
+		dark: true,
+	},
+};
+
 const preview: Preview = {
 	parameters: {
 		backgrounds: { disable: true },
@@ -9,10 +61,17 @@ const preview: Preview = {
 	},
 	decorators: [
 		(Story, context) => {
-			const theme = context.globals["theme"] || "dark";
+			const themeKey = context.globals["theme"] || "dark";
+			const theme = themes[themeKey] || themes.dark;
 			return (
-				<div className={theme === "dark" ? "dark" : ""}>
-					<div className="min-h-screen w-full bg-white dark:bg-gray-950 p-6 text-gray-900 dark:text-gray-100">
+				<div className={theme.dark ? "dark" : ""}>
+					<div
+						className="min-h-screen w-full p-6"
+						style={{
+							backgroundColor: theme.background,
+							color: theme.text,
+						}}
+					>
 						<Story />
 					</div>
 				</div>
@@ -24,10 +83,15 @@ const preview: Preview = {
 			description: "Global theme for components",
 			toolbar: {
 				title: "Theme",
-				icon: "circlehollow",
+				icon: "paintbrush",
 				items: [
-					{ value: "light", icon: "sun", title: "Light" },
 					{ value: "dark", icon: "moon", title: "Dark" },
+					{ value: "light", icon: "sun", title: "Light" },
+					{ value: "midnight", icon: "starhollow", title: "Midnight" },
+					{ value: "slate", icon: "dashboard", title: "Slate" },
+					{ value: "warm", icon: "heart", title: "Warm" },
+					{ value: "ocean", icon: "globe", title: "Ocean" },
+					{ value: "neutral", icon: "circle", title: "Neutral" },
 				],
 				dynamicTitle: true,
 			},
