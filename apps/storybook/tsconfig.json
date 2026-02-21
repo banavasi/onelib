@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"target": "ES2022",
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"jsx": "react-jsx",
+		"strict": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"paths": {
+			"@/*": ["../../packages/components/src/*"]
+		}
+	},
+	"include": [
+		".storybook/**/*.ts",
+		".storybook/**/*.tsx",
+		"../../packages/components/src/**/*.stories.tsx"
+	]
+}
