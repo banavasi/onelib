@@ -7,6 +7,7 @@ vi.mock("@onelib/components", () => ({
 		skipped: [],
 		added: ["aurora"],
 		upToDate: ["fuzzy-text"],
+		peerDependencies: {},
 	})),
 }));
 

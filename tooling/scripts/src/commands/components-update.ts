@@ -27,5 +27,13 @@ export async function runComponentsUpdate(cwd?: string): Promise<UpdateReport> {
 		logger.log(`Up to date: ${report.upToDate.length} components`);
 	}
 
+	if (report.peerDependencies && Object.keys(report.peerDependencies).length > 0) {
+		const depsList = Object.entries(report.peerDependencies)
+			.map(([name, version]) => `${name}@${version}`)
+			.join(" ");
+		logger.log(`New peer dependencies needed: ${depsList}`);
+		logger.log(`Run: pnpm add ${Object.keys(report.peerDependencies).join(" ")}`);
+	}
+
 	return report;
 }
