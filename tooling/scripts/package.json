@@ -24,6 +24,7 @@
 		"clean": "rm -rf dist .turbo node_modules"
 	},
 	"dependencies": {
+		"@onelib/components": "workspace:*",
 		"@onelib/skills": "workspace:*",
 		"onelib": "workspace:*",
 		"picocolors": "^1.1.1"

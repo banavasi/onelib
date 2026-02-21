@@ -111,6 +111,9 @@ importers:
 
   tooling/scripts:
     dependencies:
+      '@onelib/components':
+        specifier: workspace:*
+        version: link:../../packages/components
       '@onelib/skills':
         specifier: workspace:*
         version: link:../../packages/skills

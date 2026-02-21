@@ -1,6 +1,8 @@
 // @onelib/scripts – update pipeline and project scripts
 export const SCRIPTS_VERSION = "0.1.0";
 
+export type { UpdateReport as ComponentsUpdateReport } from "@onelib/components";
+export { runComponentsUpdate } from "./commands/components-update.js";
 export type { SkillsUpdateResult } from "./commands/skills-update.js";
 export { buildSkillList, runSkillsUpdate } from "./commands/skills-update.js";
 export type { UpdateResult } from "./commands/update.js";
