@@ -1,4 +1,4 @@
-import { dirname, resolve } from "node:path";
+import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { type UpdateReport, updateComponents } from "@onelib/components";
 import * as logger from "../utils/logger.js";
@@ -7,8 +7,21 @@ export async function runComponentsUpdate(cwd?: string): Promise<UpdateReport> {
 	const projectDir = cwd ?? process.cwd();
 
 	// Source components directory from the installed @onelib/components package
-	const currentDir = dirname(fileURLToPath(import.meta.url));
-	const sourceDir = resolve(currentDir, "../../node_modules/@onelib/components/src");
+	// Use import.meta.resolve to find the package location (works with both symlinks and installed packages)
+	let sourceDir: string;
+
+	try {
+		const componentsModuleUrl = await import.meta.resolve("@onelib/components/registry.json");
+		const componentsRegistryPath = fileURLToPath(componentsModuleUrl);
+		const componentsPackagePath = dirname(componentsRegistryPath);
+		sourceDir = join(componentsPackagePath, "src");
+	} catch (error) {
+		// Fallback for older Node versions or if registry.json export is not available
+		const currentDir = dirname(fileURLToPath(import.meta.url));
+		// When installed as a package, we're in node_modules/@onelib/scripts/dist/commands/
+		// @onelib/components will be at node_modules/@onelib/components/
+		sourceDir = join(currentDir, "../../../../@onelib/components/src");
+	}
 
 	logger.log("Updating components...");
 
