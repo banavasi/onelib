@@ -12,6 +12,7 @@ interface CanvasCurvedLoopProps {
   fontSize?: number;
   fontFamily?: string;
   fontWeight?: string | number;
+  color?: string;
   height?: number;
   gap?: number;
   easing?: "linear" | "easeIn" | "easeOut" | "easeInOut";
@@ -33,6 +34,7 @@ const CanvasCurvedLoop = ({
   fontSize = 48,
   fontFamily = "sans-serif",
   fontWeight = "bold",
+  color = "#ffffff",
   height = 200,
   gap = 50,
   easing = "linear",
@@ -55,7 +57,7 @@ const CanvasCurvedLoop = ({
     ) => {
       ctx.font = `${fontWeight} ${fontSize}px ${fontFamily}`;
       ctx.textBaseline = "middle";
-      ctx.fillStyle = "currentColor";
+      ctx.fillStyle = color;
 
       const chars = textToDraw.split("");
       let totalWidth = 0;
@@ -91,7 +93,7 @@ const CanvasCurvedLoop = ({
 
       return totalWidth;
     },
-    [fontSize, fontFamily, fontWeight, curveHeight, interactive, easingFn],
+    [fontSize, fontFamily, fontWeight, color, curveHeight, interactive, easingFn],
   );
 
   useEffect(() => {

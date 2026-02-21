@@ -12,9 +12,13 @@
 	"dependencies": {
 		"@react-three/fiber": "^9.1.2",
 		"@use-gesture/react": "^10.3.1",
+		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
+		"face-api.js": "^0.22.2",
+		"gsap": "^3.14.2",
 		"motion": "^12.12.1",
 		"ogl": "^1.0.11",
+		"postprocessing": "^6.38.3",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0",
 		"tailwind-merge": "^3.3.0",

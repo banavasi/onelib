@@ -305,5 +305,5 @@ function FileTree({ data = fileTreeData }: { data?: FileTreeItem[] }) {
 	);
 }
 
-export { FileTree, TreeNode };
+export { FileTree };
 export default FileTree;
