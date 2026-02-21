@@ -44,11 +44,11 @@ describe("loadComponentRegistry", () => {
 		}
 	});
 
-	it("loads registry with 8 real components", () => {
+	it("loads registry with 53 real components", () => {
 		const result = loadComponentRegistry();
 		expect(result.success).toBe(true);
 		if (result.success) {
-			expect(result.data.components).toHaveLength(8);
+			expect(result.data.components).toHaveLength(53);
 		}
 	});
 

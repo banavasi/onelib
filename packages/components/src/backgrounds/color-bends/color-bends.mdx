@@ -1,0 +1,62 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as ColorBendsStories from './color-bends.stories';
+
+<Meta of={ColorBendsStories} />
+
+# Color Bends
+
+Smooth organic color bending animation with customizable gradient colors, rotation, warp strength, and mouse interaction. Uses Three.js WebGL shaders.
+
+- **Source:** [ReactBits](https://reactbits.dev)
+- **Category:** Backgrounds
+- **Peer Dependencies:** `three` — install with `pnpm add three`
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Custom Colors
+
+Custom warm color palette.
+
+<Canvas of={ColorBendsStories.CustomColors} />
+
+### Fast Rotation
+
+Fast auto-rotation with higher speed.
+
+<Canvas of={ColorBendsStories.FastRotation} />
+
+### High Warp
+
+High warp distortion with increased frequency.
+
+<Canvas of={ColorBendsStories.HighWarp} />
+
+## Usage
+
+Copy the component into your project at `src/components/backgrounds/color-bends/color-bends.tsx`:
+
+```tsx
+// Install peer dependency: pnpm add three
+import ColorBends from "@/components/backgrounds/color-bends";
+
+export default function HeroSection() {
+  return (
+    <div className="relative w-full h-screen">
+      <ColorBends
+        rotation={45}
+        speed={0.2}
+        colors={["#FF6B35", "#00BFFF", "#7CFF67"]}
+        warpStrength={1}
+      />
+    </div>
+  );
+}
+```

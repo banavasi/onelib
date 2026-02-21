@@ -1,0 +1,35 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as OrbitCarouselStories from './orbit-carousel.stories';
+
+<Meta of={OrbitCarouselStories} />
+
+# Orbit Carousel
+
+3D orbital carousel with smooth spring transitions between team member cards. Features orbit visualization, animated info cards, and dot/arrow navigation.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Sections
+- **Peer Dependencies:** `motion`
+
+## Preview
+
+<Primary />
+
+## Props
+
+This component is a self-contained carousel with no configurable props. Customize by editing the component source directly.
+
+## Usage
+
+```tsx
+import { OrbitCarousel } from "@/components/sections/orbit-carousel";
+
+export default function TeamSection() {
+  return (
+    <section className="w-full py-24 bg-gray-950 text-white">
+      <h2 className="text-3xl font-bold text-center mb-12">Our Team</h2>
+      <OrbitCarousel />
+    </section>
+  );
+}
+```

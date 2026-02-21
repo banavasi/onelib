@@ -1,0 +1,58 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as GlowButtonStories from './glow-button.stories';
+
+<Meta of={GlowButtonStories} />
+
+# Glow Button
+
+A glowing button with blue, pink, and green color variants that adapt to light/dark mode. Includes hover scale and glow intensity transitions.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Buttons
+- **Dependencies:** `clsx`, `tailwind-merge` (included in template)
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Pink Variant
+
+Pink variant with warm glow effect.
+
+<Canvas of={GlowButtonStories.PinkVariant} />
+
+### Green Variant
+
+Green variant with nature-inspired glow.
+
+<Canvas of={GlowButtonStories.GreenVariant} />
+
+### All Variants
+
+All three variants displayed together.
+
+<Canvas of={GlowButtonStories.AllVariants} />
+
+## Usage
+
+Copy the component into your project at `src/components/buttons/glow-button/glow-button.tsx`:
+
+```tsx
+import { GlowButton } from "@/components/buttons/glow-button";
+
+export default function CTASection() {
+  return (
+    <div className="flex gap-4">
+      <GlowButton variant="blue">Get Started</GlowButton>
+      <GlowButton variant="pink">Learn More</GlowButton>
+      <GlowButton variant="green">Sign Up</GlowButton>
+    </div>
+  );
+}
+```

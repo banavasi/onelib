@@ -1,0 +1,63 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as PixelBlastStories from './pixel-blast.stories';
+
+<Meta of={PixelBlastStories} />
+
+# Pixel Blast
+
+Animated pixel/dithered pattern background with click ripples, multiple shape variants, and optional liquid distortion. Uses Three.js with postprocessing.
+
+- **Source:** [ReactBits](https://reactbits.dev)
+- **Category:** Backgrounds
+- **Peer Dependencies:** `three`, `postprocessing` — install with `pnpm add three postprocessing`
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Circle Variant
+
+Circle variant with warm orange color.
+
+<Canvas of={PixelBlastStories.CircleVariant} />
+
+### Diamond Variant
+
+Diamond variant with blue color.
+
+<Canvas of={PixelBlastStories.DiamondVariant} />
+
+### With Ripples
+
+Pattern with click ripple effects enabled.
+
+<Canvas of={PixelBlastStories.WithRipples} />
+
+## Usage
+
+Copy the component into your project at `src/components/backgrounds/pixel-blast/pixel-blast.tsx`:
+
+```tsx
+// Install peer dependencies: pnpm add three postprocessing
+import PixelBlast from "@/components/backgrounds/pixel-blast";
+
+export default function HeroSection() {
+  return (
+    <div className="relative w-full h-screen">
+      <PixelBlast
+        variant="square"
+        pixelSize={3}
+        color="#B19EEF"
+        speed={0.5}
+        enableRipples={true}
+      />
+    </div>
+  );
+}
+```

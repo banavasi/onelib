@@ -1,0 +1,62 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as FloatingLinesStories from './floating-lines.stories';
+
+<Meta of={FloatingLinesStories} />
+
+# Floating Lines
+
+Animated floating wave lines with customizable gradient colors, mouse interaction, and parallax. Uses Three.js WebGL shaders.
+
+- **Source:** [ReactBits](https://reactbits.dev)
+- **Category:** Backgrounds
+- **Peer Dependencies:** `three` — install with `pnpm add three`
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Warm Gradient
+
+Warm gradient with orange, gold, and pink tones.
+
+<Canvas of={FloatingLinesStories.WarmGradient} />
+
+### No Interaction
+
+Static lines without mouse interaction or parallax.
+
+<Canvas of={FloatingLinesStories.NoInteraction} />
+
+### Slow Waves
+
+Slow, gentle wave movement.
+
+<Canvas of={FloatingLinesStories.SlowWaves} />
+
+## Usage
+
+Copy the component into your project at `src/components/backgrounds/floating-lines/floating-lines.tsx`:
+
+```tsx
+// Install peer dependency: pnpm add three
+import FloatingLines from "@/components/backgrounds/floating-lines";
+
+export default function HeroSection() {
+  return (
+    <div className="relative w-full h-screen">
+      <FloatingLines
+        linesGradient={["#FF9FFC", "#5227FF", "#7CFF67"]}
+        animationSpeed={1}
+        interactive={true}
+        parallax={true}
+      />
+    </div>
+  );
+}
+```

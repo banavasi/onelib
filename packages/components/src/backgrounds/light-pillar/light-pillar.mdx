@@ -1,0 +1,65 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as LightPillarStories from './light-pillar.stories';
+
+<Meta of={LightPillarStories} />
+
+# Light Pillar
+
+Volumetric light pillar effect with customizable gradient colors, glow amount, rotation speed, and quality settings. Uses Three.js WebGL shaders with ray marching.
+
+- **Source:** [ReactBits](https://reactbits.dev)
+- **Category:** Backgrounds
+- **Peer Dependencies:** `three` — install with `pnpm add three`
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Green Pillar
+
+<Canvas of={LightPillarStories.GreenPillar} />
+
+### Wide Glow
+
+<Canvas of={LightPillarStories.WideGlow} />
+
+### Slow Rotation
+
+<Canvas of={LightPillarStories.SlowRotation} />
+
+## Usage
+
+Copy the component into your project at `src/components/backgrounds/light-pillar/light-pillar.tsx`:
+
+```tsx
+// Install peer dependency: pnpm add three
+import LightPillar from "@/components/backgrounds/light-pillar";
+
+export default function Example() {
+  return (
+    <div className="relative w-full h-screen">
+      <LightPillar
+        topColor="#00FF88"
+        bottomColor="#0044FF"
+        intensity={1.2}
+        rotationSpeed={0.3}
+      />
+    </div>
+  );
+}
+```
+
+## Component Source
+
+<details>
+<summary>View full source (light-pillar.tsx)</summary>
+
+The component source is available in `packages/components/src/backgrounds/light-pillar/light-pillar.tsx`.
+
+</details>

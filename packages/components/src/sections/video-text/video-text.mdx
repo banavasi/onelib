@@ -1,0 +1,50 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as VideoTextStories from './video-text.stories';
+
+<Meta of={VideoTextStories} />
+
+# Video Text
+
+Renders text with a video playing inside the letterforms using SVG clip-path masking. Configurable typography, video source, and text positioning.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Sections
+- **Peer Dependencies:** None
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Custom Text
+
+Larger "VIDEO" text with adjusted font weight.
+
+<Canvas of={VideoTextStories.CustomText} />
+
+### Left Aligned
+
+Text aligned to the left side of the container.
+
+<Canvas of={VideoTextStories.LeftAligned} />
+
+## Usage
+
+```tsx
+import { VideoText } from "@/components/sections/video-text";
+
+export default function HeroSection() {
+  return (
+    <div className="w-full h-screen bg-black">
+      <VideoText src="/hero-video.mp4" fontSize="clamp(4rem, 15vw, 12rem)">
+        HELLO
+      </VideoText>
+    </div>
+  );
+}
+```

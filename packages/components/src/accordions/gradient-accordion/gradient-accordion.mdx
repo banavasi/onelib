@@ -1,0 +1,46 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as GradientAccordionStories from './gradient-accordion.stories';
+
+<Meta of={GradientAccordionStories} />
+
+# Gradient Accordion
+
+Self-contained accordion items with a cyan-to-pink gradient border. Each item manages its own open/close state independently, allowing multiple items to be open simultaneously.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Accordions
+- **Dependencies:** None (React + Tailwind only)
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Usage
+
+Copy the component into your project at `src/components/accordions/gradient-accordion/gradient-accordion.tsx`:
+
+```tsx
+import { GradientAccordion } from "@/components/accordions/gradient-accordion";
+
+const faqItems = [
+  { question: "Question one?", answer: "Answer one." },
+  { question: "Question two?", answer: "Answer two." },
+];
+
+export default function FAQ() {
+  return <GradientAccordion items={faqItems} />;
+}
+```
+
+## Component Source
+
+<details>
+<summary>View full source (gradient-accordion.tsx)</summary>
+
+The component source is available in `packages/components/src/accordions/gradient-accordion/gradient-accordion.tsx`.
+
+</details>

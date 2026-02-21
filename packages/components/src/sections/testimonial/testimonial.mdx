@@ -1,0 +1,34 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as TestimonialStories from './testimonial.stories';
+
+<Meta of={TestimonialStories} />
+
+# Testimonial
+
+Testimonial section with a featured quote display, star ratings, and a clickable grid of customer testimonials. Clicking a card updates the featured testimonial. Self-contained with hardcoded demo data.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Sections
+- **Peer Dependencies:** None
+
+## Preview
+
+<Primary />
+
+## Props
+
+This component is a self-contained section with no configurable props. Customize by editing the testimonial data array in the component source.
+
+## Usage
+
+```tsx
+import { Testimonial } from "@/components/sections/testimonial";
+
+export default function LandingPage() {
+  return (
+    <main>
+      <Testimonial />
+    </main>
+  );
+}
+```

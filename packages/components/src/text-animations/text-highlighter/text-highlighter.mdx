@@ -1,0 +1,50 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as TextHighlighterStories from './text-highlighter.stories';
+
+<Meta of={TextHighlighterStories} />
+
+# Text Highlighter
+
+Scroll-triggered text highlight animation using IntersectionObserver. Animates a gradient highlight behind text when scrolled into view.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Text Animations
+- **Dependencies:** None (uses IntersectionObserver, pure CSS transitions)
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### RTL
+
+Right-to-left highlight animation.
+
+<Canvas of={TextHighlighterStories.RTL} />
+
+### Custom Color
+
+Custom purple-blue gradient highlight.
+
+<Canvas of={TextHighlighterStories.CustomColor} />
+
+## Usage
+
+```tsx
+import { TextHighlighter } from "@/components/text-animations/text-highlighter";
+
+export default function Feature() {
+  return (
+    <p className="text-xl">
+      This is{" "}
+      <TextHighlighter>highlighted text</TextHighlighter>
+      {" "}in a paragraph.
+    </p>
+  );
+}
+```

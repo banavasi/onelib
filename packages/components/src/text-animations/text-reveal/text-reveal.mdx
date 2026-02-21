@@ -1,0 +1,42 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as TextRevealStories from './text-reveal.stories';
+
+<Meta of={TextRevealStories} />
+
+# Text Reveal
+
+Word-by-word smoke reveal animation. Each word fades in with a blur-to-sharp transition and upward slide.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Text Animations
+- **Peer Dependencies:** `motion`
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Short
+
+Short text with quick reveal.
+
+<Canvas of={TextRevealStories.Short} />
+
+## Usage
+
+```tsx
+import { TextReveal } from "@/components/text-animations/text-reveal";
+
+export default function Hero() {
+  return (
+    <TextReveal
+      text="Don't wait for the perfect moment. Take the moment and make it perfect."
+    />
+  );
+}
+```

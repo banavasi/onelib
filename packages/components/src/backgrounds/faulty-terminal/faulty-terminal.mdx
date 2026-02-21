@@ -1,0 +1,64 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as FaultyTerminalStories from './faulty-terminal.stories';
+
+<Meta of={FaultyTerminalStories} />
+
+# Faulty Terminal
+
+OGL-powered terminal/matrix digit effect with scanlines, glitch distortion, and mouse reactivity. Renders animated digits using fragment shaders with configurable tint, CRT curvature, and post-processing effects.
+
+- **Source:** [ReactBits](https://reactbits.dev)
+- **Category:** Backgrounds
+- **Peer Dependencies:** `ogl` — install with `pnpm add ogl`
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Green Tint
+
+Green-tinted terminal reminiscent of classic CRT monitors with increased brightness.
+
+<Canvas of={FaultyTerminalStories.GreenTint} />
+
+### High Glitch
+
+Heavy glitch and flicker effects with chromatic aberration for a more distorted look.
+
+<Canvas of={FaultyTerminalStories.HighGlitch} />
+
+## Usage
+
+Copy the component into your project at `src/components/backgrounds/faulty-terminal/faulty-terminal.tsx`:
+
+```tsx
+// Install peer dependency: pnpm add ogl
+import FaultyTerminal from "@/components/backgrounds/faulty-terminal";
+
+export default function Example() {
+  return (
+    <div className="relative w-full h-screen">
+      <FaultyTerminal
+        tint="#00ff88"
+        glitchAmount={1}
+        scanlineIntensity={0.3}
+      />
+    </div>
+  );
+}
+```
+
+## Component Source
+
+<details>
+<summary>View full source (faulty-terminal.tsx)</summary>
+
+The component source is available in `packages/components/src/backgrounds/faulty-terminal/faulty-terminal.tsx`.
+
+</details>

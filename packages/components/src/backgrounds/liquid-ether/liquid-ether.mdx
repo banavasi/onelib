@@ -1,0 +1,64 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as LiquidEtherStories from './liquid-ether.stories';
+
+<Meta of={LiquidEtherStories} />
+
+# Liquid Ether
+
+Interactive fluid dynamics simulation with customizable colors and mouse-driven forces. Features BFECC advection, viscous diffusion, and Poisson pressure solver. Uses Three.js WebGL.
+
+- **Source:** [ReactBits](https://reactbits.dev)
+- **Category:** Backgrounds
+- **Peer Dependencies:** `three` — install with `pnpm add three`
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Warm Colors
+
+<Canvas of={LiquidEtherStories.WarmColors} />
+
+### High Force
+
+<Canvas of={LiquidEtherStories.HighForce} />
+
+### No Auto Demo
+
+<Canvas of={LiquidEtherStories.NoAutoDemo} />
+
+## Usage
+
+Copy the component into your project at `src/components/backgrounds/liquid-ether/liquid-ether.tsx`:
+
+```tsx
+// Install peer dependency: pnpm add three
+import LiquidEther from "@/components/backgrounds/liquid-ether";
+
+export default function Example() {
+  return (
+    <div className="relative w-full h-screen">
+      <LiquidEther
+        colors={["#FF6B35", "#FFD700", "#FF1493"]}
+        mouseForce={20}
+        autoDemo={true}
+      />
+    </div>
+  );
+}
+```
+
+## Component Source
+
+<details>
+<summary>View full source (liquid-ether.tsx)</summary>
+
+The component source is available in `packages/components/src/backgrounds/liquid-ether/liquid-ether.tsx`.
+
+</details>

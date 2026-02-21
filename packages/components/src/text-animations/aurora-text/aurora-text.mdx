@@ -1,0 +1,53 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as AuroraTextStories from './aurora-text.stories';
+
+<Meta of={AuroraTextStories} />
+
+# Aurora Text
+
+Gradient animated text with flowing aurora color effect. Uses CSS keyframes for smooth color transitions.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Text Animations
+- **Dependencies:** None (pure CSS animation)
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Custom Colors
+
+Custom three-color gradient with pink, purple, and blue.
+
+<Canvas of={AuroraTextStories.CustomColors} />
+
+### Fast Animation
+
+Fast animation cycle at 3 seconds.
+
+<Canvas of={AuroraTextStories.FastAnimation} />
+
+## Usage
+
+```tsx
+import { AuroraText } from "@/components/text-animations/aurora-text";
+
+export default function Hero() {
+  return (
+    <h1 className="text-6xl font-bold">
+      <AuroraText
+        colors={["#FF0080", "#7928CA", "#0070F3", "#38bdf8"]}
+        speed={5}
+      >
+        Beautiful
+      </AuroraText>
+    </h1>
+  );
+}
+```

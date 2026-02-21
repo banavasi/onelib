@@ -1,0 +1,66 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as GlitchVaultCardStories from './glitch-vault-card.stories';
+
+<Meta of={GlitchVaultCardStories} />
+
+# Glitch Vault Card
+
+A card component with matrix/glitch text effect on hover. Features a particle system with object pooling, offscreen canvas rendering, and configurable performance modes for smooth animation.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Cards
+- **Dependencies:** None (React + Tailwind only)
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Red Glitch
+
+Red glitch variant with a tighter radius for a more focused effect.
+
+<Canvas of={GlitchVaultCardStories.RedGlitch} />
+
+### Disabled
+
+Glitch effect disabled for plain card rendering.
+
+<Canvas of={GlitchVaultCardStories.Disabled} />
+
+## Usage
+
+Copy the component into your project at `src/components/cards/glitch-vault-card/glitch-vault-card.tsx`:
+
+```tsx
+import { GlitchVaultCard } from "@/components/cards/glitch-vault-card";
+
+export default function Example() {
+  return (
+    <GlitchVaultCard
+      className="max-w-sm bg-black/20 border border-white/30 rounded-2xl"
+      glitchColor="#0AF0F0"
+      glitchRadius={120}
+    >
+      <div className="p-8 text-center">
+        <h2 className="text-2xl font-bold text-white">Title</h2>
+        <p className="text-gray-300">Hover to see the effect</p>
+      </div>
+    </GlitchVaultCard>
+  );
+}
+```
+
+## Component Source
+
+<details>
+<summary>View full source (glitch-vault-card.tsx)</summary>
+
+The component source is available in `packages/components/src/cards/glitch-vault-card/glitch-vault-card.tsx`.
+
+</details>

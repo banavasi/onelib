@@ -6,7 +6,7 @@
 			"displayName": "Basic Button",
 			"category": "buttons",
 			"source": "seraui",
-			"sourceUrl": "https://seraui.com/docs/buttons/basic",
+			"sourceUrl": "https://seraui.com/docs/button",
 			"version": "0.1.0",
 			"description": "Clean, accessible button with variants, ripple effect, loading state, and icon support",
 			"files": ["buttons/basic-button/basic-button.tsx"],
@@ -18,12 +18,51 @@
 			"displayName": "Shimmer Button",
 			"category": "buttons",
 			"source": "seraui",
-			"sourceUrl": "https://seraui.com/docs/buttons/shimmer",
+			"sourceUrl": "https://seraui.com/docs/shimmer",
 			"version": "0.1.0",
 			"description": "Button with animated conic-gradient shimmer border effect",
 			"files": ["buttons/shimmer-button/shimmer-button.tsx"],
 			"dependencies": [],
 			"tags": ["button", "animated", "shimmer", "gradient"]
+		},
+		{
+			"name": "modern-button",
+			"displayName": "Modern Button",
+			"category": "buttons",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/button",
+			"version": "0.1.0",
+			"description": "Modern styled button with clean design and hover effects",
+			"files": ["buttons/modern-button/modern-button.tsx"],
+			"dependencies": [],
+			"tags": ["button", "modern", "interactive"]
+		},
+		{
+			"name": "glow-button",
+			"displayName": "Glow Button",
+			"category": "buttons",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/button",
+			"version": "0.1.0",
+			"description": "Button with animated glow effect on hover",
+			"files": ["buttons/glow-button/glow-button.tsx"],
+			"dependencies": [],
+			"tags": ["button", "glow", "animated", "hover"]
+		},
+		{
+			"name": "liquid-glass-button",
+			"displayName": "Liquid Glass Button",
+			"category": "buttons",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/button",
+			"version": "0.1.0",
+			"description": "Button with liquid glass morphism effect using class-variance-authority",
+			"files": ["buttons/liquid-glass-button/liquid-glass-button.tsx"],
+			"peerDependencies": {
+				"class-variance-authority": "^0.7.0"
+			},
+			"dependencies": [],
+			"tags": ["button", "glass", "morphism", "animated"]
 		},
 		{
 			"name": "aurora",
@@ -57,11 +96,349 @@
 			"tags": ["background", "animated", "decorative", "threejs"]
 		},
 		{
+			"name": "particles",
+			"displayName": "Particles Background",
+			"category": "backgrounds",
+			"source": "reactbits",
+			"sourceUrl": "https://reactbits.dev/backgrounds/particles",
+			"version": "0.1.0",
+			"description": "Animated particle field background using WebGL shaders",
+			"files": [
+				"backgrounds/particles/particles.tsx",
+				"backgrounds/particles/particles.css"
+			],
+			"peerDependencies": {
+				"ogl": "^1.0.0"
+			},
+			"dependencies": [],
+			"tags": ["background", "animated", "particles", "webgl"]
+		},
+		{
+			"name": "plasma",
+			"displayName": "Plasma Background",
+			"category": "backgrounds",
+			"source": "reactbits",
+			"sourceUrl": "https://reactbits.dev/backgrounds/plasma",
+			"version": "0.1.0",
+			"description": "Animated plasma effect background using WebGL shaders",
+			"files": [
+				"backgrounds/plasma/plasma.tsx",
+				"backgrounds/plasma/plasma.css"
+			],
+			"peerDependencies": {
+				"ogl": "^1.0.0"
+			},
+			"dependencies": [],
+			"tags": ["background", "animated", "plasma", "webgl"]
+		},
+		{
+			"name": "liquid-ether",
+			"displayName": "Liquid Ether Background",
+			"category": "backgrounds",
+			"source": "reactbits",
+			"sourceUrl": "https://reactbits.dev/backgrounds/liquid-ether",
+			"version": "0.1.0",
+			"description": "Animated liquid ether effect background using Three.js",
+			"files": [
+				"backgrounds/liquid-ether/liquid-ether.tsx",
+				"backgrounds/liquid-ether/liquid-ether.css"
+			],
+			"peerDependencies": {
+				"three": "^0.160.0"
+			},
+			"dependencies": [],
+			"tags": ["background", "animated", "liquid", "threejs"]
+		},
+		{
+			"name": "prism",
+			"displayName": "Prism Background",
+			"category": "backgrounds",
+			"source": "reactbits",
+			"sourceUrl": "https://reactbits.dev/backgrounds/prism",
+			"version": "0.1.0",
+			"description": "Animated prism light refraction background using WebGL shaders",
+			"files": [
+				"backgrounds/prism/prism.tsx",
+				"backgrounds/prism/prism.css"
+			],
+			"peerDependencies": {
+				"ogl": "^1.0.0"
+			},
+			"dependencies": [],
+			"tags": ["background", "animated", "prism", "webgl"]
+		},
+		{
+			"name": "dark-veil",
+			"displayName": "Dark Veil Background",
+			"category": "backgrounds",
+			"source": "reactbits",
+			"sourceUrl": "https://reactbits.dev/backgrounds/dark-veil",
+			"version": "0.1.0",
+			"description": "Dark atmospheric veil background effect using WebGL shaders",
+			"files": [
+				"backgrounds/dark-veil/dark-veil.tsx",
+				"backgrounds/dark-veil/dark-veil.css"
+			],
+			"peerDependencies": {
+				"ogl": "^1.0.0"
+			},
+			"dependencies": [],
+			"tags": ["background", "animated", "dark", "webgl"]
+		},
+		{
+			"name": "light-pillar",
+			"displayName": "Light Pillar Background",
+			"category": "backgrounds",
+			"source": "reactbits",
+			"sourceUrl": "https://reactbits.dev/backgrounds/light-pillar",
+			"version": "0.1.0",
+			"description": "Animated light pillar effect background using Three.js",
+			"files": [
+				"backgrounds/light-pillar/light-pillar.tsx",
+				"backgrounds/light-pillar/light-pillar.css"
+			],
+			"peerDependencies": {
+				"three": "^0.160.0"
+			},
+			"dependencies": [],
+			"tags": ["background", "animated", "light", "threejs"]
+		},
+		{
+			"name": "floating-lines",
+			"displayName": "Floating Lines Background",
+			"category": "backgrounds",
+			"source": "reactbits",
+			"sourceUrl": "https://reactbits.dev/backgrounds/floating-lines",
+			"version": "0.1.0",
+			"description": "Animated floating lines background using Three.js",
+			"files": [
+				"backgrounds/floating-lines/floating-lines.tsx",
+				"backgrounds/floating-lines/floating-lines.css"
+			],
+			"peerDependencies": {
+				"three": "^0.160.0"
+			},
+			"dependencies": [],
+			"tags": ["background", "animated", "lines", "threejs"]
+		},
+		{
+			"name": "light-rays",
+			"displayName": "Light Rays Background",
+			"category": "backgrounds",
+			"source": "reactbits",
+			"sourceUrl": "https://reactbits.dev/backgrounds/light-rays",
+			"version": "0.1.0",
+			"description": "Animated light rays background using WebGL shaders",
+			"files": [
+				"backgrounds/light-rays/light-rays.tsx",
+				"backgrounds/light-rays/light-rays.css"
+			],
+			"peerDependencies": {
+				"ogl": "^1.0.0"
+			},
+			"dependencies": [],
+			"tags": ["background", "animated", "rays", "webgl"]
+		},
+		{
+			"name": "pixel-blast",
+			"displayName": "Pixel Blast Background",
+			"category": "backgrounds",
+			"source": "reactbits",
+			"sourceUrl": "https://reactbits.dev/backgrounds/pixel-blast",
+			"version": "0.1.0",
+			"description": "Animated pixel explosion background using Three.js and postprocessing",
+			"files": [
+				"backgrounds/pixel-blast/pixel-blast.tsx",
+				"backgrounds/pixel-blast/pixel-blast.css"
+			],
+			"peerDependencies": {
+				"three": "^0.160.0",
+				"postprocessing": "^6.0.0"
+			},
+			"dependencies": [],
+			"tags": ["background", "animated", "pixel", "threejs"]
+		},
+		{
+			"name": "color-bends",
+			"displayName": "Color Bends Background",
+			"category": "backgrounds",
+			"source": "reactbits",
+			"sourceUrl": "https://reactbits.dev/backgrounds/color-bends",
+			"version": "0.1.0",
+			"description": "Animated color bending background using Three.js",
+			"files": [
+				"backgrounds/color-bends/color-bends.tsx",
+				"backgrounds/color-bends/color-bends.css"
+			],
+			"peerDependencies": {
+				"three": "^0.160.0"
+			},
+			"dependencies": [],
+			"tags": ["background", "animated", "color", "threejs"]
+		},
+		{
+			"name": "gradient-blinds",
+			"displayName": "Gradient Blinds Background",
+			"category": "backgrounds",
+			"source": "reactbits",
+			"sourceUrl": "https://reactbits.dev/backgrounds/gradient-blinds",
+			"version": "0.1.0",
+			"description": "Animated gradient blinds background using WebGL shaders",
+			"files": [
+				"backgrounds/gradient-blinds/gradient-blinds.tsx",
+				"backgrounds/gradient-blinds/gradient-blinds.css"
+			],
+			"peerDependencies": {
+				"ogl": "^1.0.0"
+			},
+			"dependencies": [],
+			"tags": ["background", "animated", "gradient", "webgl"]
+		},
+		{
+			"name": "grid-scan",
+			"displayName": "Grid Scan Background",
+			"category": "backgrounds",
+			"source": "reactbits",
+			"sourceUrl": "https://reactbits.dev/backgrounds/grid-scan",
+			"version": "0.1.0",
+			"description": "Animated grid scanning background using Three.js and postprocessing",
+			"files": [
+				"backgrounds/grid-scan/grid-scan.tsx",
+				"backgrounds/grid-scan/grid-scan.css"
+			],
+			"peerDependencies": {
+				"three": "^0.160.0",
+				"postprocessing": "^6.0.0"
+			},
+			"dependencies": [],
+			"tags": ["background", "animated", "grid", "threejs"]
+		},
+		{
+			"name": "pixel-snow",
+			"displayName": "Pixel Snow Background",
+			"category": "backgrounds",
+			"source": "reactbits",
+			"sourceUrl": "https://reactbits.dev/backgrounds/pixel-snow",
+			"version": "0.1.0",
+			"description": "Animated pixel snow falling background using Three.js",
+			"files": [
+				"backgrounds/pixel-snow/pixel-snow.tsx",
+				"backgrounds/pixel-snow/pixel-snow.css"
+			],
+			"peerDependencies": {
+				"three": "^0.160.0"
+			},
+			"dependencies": [],
+			"tags": ["background", "animated", "snow", "threejs"]
+		},
+		{
+			"name": "faulty-terminal",
+			"displayName": "Faulty Terminal Background",
+			"category": "backgrounds",
+			"source": "reactbits",
+			"sourceUrl": "https://reactbits.dev/backgrounds/faulty-terminal",
+			"version": "0.1.0",
+			"description": "Animated faulty terminal background with CRT effects using WebGL",
+			"files": [
+				"backgrounds/faulty-terminal/faulty-terminal.tsx",
+				"backgrounds/faulty-terminal/faulty-terminal.css"
+			],
+			"peerDependencies": {
+				"ogl": "^1.0.0"
+			},
+			"dependencies": [],
+			"tags": ["background", "animated", "terminal", "webgl"]
+		},
+		{
+			"name": "falling-glitch",
+			"displayName": "Falling Glitch Background",
+			"category": "backgrounds",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/falling-glitch",
+			"version": "0.1.0",
+			"description": "Matrix-style falling glitch text effect background",
+			"files": ["backgrounds/falling-glitch/falling-glitch.tsx"],
+			"dependencies": [],
+			"tags": ["background", "animated", "glitch", "matrix"]
+		},
+		{
+			"name": "basic-accordion",
+			"displayName": "Basic Accordion",
+			"category": "accordions",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/accordion",
+			"version": "0.1.0",
+			"description": "Clean, accessible accordion component with smooth expand/collapse animations",
+			"files": ["accordions/basic-accordion/basic-accordion.tsx"],
+			"dependencies": [],
+			"tags": ["accordion", "interactive", "faq"]
+		},
+		{
+			"name": "fancy-accordion",
+			"displayName": "Fancy Accordion",
+			"category": "accordions",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/accordion",
+			"version": "0.1.0",
+			"description": "Fancy accordion with animated icons and enhanced visual styling",
+			"files": ["accordions/fancy-accordion/fancy-accordion.tsx"],
+			"dependencies": [],
+			"tags": ["accordion", "animated", "fancy"]
+		},
+		{
+			"name": "gradient-accordion",
+			"displayName": "Gradient Accordion",
+			"category": "accordions",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/accordion",
+			"version": "0.1.0",
+			"description": "Accordion with gradient styling and smooth expand/collapse animations",
+			"files": ["accordions/gradient-accordion/gradient-accordion.tsx"],
+			"dependencies": [],
+			"tags": ["accordion", "gradient", "animated"]
+		},
+		{
+			"name": "noise-card",
+			"displayName": "Noise Card",
+			"category": "cards",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/card",
+			"version": "0.1.0",
+			"description": "Card component with animated noise texture overlay effect",
+			"files": ["cards/noise-card/noise-card.tsx"],
+			"dependencies": [],
+			"tags": ["card", "noise", "animated", "texture"]
+		},
+		{
+			"name": "glitch-vault-card",
+			"displayName": "Glitch Vault Card",
+			"category": "cards",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/card",
+			"version": "0.1.0",
+			"description": "Card with cyberpunk glitch vault aesthetic and animated effects",
+			"files": ["cards/glitch-vault-card/glitch-vault-card.tsx"],
+			"dependencies": [],
+			"tags": ["card", "glitch", "cyberpunk", "animated"]
+		},
+		{
+			"name": "glow-line",
+			"displayName": "Glow Line",
+			"category": "effects",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/glow-line",
+			"version": "0.1.0",
+			"description": "Animated glowing line divider effect",
+			"files": ["effects/glow-line/glow-line.tsx"],
+			"dependencies": [],
+			"tags": ["effect", "glow", "divider", "animated"]
+		},
+		{
 			"name": "fuzzy-text",
 			"displayName": "Fuzzy Text",
 			"category": "text-animations",
 			"source": "seraui",
-			"sourceUrl": "https://seraui.com/docs/text-animations/fuzzy",
+			"sourceUrl": "https://seraui.com/docs/fuzzy",
 			"version": "0.1.0",
 			"description": "Canvas-based text with fuzzy glitch hover animation effect",
 			"files": ["text-animations/fuzzy-text/fuzzy-text.tsx"],
@@ -73,7 +450,7 @@
 			"displayName": "Decrypting Text",
 			"category": "text-animations",
 			"source": "seraui",
-			"sourceUrl": "https://seraui.com/docs/text-animations/decrypting",
+			"sourceUrl": "https://seraui.com/docs/decrypting",
 			"version": "0.1.0",
 			"description": "Text reveal animation with scrambled character decryption effect",
 			"files": ["text-animations/decrypting-text/decrypting-text.tsx"],
@@ -84,16 +461,265 @@
 			"tags": ["text", "animation", "decrypt", "scramble"]
 		},
 		{
+			"name": "text-animation",
+			"displayName": "Text Animation",
+			"category": "text-animations",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/text",
+			"version": "0.1.0",
+			"description": "Animated text with blur-in and fade effects using motion",
+			"files": ["text-animations/text-animation/text-animation.tsx"],
+			"peerDependencies": {
+				"motion": "^11.0.0"
+			},
+			"dependencies": [],
+			"tags": ["text", "animation", "blur", "fade"]
+		},
+		{
+			"name": "flipwords",
+			"displayName": "Flip Words",
+			"category": "text-animations",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/flipwords",
+			"version": "0.1.0",
+			"description": "Animated word flipper that cycles through a list of words",
+			"files": ["text-animations/flipwords/flipwords.tsx"],
+			"peerDependencies": {
+				"motion": "^11.0.0"
+			},
+			"dependencies": [],
+			"tags": ["text", "animation", "flip", "words"]
+		},
+		{
+			"name": "text-reveal",
+			"displayName": "Text Reveal",
+			"category": "text-animations",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/textreveal",
+			"version": "0.1.0",
+			"description": "Text reveal animation with scroll-triggered or automatic effects",
+			"files": ["text-animations/text-reveal/text-reveal.tsx"],
+			"peerDependencies": {
+				"motion": "^11.0.0"
+			},
+			"dependencies": [],
+			"tags": ["text", "animation", "reveal", "scroll"]
+		},
+		{
+			"name": "aurora-text",
+			"displayName": "Aurora Text",
+			"category": "text-animations",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/aurora",
+			"version": "0.1.0",
+			"description": "Text with animated aurora gradient color effect",
+			"files": ["text-animations/aurora-text/aurora-text.tsx"],
+			"dependencies": [],
+			"tags": ["text", "animation", "aurora", "gradient"]
+		},
+		{
+			"name": "ticker",
+			"displayName": "Ticker",
+			"category": "text-animations",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/ticker",
+			"version": "0.1.0",
+			"description": "Animated number/text ticker with rolling digit effect",
+			"files": ["text-animations/ticker/ticker.tsx"],
+			"dependencies": [],
+			"tags": ["text", "animation", "ticker", "counter"]
+		},
+		{
+			"name": "text-highlighter",
+			"displayName": "Text Highlighter",
+			"category": "text-animations",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/text-highlighter",
+			"version": "0.1.0",
+			"description": "Animated text highlighting effect with customizable colors",
+			"files": ["text-animations/text-highlighter/text-highlighter.tsx"],
+			"dependencies": [],
+			"tags": ["text", "animation", "highlight"]
+		},
+		{
+			"name": "curved-text",
+			"displayName": "Curved Text",
+			"category": "text-animations",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/curved-text",
+			"version": "0.1.0",
+			"description": "Text rendered along a curved SVG path",
+			"files": ["text-animations/curved-text/curved-text.tsx"],
+			"dependencies": [],
+			"tags": ["text", "animation", "curve", "svg"]
+		},
+		{
 			"name": "marquee",
 			"displayName": "Marquee",
 			"category": "sections",
 			"source": "seraui",
-			"sourceUrl": "https://seraui.com/docs/sections/marquee",
+			"sourceUrl": "https://seraui.com/docs/marquee",
 			"version": "0.1.0",
 			"description": "Smooth infinite scrolling marquee with pause-on-hover and vertical support",
 			"files": ["sections/marquee/marquee.tsx"],
 			"dependencies": [],
 			"tags": ["marquee", "scroll", "infinite", "animation"]
+		},
+		{
+			"name": "hero",
+			"displayName": "Hero Section",
+			"category": "sections",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/hero",
+			"version": "0.1.0",
+			"description": "Hero section component with headline, description, and call-to-action buttons",
+			"files": ["sections/hero/hero.tsx"],
+			"dependencies": [],
+			"tags": ["hero", "section", "landing"]
+		},
+		{
+			"name": "navbar",
+			"displayName": "Navbar",
+			"category": "sections",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/navbar",
+			"version": "0.1.0",
+			"description": "Responsive navigation bar with search, links, and popover menus",
+			"files": ["sections/navbar/navbar.tsx"],
+			"dependencies": [],
+			"tags": ["navbar", "navigation", "header"]
+		},
+		{
+			"name": "testimonial",
+			"displayName": "Testimonial",
+			"category": "sections",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/testimonial",
+			"version": "0.1.0",
+			"description": "Testimonial section displaying customer reviews and feedback",
+			"files": ["sections/testimonial/testimonial.tsx"],
+			"dependencies": [],
+			"tags": ["testimonial", "review", "section"]
+		},
+		{
+			"name": "tabs",
+			"displayName": "Tabs",
+			"category": "sections",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/tabs",
+			"version": "0.1.0",
+			"description": "Animated tab component with smooth content transitions using motion",
+			"files": ["sections/tabs/tabs.tsx"],
+			"peerDependencies": {
+				"motion": "^11.0.0"
+			},
+			"dependencies": [],
+			"tags": ["tabs", "navigation", "animated"]
+		},
+		{
+			"name": "bento-grid",
+			"displayName": "Bento Grid",
+			"category": "sections",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/bento-grid",
+			"version": "0.1.0",
+			"description": "Bento-style grid layout for showcasing features or content",
+			"files": ["sections/bento-grid/bento-grid.tsx"],
+			"dependencies": [],
+			"tags": ["bento", "grid", "layout", "section"]
+		},
+		{
+			"name": "file-tree",
+			"displayName": "File Tree",
+			"category": "sections",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/filetree",
+			"version": "0.1.0",
+			"description": "Interactive file tree component with expand/collapse folders",
+			"files": ["sections/file-tree/file-tree.tsx"],
+			"dependencies": [],
+			"tags": ["file", "tree", "directory", "interactive"]
+		},
+		{
+			"name": "video-text",
+			"displayName": "Video Text",
+			"category": "sections",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/video-text",
+			"version": "0.1.0",
+			"description": "Text with video fill effect using CSS clip-path masking",
+			"files": ["sections/video-text/video-text.tsx"],
+			"dependencies": [],
+			"tags": ["video", "text", "masking", "section"]
+		},
+		{
+			"name": "infinite-grid",
+			"displayName": "Infinite Grid",
+			"category": "sections",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/infinite-grid",
+			"version": "0.1.0",
+			"description": "Infinite scrolling grid of images with animated layout",
+			"files": ["sections/infinite-grid/infinite-grid.tsx"],
+			"dependencies": [],
+			"tags": ["grid", "infinite", "images", "animated"]
+		},
+		{
+			"name": "orbiting",
+			"displayName": "Orbiting",
+			"category": "sections",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/orbiting",
+			"version": "0.1.0",
+			"description": "Orbiting animation with elements rotating around a center point",
+			"files": ["sections/orbiting/orbiting.tsx"],
+			"dependencies": [],
+			"tags": ["orbit", "animation", "rotation"]
+		},
+		{
+			"name": "orbit-carousel",
+			"displayName": "Orbit Carousel",
+			"category": "sections",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/orbit-carousel",
+			"version": "0.1.0",
+			"description": "3D carousel with orbiting items and navigation controls using motion",
+			"files": ["sections/orbit-carousel/orbit-carousel.tsx"],
+			"peerDependencies": {
+				"motion": "^11.0.0"
+			},
+			"dependencies": [],
+			"tags": ["carousel", "orbit", "3d", "animated"]
+		},
+		{
+			"name": "drawer",
+			"displayName": "Drawer",
+			"category": "sections",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/drawer",
+			"version": "0.1.0",
+			"description": "Slide-in drawer component with overlay, supporting top/bottom/left/right positions",
+			"files": ["sections/drawer/drawer.tsx"],
+			"peerDependencies": {
+				"motion": "^11.0.0"
+			},
+			"dependencies": [],
+			"tags": ["drawer", "modal", "overlay", "animated"]
+		},
+		{
+			"name": "modal",
+			"displayName": "Modal",
+			"category": "sections",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/modal",
+			"version": "0.1.0",
+			"description": "Animated modal dialog with size variants and multiple animation types",
+			"files": ["sections/modal/modal.tsx"],
+			"peerDependencies": {
+				"motion": "^11.0.0"
+			},
+			"dependencies": [],
+			"tags": ["modal", "dialog", "overlay", "animated"]
 		},
 		{
 			"name": "dome-gallery",
@@ -109,6 +735,36 @@
 			},
 			"dependencies": [],
 			"tags": ["gallery", "3d", "interactive", "images", "sphere"]
+		},
+		{
+			"name": "chroma-grid",
+			"displayName": "Chroma Grid",
+			"category": "gallery",
+			"source": "reactbits",
+			"sourceUrl": "https://reactbits.dev/components/chroma-grid",
+			"version": "0.1.0",
+			"description": "Interactive color grid gallery with GSAP animations",
+			"files": [
+				"gallery/chroma-grid/chroma-grid.tsx",
+				"gallery/chroma-grid/chroma-grid.css"
+			],
+			"peerDependencies": {
+				"gsap": "^3.0.0"
+			},
+			"dependencies": [],
+			"tags": ["gallery", "grid", "color", "animated", "gsap"]
+		},
+		{
+			"name": "login",
+			"displayName": "Login",
+			"category": "pages",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/login",
+			"version": "0.1.0",
+			"description": "Login page with email/password form and social login buttons",
+			"files": ["pages/login/login.tsx"],
+			"dependencies": [],
+			"tags": ["page", "login", "form", "auth"]
 		}
 	]
 }

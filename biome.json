@@ -49,12 +49,16 @@
 			"**/*.json",
 			"**/*.css",
 			"!packages/templates",
-			"!packages/components/src/buttons",
+			"!packages/components/src/accordions",
 			"!packages/components/src/backgrounds",
-			"!packages/components/src/text-animations",
-			"!packages/components/src/sections",
+			"!packages/components/src/buttons",
+			"!packages/components/src/cards",
+			"!packages/components/src/effects",
 			"!packages/components/src/gallery",
-			"!packages/components/src/lib"
+			"!packages/components/src/lib",
+			"!packages/components/src/pages",
+			"!packages/components/src/sections",
+			"!packages/components/src/text-animations"
 		]
 	}
 }

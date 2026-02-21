@@ -1,0 +1,55 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as CurvedTextStories from './curved-text.stories';
+
+<Meta of={CurvedTextStories} />
+
+# Curved Text
+
+Canvas-based curved scrolling text with configurable direction, speed, and curve. Renders text along a sine-like curve with optional mouse interaction.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Text Animations
+- **Dependencies:** None (pure canvas)
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Right Direction
+
+Right-direction scrolling at double speed.
+
+<Canvas of={CurvedTextStories.RightDirection} />
+
+### Large Text
+
+Large text with extra curve height.
+
+<Canvas of={CurvedTextStories.LargeText} />
+
+## Usage
+
+```tsx
+import { CanvasCurvedLoop } from "@/components/text-animations/curved-text";
+
+export default function MarqueeSection() {
+  return (
+    <div className="w-full text-white">
+      <CanvasCurvedLoop
+        text="Scrolling curved text"
+        speed={1}
+        curveHeight={40}
+        direction="left"
+        fontSize={48}
+        height={200}
+      />
+    </div>
+  );
+}
+```

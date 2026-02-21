@@ -1,0 +1,64 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as GridScanStories from './grid-scan.stories';
+
+<Meta of={GridScanStories} />
+
+# Grid Scan
+
+Three.js + postprocessing background with 3D grid scanner effect. Features animated scan lines, bloom, chromatic aberration, and optional webcam-based face tracking for parallax.
+
+- **Source:** [ReactBits](https://reactbits.dev)
+- **Category:** Backgrounds
+- **Peer Dependencies:** `three`, `postprocessing`, `face-api.js` — install with `pnpm add three postprocessing face-api.js`
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Dashed Lines
+
+Grid rendered with dashed line style for a more technical look.
+
+<Canvas of={GridScanStories.DashedLines} />
+
+### Click To Scan
+
+Click anywhere on the canvas to trigger an additional scan wave.
+
+<Canvas of={GridScanStories.ClickToScan} />
+
+## Usage
+
+Copy the component into your project at `src/components/backgrounds/grid-scan/grid-scan.tsx`:
+
+```tsx
+// Install peer dependencies: pnpm add three postprocessing face-api.js
+import { GridScan } from "@/components/backgrounds/grid-scan";
+
+export default function Example() {
+  return (
+    <div className="relative w-full h-screen">
+      <GridScan
+        scanColor="#FF9FFC"
+        linesColor="#392e4e"
+        scanDirection="pingpong"
+      />
+    </div>
+  );
+}
+```
+
+## Component Source
+
+<details>
+<summary>View full source (grid-scan.tsx)</summary>
+
+The component source is available in `packages/components/src/backgrounds/grid-scan/grid-scan.tsx`.
+
+</details>

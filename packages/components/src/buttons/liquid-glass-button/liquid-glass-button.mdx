@@ -1,0 +1,80 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as LiquidGlassButtonStories from './liquid-glass-button.stories';
+
+<Meta of={LiquidGlassButtonStories} />
+
+# Liquid Glass Button
+
+Apple-style liquid glass button with SVG displacement map distortion filter. Supports subtle, default, bold, and ghost presets with size variants.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Buttons
+- **Peer Dependencies:** `class-variance-authority`
+- **Dependencies:** `clsx`, `tailwind-merge` (included in template)
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Subtle Variant
+
+Subtle variant with minimal glass effect.
+
+<Canvas of={LiquidGlassButtonStories.SubtleVariant} />
+
+### Bold Variant
+
+Bold variant with maximum glass intensity.
+
+<Canvas of={LiquidGlassButtonStories.BoldVariant} />
+
+### Ghost Variant
+
+Ghost variant with near-transparent glass effect.
+
+<Canvas of={LiquidGlassButtonStories.GhostVariant} />
+
+### Icon Button
+
+Icon-sized square glass button.
+
+<Canvas of={LiquidGlassButtonStories.IconButton} />
+
+### All Sizes
+
+All size variants displayed together.
+
+<Canvas of={LiquidGlassButtonStories.AllSizes} />
+
+## Usage
+
+Install peer dependencies:
+
+```bash
+npm install class-variance-authority
+```
+
+Copy the component into your project at `src/components/buttons/liquid-glass-button/liquid-glass-button.tsx`:
+
+```tsx
+import { LiquidGlassButton } from "@/components/buttons/liquid-glass-button";
+
+export default function HeroSection() {
+  return (
+    <div className="relative bg-cover bg-center h-screen" style={{ backgroundImage: "url('/hero.jpg')" }}>
+      <LiquidGlassButton variant="bold" size="lg">
+        Get Started
+      </LiquidGlassButton>
+      <LiquidGlassButton variant="ghost" size="sm">
+        Learn More
+      </LiquidGlassButton>
+    </div>
+  );
+}
+```

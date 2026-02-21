@@ -1,0 +1,48 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as TickerStories from './ticker.stories';
+
+<Meta of={TickerStories} />
+
+# Ticker
+
+Animated number counter with easeOutExpo easing. Counts from zero to a target value with configurable duration and formatting.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Text Animations
+- **Dependencies:** None (pure React)
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Percentage
+
+Percentage display with one decimal place.
+
+<Canvas of={TickerStories.Percentage} />
+
+### Slow Count
+
+Slow count to 500 over 5 seconds.
+
+<Canvas of={TickerStories.SlowCount} />
+
+## Usage
+
+```tsx
+import { NumberTicker } from "@/components/text-animations/ticker";
+
+export default function Stats() {
+  return (
+    <div className="text-5xl font-bold">
+      <NumberTicker value={1000} prefix="$" duration={2000} />
+    </div>
+  );
+}
+```

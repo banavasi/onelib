@@ -1,0 +1,61 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as GradientBlindsStories from './gradient-blinds.stories';
+
+<Meta of={GradientBlindsStories} />
+
+# Gradient Blinds
+
+Gradient blinds effect with spotlight tracking, customizable gradient colors, and distortion. Uses OGL WebGL shaders.
+
+- **Source:** [ReactBits](https://reactbits.dev)
+- **Category:** Backgrounds
+- **Peer Dependencies:** `ogl` — install with `pnpm add ogl`
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Warm Gradient
+
+Warm gradient with orange, gold, and pink tones.
+
+<Canvas of={GradientBlindsStories.WarmGradient} />
+
+### Mirrored Gradient
+
+Mirrored gradient with three-color palette.
+
+<Canvas of={GradientBlindsStories.MirroredGradient} />
+
+### Distorted Blinds
+
+High distortion with more blinds.
+
+<Canvas of={GradientBlindsStories.DistortedBlinds} />
+
+## Usage
+
+Copy the component into your project at `src/components/backgrounds/gradient-blinds/gradient-blinds.tsx`:
+
+```tsx
+// Install peer dependency: pnpm add ogl
+import GradientBlinds from "@/components/backgrounds/gradient-blinds";
+
+export default function HeroSection() {
+  return (
+    <div className="relative w-full h-screen">
+      <GradientBlinds
+        gradientColors={["#FF9FFC", "#5227FF"]}
+        blindCount={16}
+        noise={0.3}
+      />
+    </div>
+  );
+}
+```

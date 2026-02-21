@@ -1,0 +1,34 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as OrbitingStories from './orbiting.stories';
+
+<Meta of={OrbitingStories} />
+
+# Orbiting Skills
+
+Orbital animation visualization showing tech icons orbiting around a center element. Features inner and outer orbit rings with counter-rotating animations. Self-contained with inline SVG icons and CSS keyframe animations.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Sections
+- **Peer Dependencies:** None
+
+## Preview
+
+<Primary />
+
+## Props
+
+This component is a self-contained visualization with no configurable props. Customize by editing the component source directly.
+
+## Usage
+
+```tsx
+import { OrbitingSkills } from "@/components/sections/orbiting";
+
+export default function SkillsSection() {
+  return (
+    <section className="w-full min-h-screen flex items-center justify-center bg-gray-950">
+      <OrbitingSkills />
+    </section>
+  );
+}
+```

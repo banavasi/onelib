@@ -1,0 +1,54 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as FancyAccordionStories from './fancy-accordion.stories';
+
+<Meta of={FancyAccordionStories} />
+
+# Fancy Accordion
+
+A green-themed accordion with gradient overlay and backdrop blur effects. Each item features a subtle gradient overlay and smooth expand/collapse transitions.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Accordions
+- **Dependencies:** None (React + Tailwind only)
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### All Closed
+
+All accordion items closed on initial render (defaultOpen set to null).
+
+<Canvas of={FancyAccordionStories.AllClosed} />
+
+## Usage
+
+Copy the component into your project at `src/components/accordions/fancy-accordion/fancy-accordion.tsx`:
+
+```tsx
+import { FancyAccordion } from "@/components/accordions/fancy-accordion";
+
+const faqItems = [
+  { question: "How do I get started?", answer: "Follow our setup guide." },
+  { question: "How do I reset my password?", answer: "Click Forgot Password on login." },
+];
+
+export default function FAQ() {
+  return <FancyAccordion items={faqItems} defaultOpen={0} />;
+}
+```
+
+## Component Source
+
+<details>
+<summary>View full source (fancy-accordion.tsx)</summary>
+
+The component source is available in `packages/components/src/accordions/fancy-accordion/fancy-accordion.tsx`.
+
+</details>

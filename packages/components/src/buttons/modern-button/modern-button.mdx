@@ -1,0 +1,69 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as ModernButtonStories from './modern-button.stories';
+
+<Meta of={ModernButtonStories} />
+
+# Modern Button
+
+Two modern button components: **CopyButton** with animated jiggle on copy, and **ProcessingButton** with idle/processing/success/error state transitions.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Buttons
+- **Dependencies:** `clsx`, `tailwind-merge` (included in template)
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Custom Duration
+
+Copy button with custom text and longer success duration.
+
+<Canvas of={ModernButtonStories.CustomDuration} />
+
+### Processing
+
+ProcessingButton with async operation simulation.
+
+<Canvas of={ModernButtonStories.Processing} />
+
+### Processing Error
+
+ProcessingButton showing error state.
+
+<Canvas of={ModernButtonStories.ProcessingError} />
+
+### All Variants
+
+Both button types displayed together.
+
+<Canvas of={ModernButtonStories.AllVariants} />
+
+## Usage
+
+Copy the component into your project at `src/components/buttons/modern-button/modern-button.tsx`:
+
+```tsx
+import { CopyButton, ProcessingButton } from "@/components/buttons/modern-button";
+
+export default function MyPage() {
+  const handleProcess = async () => {
+    await fetch("/api/process");
+  };
+
+  return (
+    <div className="flex gap-4">
+      <CopyButton textToCopy="npm install @oneorigin/onelib" />
+      <ProcessingButton onProcess={handleProcess}>
+        Download
+      </ProcessingButton>
+    </div>
+  );
+}
+```

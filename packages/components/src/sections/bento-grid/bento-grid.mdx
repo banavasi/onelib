@@ -1,0 +1,79 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as BentoGridStories from './bento-grid.stories';
+
+<Meta of={BentoGridStories} />
+
+# Bento Grid
+
+Responsive bento grid layout with feature cards. Supports spanning columns via className, optional icons, links, and custom children content. Uses `cn` from `@/lib/utils` for class merging.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Sections
+- **Peer Dependencies:** None
+
+## Preview
+
+<Primary />
+
+## Props
+
+### BentoGrid
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `children` | `React.ReactNode` | BentoCard components |
+| `className` | `string` | Additional CSS classes |
+
+### BentoCard
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `title` | `string` | Card heading |
+| `description` | `string` | Card description text |
+| `icon` | `React.ReactNode` | Optional icon element |
+| `className` | `string` | Additional CSS classes (use for column spanning) |
+| `children` | `React.ReactNode` | Optional custom content below description |
+| `href` | `string` | Optional link URL |
+
+## Stories
+
+### Two Columns
+
+Minimal two-column layout with four cards.
+
+<Canvas of={BentoGridStories.TwoColumns} />
+
+### With Links
+
+Bento cards that function as clickable links.
+
+<Canvas of={BentoGridStories.WithLinks} />
+
+## Usage
+
+```tsx
+import { BentoGrid, BentoCard } from "@/components/sections/bento-grid";
+
+export default function Features() {
+  return (
+    <BentoGrid>
+      <BentoCard
+        title="Fast"
+        description="Optimized for speed."
+        icon={<ZapIcon />}
+      />
+      <BentoCard
+        title="Secure"
+        description="Enterprise-grade security."
+        icon={<ShieldIcon />}
+        className="md:col-span-2"
+      />
+      <BentoCard
+        title="Scalable"
+        description="Grows with your team."
+        icon={<ServerIcon />}
+      />
+    </BentoGrid>
+  );
+}
+```

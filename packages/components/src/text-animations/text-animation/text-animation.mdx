@@ -1,0 +1,44 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as TextAnimationStories from './text-animation.stories';
+
+<Meta of={TextAnimationStories} />
+
+# Text Animation
+
+Character-by-character blur-in text animation. Each character animates from blurred to sharp with staggered timing.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Text Animations
+- **Peer Dependencies:** `motion`
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Long Text
+
+Long text with staggered character animation.
+
+<Canvas of={TextAnimationStories.LongText} />
+
+## Usage
+
+```tsx
+import { BlurInText } from "@/components/text-animations/text-animation";
+
+export default function Hero() {
+  return (
+    <BlurInText
+      text="Sharp Focus Ahead"
+      delay={0.2}
+      duration={0.5}
+    />
+  );
+}
+```

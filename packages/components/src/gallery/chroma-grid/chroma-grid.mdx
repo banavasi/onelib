@@ -1,0 +1,67 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as ChromaGridStories from './chroma-grid.stories';
+
+<Meta of={ChromaGridStories} />
+
+# Chroma Grid
+
+GSAP-powered interactive card grid with a spotlight/chroma effect that follows the cursor. Cards are desaturated by default and reveal full color within a radial gradient mask as the pointer moves over the grid. Each card also has its own per-card spotlight highlight.
+
+- **Source:** [ReactBits](https://reactbits.dev)
+- **Category:** Gallery
+- **Peer Dependencies:** `gsap` — install with `pnpm add gsap`
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Custom Layout
+
+Two-column, three-row layout with a larger spotlight radius for wider reveal.
+
+<Canvas of={ChromaGridStories.CustomLayout} />
+
+## Usage
+
+Copy the component into your project at `src/components/gallery/chroma-grid/chroma-grid.tsx`:
+
+```tsx
+// Install peer dependency: pnpm add gsap
+import { ChromaGrid } from "@/components/gallery/chroma-grid";
+
+const items = [
+  {
+    image: "https://i.pravatar.cc/300?img=1",
+    title: "Jane Doe",
+    subtitle: "Engineer",
+    handle: "@janedoe",
+    borderColor: "#4F46E5",
+    gradient: "linear-gradient(145deg, #4F46E5, #000)",
+    url: "https://github.com/",
+  },
+  // ... more items
+];
+
+export default function Example() {
+  return (
+    <div className="min-h-screen bg-black flex items-center justify-center">
+      <ChromaGrid items={items} columns={3} radius={300} />
+    </div>
+  );
+}
+```
+
+## Component Source
+
+<details>
+<summary>View full source (chroma-grid.tsx)</summary>
+
+The component source is available in `packages/components/src/gallery/chroma-grid/chroma-grid.tsx`.
+
+</details>

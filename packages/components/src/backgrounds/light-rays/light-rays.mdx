@@ -1,0 +1,63 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as LightRaysStories from './light-rays.stories';
+
+<Meta of={LightRaysStories} />
+
+# Light Rays
+
+Volumetric light ray effect with configurable origin, color, spread, and optional mouse following. Uses OGL WebGL shaders.
+
+- **Source:** [ReactBits](https://reactbits.dev)
+- **Category:** Backgrounds
+- **Peer Dependencies:** `ogl` — install with `pnpm add ogl`
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Bottom Rays
+
+Warm orange rays from the bottom.
+
+<Canvas of={LightRaysStories.BottomRays} />
+
+### Pulsating Rays
+
+Pulsating rays with slower speed.
+
+<Canvas of={LightRaysStories.PulsatingRays} />
+
+### Wide Spread
+
+Wide spread rays with extended length.
+
+<Canvas of={LightRaysStories.WideSpread} />
+
+## Usage
+
+Copy the component into your project at `src/components/backgrounds/light-rays/light-rays.tsx`:
+
+```tsx
+// Install peer dependency: pnpm add ogl
+import LightRays from "@/components/backgrounds/light-rays";
+
+export default function HeroSection() {
+  return (
+    <div className="relative w-full h-screen">
+      <LightRays
+        raysOrigin="top-center"
+        raysColor="#ffffff"
+        raysSpeed={1}
+        lightSpread={1}
+        rayLength={2}
+      />
+    </div>
+  );
+}
+```

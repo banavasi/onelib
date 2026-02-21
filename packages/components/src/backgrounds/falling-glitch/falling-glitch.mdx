@@ -1,0 +1,60 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as FallingGlitchStories from './falling-glitch.stories';
+
+<Meta of={FallingGlitchStories} />
+
+# Falling Glitch
+
+Canvas-based falling glitch text effect with configurable colors, speed, and intensity. Characters fall and randomly glitch across the canvas with a vignette overlay.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Backgrounds
+- **Peer Dependencies:** None
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### With Overlay
+
+Falling glitch with children overlay text centered on the canvas.
+
+<Canvas of={FallingGlitchStories.WithOverlay} />
+
+### Intense
+
+High intensity glitch with faster fall speed and more frequent character updates.
+
+<Canvas of={FallingGlitchStories.Intense} />
+
+### Green Terminal
+
+Monochrome green terminal style reminiscent of classic hacker aesthetics.
+
+<Canvas of={FallingGlitchStories.GreenTerminal} />
+
+## Usage
+
+```tsx
+import { FallingGlitch } from "@/components/backgrounds/falling-glitch";
+
+export default function Example() {
+  return (
+    <div className="relative w-full h-screen">
+      <FallingGlitch
+        glitchColors={["#ff7cce", "#7cf0ff", "#fcf07c"]}
+        fallSpeed={0.75}
+        outerVignette
+      >
+        <h1 className="text-4xl font-bold text-white">Welcome</h1>
+      </FallingGlitch>
+    </div>
+  );
+}
+```

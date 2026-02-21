@@ -1,0 +1,34 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as LoginStories from './login.stories';
+
+<Meta of={LoginStories} />
+
+# Login
+
+A complete login page component with email/password form, social login buttons (Apple, Google, X), and password visibility toggle. Self-contained with inline SVG icons.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Pages
+- **Peer Dependencies:** None
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Usage
+
+```tsx
+import { Login } from "@/components/pages/login";
+
+export default function LoginPage() {
+	return (
+		<div className="min-h-screen flex items-center justify-center">
+			<Login />
+		</div>
+	);
+}
+```

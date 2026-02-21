@@ -1,0 +1,48 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as InfiniteGridStories from './infinite-grid.stories';
+
+<Meta of={InfiniteGridStories} />
+
+# Infinite Grid
+
+Infinite draggable image grid that wraps seamlessly in all directions. Click and drag to pan through images. Content repeats infinitely in every direction.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Sections
+- **Peer Dependencies:** None
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Two Columns
+
+Wider layout with fewer columns and larger images.
+
+<Canvas of={InfiniteGridStories.TwoColumns} />
+
+## Usage
+
+```tsx
+import { InfiniteDraggableGrid } from "@/components/sections/infinite-grid";
+
+const gallery = [
+  { id: 1, src: "/images/photo1.jpg", alt: "Photo 1" },
+  { id: 2, src: "/images/photo2.jpg", alt: "Photo 2" },
+  { id: 3, src: "/images/photo3.jpg", alt: "Photo 3" },
+];
+
+export default function GalleryPage() {
+  return (
+    <div className="w-full h-screen">
+      <InfiniteDraggableGrid gallery={gallery} columns={3} />
+    </div>
+  );
+}
+```

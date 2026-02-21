@@ -1,0 +1,78 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as DrawerStories from './drawer.stories';
+
+<Meta of={DrawerStories} />
+
+# Drawer
+
+A drawer component that slides in from any side of the screen with smooth spring-based animations. Built with Motion for fluid transitions.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Sections
+- **Peer Dependencies:** `motion`
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Left
+
+Drawer sliding in from the left side.
+
+<Canvas of={DrawerStories.Left} />
+
+### Top
+
+Drawer sliding in from the top.
+
+<Canvas of={DrawerStories.Top} />
+
+### Bottom
+
+Drawer sliding in from the bottom.
+
+<Canvas of={DrawerStories.Bottom} />
+
+## Usage
+
+```tsx
+import {
+	Drawer,
+	DrawerOverlay,
+	DrawerContent,
+	DrawerHeader,
+	DrawerTitle,
+	DrawerDescription,
+	DrawerFooter,
+} from "@/components/sections/drawer";
+import { useState } from "react";
+
+export default function Example() {
+	const [isOpen, setIsOpen] = useState(false);
+
+	return (
+		<>
+			<button onClick={() => setIsOpen(true)}>Open Drawer</button>
+			<Drawer open={isOpen} onOpenChange={setIsOpen} side="right">
+				<DrawerOverlay />
+				<DrawerContent>
+					<DrawerHeader>
+						<DrawerTitle>Title</DrawerTitle>
+						<DrawerDescription>Description text</DrawerDescription>
+					</DrawerHeader>
+					<div className="p-6">Content here</div>
+					<DrawerFooter>
+						<button onClick={() => setIsOpen(false)}>Close</button>
+					</DrawerFooter>
+				</DrawerContent>
+			</Drawer>
+		</>
+	);
+}
+```

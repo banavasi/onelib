@@ -1,0 +1,64 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as PixelSnowStories from './pixel-snow.stories';
+
+<Meta of={PixelSnowStories} />
+
+# Pixel Snow
+
+Three.js pixel-based snow shader with configurable flake shape, density, and wind direction. Renders volumetric snowfall using raymarching through a 3D voxel grid with square, round, or detailed snowflake shapes.
+
+- **Source:** [ReactBits](https://reactbits.dev)
+- **Category:** Backgrounds
+- **Peer Dependencies:** `three` — install with `pnpm add three`
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Snowflakes
+
+Detailed snowflake shapes with slightly slower fall speed.
+
+<Canvas of={PixelSnowStories.Snowflakes} />
+
+### Dense Blizzard
+
+Dense blizzard effect with high density, fast speed, and increased brightness.
+
+<Canvas of={PixelSnowStories.DenseBlizzard} />
+
+## Usage
+
+Copy the component into your project at `src/components/backgrounds/pixel-snow/pixel-snow.tsx`:
+
+```tsx
+// Install peer dependency: pnpm add three
+import PixelSnow from "@/components/backgrounds/pixel-snow";
+
+export default function Example() {
+  return (
+    <div className="relative w-full h-screen bg-black">
+      <PixelSnow
+        variant="snowflake"
+        density={0.3}
+        speed={1.25}
+      />
+    </div>
+  );
+}
+```
+
+## Component Source
+
+<details>
+<summary>View full source (pixel-snow.tsx)</summary>
+
+The component source is available in `packages/components/src/backgrounds/pixel-snow/pixel-snow.tsx`.
+
+</details>

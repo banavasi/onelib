@@ -1,0 +1,66 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as ModalStories from './modal.stories';
+
+<Meta of={ModalStories} />
+
+# Modal
+
+A modal dialog component that renders via React portal with multiple size options and animation variants. Built with Motion for smooth transitions.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Sections
+- **Peer Dependencies:** `motion`
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Medium with Slide Animation
+
+Default modal with slide animation.
+
+<Canvas of={ModalStories.MediumSlide} />
+
+### Large with Fade Animation
+
+Large modal with simple fade animation.
+
+<Canvas of={ModalStories.LargeFade} />
+
+### Extra Large with Bounce
+
+Playful bounce animation for extra large modal.
+
+<Canvas of={ModalStories.ExtraLargeBounce} />
+
+## Usage
+
+```tsx
+import { Modal } from "@/components/sections/modal";
+import { useState } from "react";
+
+export default function Example() {
+	const [isOpen, setIsOpen] = useState(false);
+
+	return (
+		<>
+			<button onClick={() => setIsOpen(true)}>Open Modal</button>
+			<Modal
+				isOpen={isOpen}
+				onClose={() => setIsOpen(false)}
+				title="Modal Title"
+				size="md"
+				animation="scale"
+			>
+				<p>Modal content goes here</p>
+			</Modal>
+		</>
+	);
+}
+```

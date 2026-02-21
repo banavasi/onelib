@@ -1,0 +1,60 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as NoiseCardStories from './noise-card.stories';
+
+<Meta of={NoiseCardStories} />
+
+# Noise Card
+
+A card component with animated canvas noise texture overlay. The noise is generated procedurally using HTML Canvas and can be static or continuously animated.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Cards
+- **Dependencies:** None (React + Tailwind only)
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Purple Card
+
+Purple variant with noise texture.
+
+<Canvas of={NoiseCardStories.PurpleCard} />
+
+### Static Noise
+
+Non-animated noise overlay for reduced motion preference.
+
+<Canvas of={NoiseCardStories.StaticNoise} />
+
+## Usage
+
+Copy the component into your project at `src/components/cards/noise-card/noise-card.tsx`:
+
+```tsx
+import { NoiseCard } from "@/components/cards/noise-card";
+
+export default function Example() {
+  return (
+    <NoiseCard bgColor="bg-[#0014FF]" noiseOpacity={0.15}>
+      <h3 className="text-xl font-bold mb-2">Card Title</h3>
+      <p className="text-sm opacity-80">Card description text</p>
+    </NoiseCard>
+  );
+}
+```
+
+## Component Source
+
+<details>
+<summary>View full source (noise-card.tsx)</summary>
+
+The component source is available in `packages/components/src/cards/noise-card/noise-card.tsx`.
+
+</details>

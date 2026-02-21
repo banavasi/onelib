@@ -1,0 +1,54 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as BasicAccordionStories from './basic-accordion.stories';
+
+<Meta of={BasicAccordionStories} />
+
+# Basic Accordion
+
+A minimalistic accordion component with plus icon that rotates 45deg on open. Manages single-open state with memo'd items for performance.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Accordions
+- **Dependencies:** None (React + Tailwind only)
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Single Item Open
+
+Accordion rendered with the first item pre-expanded.
+
+<Canvas of={BasicAccordionStories.SingleItemOpen} />
+
+## Usage
+
+Copy the component into your project at `src/components/accordions/basic-accordion/basic-accordion.tsx`:
+
+```tsx
+import { BasicAccordion } from "@/components/accordions/basic-accordion";
+
+const faqItems = [
+  { title: "Question one?", content: "Answer one." },
+  { title: "Question two?", content: "Answer two." },
+];
+
+export default function FAQ() {
+  return <BasicAccordion items={faqItems} />;
+}
+```
+
+## Component Source
+
+<details>
+<summary>View full source (basic-accordion.tsx)</summary>
+
+The component source is available in `packages/components/src/accordions/basic-accordion/basic-accordion.tsx`.
+
+</details>

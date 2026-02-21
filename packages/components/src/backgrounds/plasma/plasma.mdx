@@ -1,0 +1,64 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as PlasmaStories from './plasma.stories';
+
+<Meta of={PlasmaStories} />
+
+# Plasma
+
+Animated plasma effect with customizable color tinting, direction control, and mouse interaction. Uses OGL WebGL2 fragment shaders for real-time plasma generation.
+
+- **Source:** [ReactBits](https://reactbits.dev)
+- **Category:** Backgrounds
+- **Peer Dependencies:** `ogl` — install with `pnpm add ogl`
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Purple Plasma
+
+<Canvas of={PlasmaStories.PurplePlasma} />
+
+### Fast Reverse
+
+<Canvas of={PlasmaStories.FastReverse} />
+
+### Ping Pong
+
+<Canvas of={PlasmaStories.PingPong} />
+
+## Usage
+
+Copy the component into your project at `src/components/backgrounds/plasma/plasma.tsx`:
+
+```tsx
+// Install peer dependency: pnpm add ogl
+import Plasma from "@/components/backgrounds/plasma";
+
+export default function Example() {
+  return (
+    <div className="relative w-full h-screen">
+      <Plasma
+        color="#8B5CF6"
+        speed={1.5}
+        direction="forward"
+      />
+    </div>
+  );
+}
+```
+
+## Component Source
+
+<details>
+<summary>View full source (plasma.tsx)</summary>
+
+The component source is available in `packages/components/src/backgrounds/plasma/plasma.tsx`.
+
+</details>

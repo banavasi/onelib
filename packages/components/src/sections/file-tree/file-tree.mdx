@@ -1,0 +1,57 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as FileTreeStories from './file-tree.stories';
+
+<Meta of={FileTreeStories} />
+
+# File Tree
+
+Interactive file tree explorer with folder expand/collapse, file type icons, and selection highlighting. Self-contained with inline SVG icons — no external dependencies required.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Sections
+- **Peer Dependencies:** None
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Empty
+
+File tree with no items.
+
+<Canvas of={FileTreeStories.Empty} />
+
+### Custom Data
+
+Next.js project structure with custom data.
+
+<Canvas of={FileTreeStories.CustomData} />
+
+## Usage
+
+```tsx
+import { FileTree } from "@/components/sections/file-tree";
+import type { FileTreeItem } from "@/components/sections/file-tree";
+
+const myFiles: FileTreeItem[] = [
+  {
+    name: "src",
+    type: "folder",
+    children: [
+      { name: "index.ts", type: "file" },
+      { name: "App.tsx", type: "file" },
+    ],
+  },
+  { name: "package.json", type: "file" },
+];
+
+export default function Sidebar() {
+  return <FileTree data={myFiles} />;
+}
+```

@@ -1,0 +1,60 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as GlowLineStories from './glow-line.stories';
+
+<Meta of={GlowLineStories} />
+
+# Glow Line
+
+A decorative horizontal or vertical glow line with layered gradient effects. Supports purple, blue, green, and red color schemes.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Effects
+- **Dependencies:** None (pure Tailwind + inline styles)
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Vertical Line
+
+Vertical purple glow line centered horizontally.
+
+<Canvas of={GlowLineStories.VerticalLine} />
+
+### Multiple Lines
+
+Multiple glow lines forming a grid-like pattern.
+
+<Canvas of={GlowLineStories.MultipleLines} />
+
+### All Colors
+
+All four color variants as horizontal lines.
+
+<Canvas of={GlowLineStories.AllColors} />
+
+## Usage
+
+Copy the component into your project at `src/components/effects/glow-line/glow-line.tsx`:
+
+```tsx
+import { GlowLine } from "@/components/effects/glow-line";
+
+export default function HeroSection() {
+  return (
+    <div className="relative h-screen bg-gray-950 overflow-hidden">
+      <GlowLine orientation="horizontal" position="30%" color="purple" />
+      <GlowLine orientation="vertical" position="50%" color="blue" />
+      <div className="relative z-10 flex items-center justify-center h-full">
+        <h1 className="text-white text-6xl font-bold">Welcome</h1>
+      </div>
+    </div>
+  );
+}
+```

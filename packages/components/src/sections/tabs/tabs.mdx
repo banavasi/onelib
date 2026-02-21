@@ -1,0 +1,58 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as TabsStories from './tabs.stories';
+
+<Meta of={TabsStories} />
+
+# Tabs
+
+Animated tab component with a spring-based active indicator and smooth content transitions using Motion. Accepts an array of tab items with label, value, and React node content.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Sections
+- **Peer Dependencies:** `motion`
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### With Default Value
+
+Tabs with a pre-selected default tab.
+
+<Canvas of={TabsStories.WithDefaultValue} />
+
+### Two Tabs
+
+Minimal tabs with only two items.
+
+<Canvas of={TabsStories.TwoTabs} />
+
+## Usage
+
+```tsx
+import { Tabs } from "@/components/sections/tabs";
+import type { TabItem } from "@/components/sections/tabs/tabs";
+
+const items: TabItem[] = [
+  {
+    label: "Overview",
+    value: "overview",
+    content: <div>Overview content</div>,
+  },
+  {
+    label: "Details",
+    value: "details",
+    content: <div>Details content</div>,
+  },
+];
+
+export default function Example() {
+  return <Tabs items={items} defaultValue="overview" />;
+}
+```

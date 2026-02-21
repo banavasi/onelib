@@ -1,0 +1,64 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as DarkVeilStories from './dark-veil.stories';
+
+<Meta of={DarkVeilStories} />
+
+# Dark Veil
+
+Neural network-generated dark abstract background with optional hue shifting, scanlines, noise grain, and warp distortion effects. Uses OGL WebGL shaders with a CPPN (Compositional Pattern Producing Network).
+
+- **Source:** [ReactBits](https://reactbits.dev)
+- **Category:** Backgrounds
+- **Peer Dependencies:** `ogl` — install with `pnpm add ogl`
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### With Hue Shift
+
+<Canvas of={DarkVeilStories.WithHueShift} />
+
+### Retro Scanlines
+
+<Canvas of={DarkVeilStories.RetroScanlines} />
+
+### Warped Veil
+
+<Canvas of={DarkVeilStories.WarpedVeil} />
+
+## Usage
+
+Copy the component into your project at `src/components/backgrounds/dark-veil/dark-veil.tsx`:
+
+```tsx
+// Install peer dependency: pnpm add ogl
+import DarkVeil from "@/components/backgrounds/dark-veil";
+
+export default function Example() {
+  return (
+    <div className="relative w-full h-screen">
+      <DarkVeil
+        hueShift={45}
+        speed={0.5}
+        scanlineIntensity={0.3}
+      />
+    </div>
+  );
+}
+```
+
+## Component Source
+
+<details>
+<summary>View full source (dark-veil.tsx)</summary>
+
+The component source is available in `packages/components/src/backgrounds/dark-veil/dark-veil.tsx`.
+
+</details>

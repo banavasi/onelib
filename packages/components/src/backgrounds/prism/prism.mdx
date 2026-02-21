@@ -1,0 +1,64 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as PrismStories from './prism.stories';
+
+<Meta of={PrismStories} />
+
+# Prism
+
+Animated 3D prism/pyramid effect rendered via ray marching with customizable rotation, hover interaction, glow, and color shifting. Uses OGL WebGL shaders.
+
+- **Source:** [ReactBits](https://reactbits.dev)
+- **Category:** Backgrounds
+- **Peer Dependencies:** `ogl` — install with `pnpm add ogl`
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Hover Interactive
+
+<Canvas of={PrismStories.HoverInteractive} />
+
+### Full Rotation
+
+<Canvas of={PrismStories.FullRotation} />
+
+### Hue Shifted
+
+<Canvas of={PrismStories.HueShifted} />
+
+## Usage
+
+Copy the component into your project at `src/components/backgrounds/prism/prism.tsx`:
+
+```tsx
+// Install peer dependency: pnpm add ogl
+import Prism from "@/components/backgrounds/prism";
+
+export default function Example() {
+  return (
+    <div className="relative w-full h-screen">
+      <Prism
+        animationType="hover"
+        glow={1.2}
+        hueShift={0.5}
+      />
+    </div>
+  );
+}
+```
+
+## Component Source
+
+<details>
+<summary>View full source (prism.tsx)</summary>
+
+The component source is available in `packages/components/src/backgrounds/prism/prism.tsx`.
+
+</details>

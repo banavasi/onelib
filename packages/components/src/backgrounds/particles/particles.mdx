@@ -1,0 +1,70 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as ParticlesStories from './particles.stories';
+
+<Meta of={ParticlesStories} />
+
+# Particles
+
+3D particle system with customizable colors, density, and optional hover interaction. Uses OGL WebGL renderer with point-based geometry and simplex noise animation.
+
+- **Source:** [ReactBits](https://reactbits.dev)
+- **Category:** Backgrounds
+- **Peer Dependencies:** `ogl` — install with `pnpm add ogl`
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Colorful Particles
+
+Multi-colored particle cloud with orange, cyan, and green particles.
+
+<Canvas of={ParticlesStories.ColorfulParticles} />
+
+### Dense Cloud
+
+Dense particle configuration with 500 particles in a tight spread.
+
+<Canvas of={ParticlesStories.DenseCloud} />
+
+### Interactive Hover
+
+Particles that respond to mouse movement with hover interaction enabled.
+
+<Canvas of={ParticlesStories.InteractiveHover} />
+
+## Usage
+
+Copy the component into your project at `src/components/backgrounds/particles/particles.tsx`:
+
+```tsx
+// Install peer dependency: pnpm add ogl
+import Particles from "@/components/backgrounds/particles";
+
+export default function Example() {
+  return (
+    <div className="relative w-full h-screen">
+      <Particles
+        particleCount={200}
+        speed={0.1}
+        particleColors={["#FF6B35", "#00BFFF", "#7cff67"]}
+      />
+    </div>
+  );
+}
+```
+
+## Component Source
+
+<details>
+<summary>View full source (particles.tsx)</summary>
+
+The component source is available in `packages/components/src/backgrounds/particles/particles.tsx`.
+
+</details>

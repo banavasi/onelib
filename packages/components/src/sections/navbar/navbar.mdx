@@ -1,0 +1,35 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as NavbarStories from './navbar.stories';
+
+<Meta of={NavbarStories} />
+
+# Navbar
+
+Self-contained header component with dropdown navigation menus, inline search, mobile responsive menu, and CTA buttons. All sub-components (Button, Input, NavigationMenu) are built-in — no external UI library dependencies.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Sections
+- **Peer Dependencies:** None
+
+## Preview
+
+<Primary />
+
+## Props
+
+This component is a self-contained section with no configurable props. Customize by editing the component source directly.
+
+## Usage
+
+```tsx
+import { HeaderComponent } from "@/components/sections/navbar";
+
+export default function Layout({ children }) {
+  return (
+    <>
+      <HeaderComponent />
+      <main>{children}</main>
+    </>
+  );
+}
+```

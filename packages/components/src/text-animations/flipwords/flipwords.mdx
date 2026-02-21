@@ -1,0 +1,46 @@
+import { Meta, Primary, Controls, Story, Source, Canvas } from '@storybook/addon-docs/blocks';
+import * as FlipWordsStories from './flipwords.stories';
+
+<Meta of={FlipWordsStories} />
+
+# Flip Words
+
+Animated word rotator that cycles through a list of words with blur and slide transitions.
+
+- **Source:** [Sera UI](https://seraui.com)
+- **Category:** Text Animations
+- **Peer Dependencies:** `motion`
+
+## Preview
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## Stories
+
+### Fast Rotation
+
+Fast word rotation with 1.5 second intervals.
+
+<Canvas of={FlipWordsStories.FastRotation} />
+
+## Usage
+
+```tsx
+import { FlipWords } from "@/components/text-animations/flipwords";
+
+export default function Hero() {
+  return (
+    <span className="text-4xl font-bold">
+      We are{" "}
+      <FlipWords
+        words={["creating", "building", "designing", "crafting"]}
+        duration={3000}
+      />
+    </span>
+  );
+}
+```
