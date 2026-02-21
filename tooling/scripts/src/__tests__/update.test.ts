@@ -4,8 +4,8 @@ vi.mock("../commands/skills-update.js", () => ({
 	runSkillsUpdate: vi.fn(),
 }));
 
-import { runUpdate } from "../commands/update.js";
 import { runSkillsUpdate } from "../commands/skills-update.js";
+import { runUpdate } from "../commands/update.js";
 
 describe("runUpdate", () => {
 	it("calls runSkillsUpdate", async () => {
