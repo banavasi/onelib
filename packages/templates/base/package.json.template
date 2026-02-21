@@ -16,7 +16,10 @@
 		"next": "^15.3.0",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0",
-		"onelib": "^0.1.0"
+		"onelib": "^0.1.0",
+		"clsx": "^2.1.0",
+		"tailwind-merge": "^3.0.0",
+		"motion": "^11.0.0"
 	},
 	"devDependencies": {
 		"@types/node": "^24.0.0",
