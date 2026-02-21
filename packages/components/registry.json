@@ -1,4 +1,41 @@
 {
 	"version": "0.1.0",
-	"components": []
+	"components": [
+		{
+			"name": "basic-button",
+			"displayName": "Basic Button",
+			"category": "buttons",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/buttons/basic",
+			"version": "0.1.0",
+			"description": "Clean, accessible button with variants",
+			"files": ["buttons/basic-button/basic-button.tsx"],
+			"dependencies": [],
+			"tags": ["button", "interactive", "form"]
+		},
+		{
+			"name": "aurora",
+			"displayName": "Aurora Background",
+			"category": "backgrounds",
+			"source": "reactbits",
+			"sourceUrl": "https://reactbits.dev/backgrounds/aurora",
+			"version": "0.1.0",
+			"description": "Animated aurora borealis background effect",
+			"files": ["backgrounds/aurora/aurora.tsx"],
+			"dependencies": [],
+			"tags": ["background", "animated", "decorative"]
+		},
+		{
+			"name": "fuzzy-text",
+			"displayName": "Fuzzy Text",
+			"category": "text-animations",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/text-animations/fuzzy",
+			"version": "0.1.0",
+			"description": "Text with fuzzy hover animation effect",
+			"files": ["text-animations/fuzzy-text/fuzzy-text.tsx"],
+			"dependencies": [],
+			"tags": ["text", "animation", "hover"]
+		}
+	]
 }
