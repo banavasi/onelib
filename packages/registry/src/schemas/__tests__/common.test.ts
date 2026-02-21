@@ -10,8 +10,15 @@ import {
 describe("SourceSchema", () => {
 	it("accepts valid sources", () => {
 		for (const source of [
-			"shadcn", "magicui", "aceternity", "onelib", "custom",
-			"seraui", "reactbits", "skiperui", "buouui",
+			"shadcn",
+			"magicui",
+			"aceternity",
+			"onelib",
+			"custom",
+			"seraui",
+			"reactbits",
+			"skiperui",
+			"buouui",
 		]) {
 			expect(SourceSchema.parse(source)).toBe(source);
 		}
@@ -25,9 +32,22 @@ describe("SourceSchema", () => {
 describe("ComponentCategorySchema", () => {
 	it("accepts valid categories", () => {
 		for (const cat of [
-			"ui", "layout", "data-display", "feedback", "navigation", "overlay", "form",
-			"buttons", "effects", "accordions", "cards", "sections", "pages",
-			"backgrounds", "text-animations", "gallery",
+			"ui",
+			"layout",
+			"data-display",
+			"feedback",
+			"navigation",
+			"overlay",
+			"form",
+			"buttons",
+			"effects",
+			"accordions",
+			"cards",
+			"sections",
+			"pages",
+			"backgrounds",
+			"text-animations",
+			"gallery",
 		]) {
 			expect(ComponentCategorySchema.parse(cat)).toBe(cat);
 		}
