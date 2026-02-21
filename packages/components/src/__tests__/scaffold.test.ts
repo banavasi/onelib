@@ -112,4 +112,43 @@ describe("scaffoldComponents", () => {
 		expect(lock.components["basic-button"].checksum).toMatch(/^[a-f0-9]{64}$/);
 		expect(lock.components.aurora).toBeDefined();
 	});
+
+	it("returns ScaffoldResult with component count and peer dependencies", () => {
+		const registry = {
+			version: "0.1.0",
+			components: [
+				{
+					name: "aurora",
+					displayName: "Aurora",
+					category: "backgrounds",
+					source: "reactbits",
+					sourceUrl: "https://reactbits.dev/backgrounds/aurora",
+					version: "0.1.0",
+					description: "Aurora",
+					files: ["backgrounds/aurora/aurora.tsx"],
+					peerDependencies: { ogl: "^1.0.0" },
+					dependencies: [],
+					tags: ["background"],
+				},
+				{
+					name: "basic-button",
+					displayName: "Basic Button",
+					category: "buttons",
+					source: "seraui",
+					sourceUrl: "https://seraui.com/docs/buttons/basic",
+					version: "0.1.0",
+					description: "Button",
+					files: ["buttons/basic-button/basic-button.tsx"],
+					dependencies: [],
+					tags: ["button"],
+				},
+			],
+		};
+		writeFileSync(join(COMPONENTS_SRC, "registry.json"), JSON.stringify(registry));
+
+		const result = scaffoldComponents(COMPONENTS_SRC, TARGET_DIR);
+
+		expect(result.componentsInstalled).toBeGreaterThanOrEqual(2);
+		expect(result.peerDependencies).toEqual({ ogl: "^1.0.0" });
+	});
 });

@@ -1,4 +1,4 @@
-import { mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { basename, dirname, join } from "node:path";
 import { computeChecksum } from "./checksum.js";
 
@@ -13,6 +13,11 @@ export interface ComponentsLock {
 	components: Record<string, LockEntry>;
 }
 
+export interface ScaffoldResult {
+	componentsInstalled: number;
+	peerDependencies: Record<string, string>;
+}
+
 /**
  * Copies component .tsx files (excluding stories and index barrels) from
  * a source directory into a target directory, organized by category.
@@ -22,8 +27,10 @@ export function scaffoldComponents(
 	sourceDir: string,
 	targetDir: string,
 	componentVersion = "0.1.0",
-): void {
+): ScaffoldResult {
 	const lock: ComponentsLock = { version: "0.1.0", components: {} };
+	let componentsInstalled = 0;
+	const installedComponentNames: string[] = [];
 
 	// Read category directories
 	const categories = readdirSync(sourceDir).filter((entry) =>
@@ -56,6 +63,8 @@ export function scaffoldComponents(
 					checksum: computeChecksum(content),
 					installedAt: new Date().toISOString(),
 				};
+				componentsInstalled++;
+				installedComponentNames.push(componentName);
 			}
 		}
 	}
@@ -64,4 +73,27 @@ export function scaffoldComponents(
 	const lockDir = join(dirname(targetDir), ".onelib");
 	mkdirSync(lockDir, { recursive: true });
 	writeFileSync(join(lockDir, "components.lock"), JSON.stringify(lock, null, "\t"), "utf-8");
+
+	// Collect peer dependencies from registry for scaffolded components
+	const peerDependencies: Record<string, string> = {};
+	const registryCandidates = [
+		join(sourceDir, "registry.json"),
+		join(sourceDir, "../registry.json"),
+	];
+	const registryPath = registryCandidates.find((p) => existsSync(p));
+	if (registryPath) {
+		const registryData = JSON.parse(readFileSync(registryPath, "utf-8"));
+		if (Array.isArray(registryData.components)) {
+			for (const entry of registryData.components) {
+				if (
+					installedComponentNames.includes(entry.name) &&
+					entry.peerDependencies
+				) {
+					Object.assign(peerDependencies, entry.peerDependencies);
+				}
+			}
+		}
+	}
+
+	return { componentsInstalled, peerDependencies };
 }
