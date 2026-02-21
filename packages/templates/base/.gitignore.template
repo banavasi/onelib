@@ -22,6 +22,9 @@ npm-debug.log*
 *.swp
 *.swo
 
+# Onelib
+.onelib/
+
 # OS
 .DS_Store
 Thumbs.db
