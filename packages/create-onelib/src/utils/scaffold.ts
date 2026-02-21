@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { scaffoldComponents } from "@onelib/components";
+import { type ScaffoldResult, scaffoldComponents } from "@onelib/components";
 import fse from "fs-extra";
 import { TEMPLATE_FILES_WITH_PLACEHOLDERS, TEMPLATE_RENAME_MAP } from "../constants.js";
 import { type PlaceholderValues, replacePlaceholders } from "./placeholders.js";
@@ -18,7 +18,14 @@ function getComponentsSourcePath(): string {
 	return path.resolve(currentDir, "../../../components/src");
 }
 
-export async function scaffoldProject(projectDir: string, projectName: string): Promise<void> {
+export interface ScaffoldProjectResult {
+	peerDependencies: Record<string, string>;
+}
+
+export async function scaffoldProject(
+	projectDir: string,
+	projectName: string,
+): Promise<ScaffoldProjectResult> {
 	const templateDir = getTemplatePath();
 
 	// Copy the entire template directory
@@ -51,5 +58,7 @@ export async function scaffoldProject(projectDir: string, projectName: string): 
 	// Copy component .tsx files into src/components/
 	const componentsSourceDir = getComponentsSourcePath();
 	const targetComponentsDir = path.join(projectDir, "src/components");
-	scaffoldComponents(componentsSourceDir, targetComponentsDir);
+	const scaffoldResult = scaffoldComponents(componentsSourceDir, targetComponentsDir);
+
+	return { peerDependencies: scaffoldResult.peerDependencies };
 }

@@ -101,6 +101,15 @@ describe("scaffoldProject", () => {
 		expect(fs.existsSync(lockPath)).toBe(true);
 	});
 
+	it("returns peer dependencies from component scaffold", async () => {
+		const projectDir = path.join(tmpDir, "my-project");
+		const result = await scaffoldProject(projectDir, "my-project");
+
+		expect(result).toBeDefined();
+		expect(result.peerDependencies).toBeDefined();
+		expect(typeof result.peerDependencies).toBe("object");
+	});
+
 	it("does not leave any {{PROJECT_NAME}} placeholders", async () => {
 		const projectDir = path.join(tmpDir, "my-project");
 		await scaffoldProject(projectDir, "my-project");
