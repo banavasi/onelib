@@ -48,7 +48,13 @@
 			"**/*.jsx",
 			"**/*.json",
 			"**/*.css",
-			"!packages/templates"
+			"!packages/templates",
+			"!packages/components/src/buttons",
+			"!packages/components/src/backgrounds",
+			"!packages/components/src/text-animations",
+			"!packages/components/src/sections",
+			"!packages/components/src/gallery",
+			"!packages/components/src/lib"
 		]
 	}
 }

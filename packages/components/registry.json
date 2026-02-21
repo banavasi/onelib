@@ -8,10 +8,22 @@
 			"source": "seraui",
 			"sourceUrl": "https://seraui.com/docs/buttons/basic",
 			"version": "0.1.0",
-			"description": "Clean, accessible button with variants",
+			"description": "Clean, accessible button with variants, ripple effect, loading state, and icon support",
 			"files": ["buttons/basic-button/basic-button.tsx"],
 			"dependencies": [],
 			"tags": ["button", "interactive", "form"]
+		},
+		{
+			"name": "shimmer-button",
+			"displayName": "Shimmer Button",
+			"category": "buttons",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/buttons/shimmer",
+			"version": "0.1.0",
+			"description": "Button with animated conic-gradient shimmer border effect",
+			"files": ["buttons/shimmer-button/shimmer-button.tsx"],
+			"dependencies": [],
+			"tags": ["button", "animated", "shimmer", "gradient"]
 		},
 		{
 			"name": "aurora",
@@ -20,10 +32,29 @@
 			"source": "reactbits",
 			"sourceUrl": "https://reactbits.dev/backgrounds/aurora",
 			"version": "0.1.0",
-			"description": "Animated aurora borealis background effect",
+			"description": "Animated aurora borealis background effect using WebGL shaders",
 			"files": ["backgrounds/aurora/aurora.tsx"],
+			"peerDependencies": {
+				"ogl": "^1.0.0"
+			},
 			"dependencies": [],
-			"tags": ["background", "animated", "decorative"]
+			"tags": ["background", "animated", "decorative", "webgl"]
+		},
+		{
+			"name": "silk",
+			"displayName": "Silk Background",
+			"category": "backgrounds",
+			"source": "reactbits",
+			"sourceUrl": "https://reactbits.dev/backgrounds/silk",
+			"version": "0.1.0",
+			"description": "Animated silk fabric background effect using Three.js shaders",
+			"files": ["backgrounds/silk/silk.tsx"],
+			"peerDependencies": {
+				"@react-three/fiber": "^8.0.0",
+				"three": "^0.160.0"
+			},
+			"dependencies": [],
+			"tags": ["background", "animated", "decorative", "threejs"]
 		},
 		{
 			"name": "fuzzy-text",
@@ -32,10 +63,52 @@
 			"source": "seraui",
 			"sourceUrl": "https://seraui.com/docs/text-animations/fuzzy",
 			"version": "0.1.0",
-			"description": "Text with fuzzy hover animation effect",
+			"description": "Canvas-based text with fuzzy glitch hover animation effect",
 			"files": ["text-animations/fuzzy-text/fuzzy-text.tsx"],
 			"dependencies": [],
-			"tags": ["text", "animation", "hover"]
+			"tags": ["text", "animation", "hover", "canvas", "glitch"]
+		},
+		{
+			"name": "decrypting-text",
+			"displayName": "Decrypting Text",
+			"category": "text-animations",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/text-animations/decrypting",
+			"version": "0.1.0",
+			"description": "Text reveal animation with scrambled character decryption effect",
+			"files": ["text-animations/decrypting-text/decrypting-text.tsx"],
+			"peerDependencies": {
+				"motion": "^11.0.0"
+			},
+			"dependencies": [],
+			"tags": ["text", "animation", "decrypt", "scramble"]
+		},
+		{
+			"name": "marquee",
+			"displayName": "Marquee",
+			"category": "sections",
+			"source": "seraui",
+			"sourceUrl": "https://seraui.com/docs/sections/marquee",
+			"version": "0.1.0",
+			"description": "Smooth infinite scrolling marquee with pause-on-hover and vertical support",
+			"files": ["sections/marquee/marquee.tsx"],
+			"dependencies": [],
+			"tags": ["marquee", "scroll", "infinite", "animation"]
+		},
+		{
+			"name": "dome-gallery",
+			"displayName": "Dome Gallery",
+			"category": "gallery",
+			"source": "reactbits",
+			"sourceUrl": "https://reactbits.dev/components/dome-gallery",
+			"version": "0.1.0",
+			"description": "Interactive 3D spherical image gallery with drag navigation and image enlargement",
+			"files": ["gallery/dome-gallery/dome-gallery.tsx"],
+			"peerDependencies": {
+				"@use-gesture/react": "^10.0.0"
+			},
+			"dependencies": [],
+			"tags": ["gallery", "3d", "interactive", "images", "sphere"]
 		}
 	]
 }
