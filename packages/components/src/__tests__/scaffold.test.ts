@@ -33,6 +33,26 @@ function setupFixture(): void {
 		'export { Aurora } from "./aurora";',
 	);
 
+	mkdirSync(join(COMPONENTS_SRC, "sections/marquee"), { recursive: true });
+	writeFileSync(
+		join(COMPONENTS_SRC, "sections/marquee/marquee.tsx"),
+		"export function Marquee() { return <div>Marquee</div>; }",
+	);
+	writeFileSync(
+		join(COMPONENTS_SRC, "sections/marquee/index.ts"),
+		'export { Marquee } from "./marquee";',
+	);
+
+	mkdirSync(join(COMPONENTS_SRC, "gallery/dome-gallery"), { recursive: true });
+	writeFileSync(
+		join(COMPONENTS_SRC, "gallery/dome-gallery/dome-gallery.tsx"),
+		"export function DomeGallery() { return <div>Gallery</div>; }",
+	);
+	writeFileSync(
+		join(COMPONENTS_SRC, "gallery/dome-gallery/index.ts"),
+		'export { DomeGallery } from "./dome-gallery";',
+	);
+
 	mkdirSync(TARGET_DIR, { recursive: true });
 }
 
@@ -70,6 +90,15 @@ describe("scaffoldComponents", () => {
 		scaffoldComponents(COMPONENTS_SRC, TARGET_DIR);
 
 		expect(existsSync(join(TARGET_DIR, "buttons/index.ts"))).toBe(false);
+	});
+
+	it("copies components from all categories to target", () => {
+		scaffoldComponents(COMPONENTS_SRC, TARGET_DIR);
+
+		expect(existsSync(join(TARGET_DIR, "buttons/basic-button.tsx"))).toBe(true);
+		expect(existsSync(join(TARGET_DIR, "backgrounds/aurora.tsx"))).toBe(true);
+		expect(existsSync(join(TARGET_DIR, "sections/marquee.tsx"))).toBe(true);
+		expect(existsSync(join(TARGET_DIR, "gallery/dome-gallery.tsx"))).toBe(true);
 	});
 
 	it("creates a lockfile at .onelib/components.lock", () => {

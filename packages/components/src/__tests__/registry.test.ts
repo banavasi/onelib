@@ -43,4 +43,23 @@ describe("loadComponentRegistry", () => {
 			expect(Array.isArray(result.data.components)).toBe(true);
 		}
 	});
+
+	it("loads registry with 8 real components", () => {
+		const result = loadComponentRegistry();
+		expect(result.success).toBe(true);
+		if (result.success) {
+			expect(result.data.components).toHaveLength(8);
+		}
+	});
+
+	it("loads registry with peerDependencies fields", () => {
+		const result = loadComponentRegistry();
+		expect(result.success).toBe(true);
+		if (result.success) {
+			const hasAnyPeerDeps = result.data.components.some(
+				(c) => c.peerDependencies !== undefined,
+			);
+			expect(hasAnyPeerDeps).toBe(true);
+		}
+	});
 });
