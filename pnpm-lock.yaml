@@ -33,6 +33,9 @@ importers:
       '@onelib/registry':
         specifier: workspace:*
         version: link:../registry
+      zod:
+        specifier: ^4.3.6
+        version: 4.3.6
     devDependencies:
       typescript:
         specifier: ^5.8.0
