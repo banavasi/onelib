@@ -4,3 +4,5 @@ export type { ComponentRegistry, ValidationResult } from "./registry.js";
 export { loadComponentRegistry, validateComponentRegistry } from "./registry.js";
 export type { ComponentsLock, LockEntry } from "./scaffold.js";
 export { scaffoldComponents } from "./scaffold.js";
+export type { UpdateOptions, UpdateReport } from "./updater.js";
+export { updateComponents } from "./updater.js";
