@@ -3,11 +3,31 @@
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
-		"build": "echo 'TODO: build storybook'",
-		"dev": "echo 'TODO: dev storybook'",
+		"dev": "storybook dev -p 6006",
+		"build": "storybook build",
 		"lint": "biome check .",
 		"format": "biome check --write .",
-		"check-types": "tsc --noEmit",
-		"clean": "rm -rf dist .turbo node_modules"
+		"clean": "rm -rf storybook-static .turbo node_modules"
+	},
+	"dependencies": {
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0",
+		"clsx": "^2.1.1",
+		"tailwind-merge": "^3.3.0",
+		"motion": "^12.12.1",
+		"ogl": "^1.0.11",
+		"three": "^0.175.0",
+		"@react-three/fiber": "^9.1.2",
+		"@use-gesture/react": "^10.3.1"
+	},
+	"devDependencies": {
+		"storybook": "^10.0.0",
+		"@storybook/react-vite": "^10.0.0",
+		"@storybook/addon-themes": "^10.0.0",
+		"@types/react": "^19.1.0",
+		"@types/react-dom": "^19.1.0",
+		"tailwindcss": "^4.1.0",
+		"@tailwindcss/vite": "^4.1.0",
+		"typescript": "^5.9.3"
 	}
 }
