@@ -1,6 +1,7 @@
 import { defineWorkspace } from "vitest/config";
 
 export default defineWorkspace([
+	"packages/components",
 	"packages/create-onelib",
 	"packages/onelib",
 	"packages/registry",

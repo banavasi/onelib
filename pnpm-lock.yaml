@@ -28,6 +28,16 @@ importers:
 
   apps/website: {}
 
+  packages/components:
+    dependencies:
+      '@onelib/registry':
+        specifier: workspace:*
+        version: link:../registry
+    devDependencies:
+      typescript:
+        specifier: ^5.8.0
+        version: 5.9.3
+
   packages/config: {}
 
   packages/create-onelib:
