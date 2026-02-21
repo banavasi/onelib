@@ -68,4 +68,17 @@ describe("ComponentSchema", () => {
 		const result = ComponentSchema.parse(validComponent);
 		expect(result.sourceUrl).toBeUndefined();
 	});
+
+	it("accepts peerDependencies when provided", () => {
+		const result = ComponentSchema.parse({
+			...validComponent,
+			peerDependencies: { motion: "^11.0.0", clsx: "^2.0.0" },
+		});
+		expect(result.peerDependencies).toEqual({ motion: "^11.0.0", clsx: "^2.0.0" });
+	});
+
+	it("defaults peerDependencies to undefined when omitted", () => {
+		const result = ComponentSchema.parse(validComponent);
+		expect(result.peerDependencies).toBeUndefined();
+	});
 });

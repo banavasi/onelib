@@ -9,6 +9,7 @@ export const ComponentSchema = z.object({
 	source: SourceSchema,
 	category: ComponentCategorySchema,
 	sourceUrl: z.string().url().optional(),
+	peerDependencies: z.record(z.string(), z.string()).optional(),
 	dependencies: z.array(z.string()).default([]),
 	files: z.array(z.string()).min(1),
 	devOnly: z.boolean().default(false),
