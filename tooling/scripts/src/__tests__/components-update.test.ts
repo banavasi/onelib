@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { runComponentsUpdate } from "../commands/components-update.js";
 
-vi.mock("@onelib/components", () => ({
+vi.mock("@banavasi/components", () => ({
 	updateComponents: vi.fn(() => ({
 		updated: ["basic-button"],
 		skipped: [],

@@ -1,5 +1,5 @@
 {
-	"name": "onelib",
+	"name": "@banavasi/onelib",
 	"version": "0.1.0",
 	"description": "Public wrapper package – re-exports Onelib registries",
 	"type": "module",
@@ -10,6 +10,9 @@
 			"types": "./dist/index.d.ts",
 			"import": "./dist/index.js"
 		}
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
 	},
 	"scripts": {
 		"build": "tsc",

@@ -1,5 +1,5 @@
 {
-	"name": "@onelib/scripts",
+	"name": "@banavasi/scripts",
 	"version": "0.1.0",
 	"description": "Onelib update pipeline and project scripts",
 	"type": "module",
@@ -23,10 +23,13 @@
 		"test": "vitest run",
 		"clean": "rm -rf dist .turbo node_modules"
 	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
+	},
 	"dependencies": {
-		"@onelib/components": "workspace:*",
-		"@onelib/skills": "workspace:*",
-		"onelib": "workspace:*",
+		"@banavasi/components": "workspace:*",
+		"@banavasi/skills": "workspace:*",
+		"@banavasi/onelib": "workspace:*",
 		"picocolors": "^1.1.1"
 	},
 	"devDependencies": {

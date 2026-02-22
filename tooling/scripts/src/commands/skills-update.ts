@@ -1,4 +1,4 @@
-import { CURATED_SKILLS } from "@onelib/skills";
+import { CURATED_SKILLS } from "@banavasi/skills";
 import { loadConfig } from "../utils/config.js";
 import { execCommand } from "../utils/exec.js";
 import * as logger from "../utils/logger.js";

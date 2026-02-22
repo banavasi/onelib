@@ -1,5 +1,5 @@
 {
-	"name": "@onelib/components",
+	"name": "@banavasi/components",
 	"version": "0.1.0",
 	"description": "Curated component library for Onelib projects",
 	"type": "module",
@@ -21,8 +21,11 @@
 		"test": "vitest run",
 		"clean": "rm -rf dist .turbo node_modules"
 	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
+	},
 	"dependencies": {
-		"@onelib/registry": "workspace:*",
+		"@banavasi/registry": "workspace:*",
 		"zod": "^4.3.6"
 	},
 	"devDependencies": {

@@ -1,5 +1,5 @@
 {
-	"name": "@onelib/registry",
+	"name": "@banavasi/registry",
 	"version": "0.1.0",
 	"description": "Registry metadata and schemas",
 	"type": "module",
@@ -19,6 +19,9 @@
 		"check-types": "tsc --noEmit",
 		"test": "vitest run",
 		"clean": "rm -rf dist .turbo node_modules"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
 	},
 	"devDependencies": {
 		"typescript": "^5.8.0"

@@ -16,9 +16,9 @@
 		"next": "^15.3.0",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0",
-		"onelib": "^0.1.0",
-		"@onelib/components": "^0.1.0",
-		"@onelib/skills": "^0.1.0",
+		"@banavasi/onelib": "^0.1.0",
+		"@banavasi/components": "^0.1.0",
+		"@banavasi/skills": "^0.1.0",
 		"clsx": "^2.1.0",
 		"tailwind-merge": "^3.0.0",
 		"motion": "^11.0.0",
@@ -36,6 +36,6 @@
 		"eslint": "^9.0.0",
 		"eslint-config-next": "^15.3.0",
 		"prettier": "^3.5.0",
-		"@onelib/scripts": "^0.1.0"
+		"@banavasi/scripts": "^0.1.0"
 	}
 }

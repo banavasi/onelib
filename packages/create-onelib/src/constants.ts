@@ -1,4 +1,4 @@
-export { CURATED_SKILLS } from "@onelib/skills";
+export { CURATED_SKILLS } from "@banavasi/skills";
 
 export const TEMPLATE_FILES_WITH_PLACEHOLDERS = [
 	"package.json.template",
@@ -12,6 +12,7 @@ export const TEMPLATE_FILES_WITH_PLACEHOLDERS = [
 export const TEMPLATE_RENAME_MAP: Record<string, string> = {
 	"package.json.template": "package.json",
 	".gitignore.template": ".gitignore",
+	".npmrc.template": ".npmrc",
 };
 
 export const MIN_NODE_VERSION = 20;

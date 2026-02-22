@@ -1,5 +1,5 @@
 {
-	"name": "@onelib/skills",
+	"name": "@banavasi/skills",
 	"version": "0.1.0",
 	"description": "Curated skills and generators",
 	"type": "module",
@@ -23,7 +23,10 @@
 	"devDependencies": {
 		"typescript": "^5.8.0"
 	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
+	},
 	"dependencies": {
-		"@onelib/registry": "workspace:*"
+		"@banavasi/registry": "workspace:*"
 	}
 }

@@ -1,4 +1,4 @@
-import { defineConfig } from "onelib";
+import { defineConfig } from "@banavasi/onelib";
 
 export default defineConfig({
 	name: "{{PROJECT_NAME}}",

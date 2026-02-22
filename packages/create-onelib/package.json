@@ -1,5 +1,5 @@
 {
-	"name": "create-onelib",
+	"name": "@banavasi/create-onelib",
 	"version": "0.1.0",
 	"description": "CLI to scaffold Onelib projects",
 	"type": "module",
@@ -7,6 +7,9 @@
 		"create-onelib": "./dist/index.js"
 	},
 	"main": "./dist/index.js",
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
+	},
 	"scripts": {
 		"build": "tsc",
 		"dev": "tsc --watch",
@@ -22,9 +25,9 @@
 	},
 	"dependencies": {
 		"@clack/prompts": "^1.0.1",
-		"@onelib/components": "workspace:*",
-		"@onelib/skills": "workspace:*",
-		"@onelib/templates": "workspace:*",
+		"@banavasi/components": "workspace:*",
+		"@banavasi/skills": "workspace:*",
+		"@banavasi/templates": "workspace:*",
 		"fs-extra": "^11.3.3",
 		"picocolors": "^1.1.1"
 	}

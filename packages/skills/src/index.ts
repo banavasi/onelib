@@ -1,4 +1,4 @@
-// @onelib/skills – curated skills & generators
+// @banavasi/skills – curated skills & generators
 export const SKILLS_VERSION = "0.1.0";
 
 export const CURATED_SKILLS = [
@@ -16,4 +16,4 @@ export const CURATED_SKILLS = [
 export type CuratedSkill = (typeof CURATED_SKILLS)[number];
 
 // Re-export skill-related types from registry
-export type { Skill } from "@onelib/registry";
+export type { Skill } from "@banavasi/registry";

@@ -1,4 +1,4 @@
-import { CURATED_SKILLS } from "@onelib/skills";
+import { CURATED_SKILLS } from "@banavasi/skills";
 import { describe, expect, it } from "vitest";
 import { buildSkillList } from "../commands/skills-update.js";
 

@@ -98,7 +98,7 @@ importers:
 
   packages/components:
     dependencies:
-      '@onelib/registry':
+      '@banavasi/registry':
         specifier: workspace:*
         version: link:../registry
       zod:
@@ -113,18 +113,18 @@ importers:
 
   packages/create-onelib:
     dependencies:
+      '@banavasi/components':
+        specifier: workspace:*
+        version: link:../components
+      '@banavasi/skills':
+        specifier: workspace:*
+        version: link:../skills
+      '@banavasi/templates':
+        specifier: workspace:*
+        version: link:../templates
       '@clack/prompts':
         specifier: ^1.0.1
         version: 1.0.1
-      '@onelib/components':
-        specifier: workspace:*
-        version: link:../components
-      '@onelib/skills':
-        specifier: workspace:*
-        version: link:../skills
-      '@onelib/templates':
-        specifier: workspace:*
-        version: link:../templates
       fs-extra:
         specifier: ^11.3.3
         version: 11.3.3
@@ -167,7 +167,7 @@ importers:
 
   packages/skills:
     dependencies:
-      '@onelib/registry':
+      '@banavasi/registry':
         specifier: workspace:*
         version: link:../registry
     devDependencies:
@@ -179,15 +179,15 @@ importers:
 
   tooling/scripts:
     dependencies:
-      '@onelib/components':
+      '@banavasi/components':
         specifier: workspace:*
         version: link:../../packages/components
-      '@onelib/skills':
-        specifier: workspace:*
-        version: link:../../packages/skills
-      onelib:
+      '@banavasi/onelib':
         specifier: workspace:*
         version: link:../../packages/onelib
+      '@banavasi/skills':
+        specifier: workspace:*
+        version: link:../../packages/skills
       picocolors:
         specifier: ^1.1.1
         version: 1.1.1

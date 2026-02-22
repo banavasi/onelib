@@ -1,5 +1,5 @@
 {
-	"name": "onelib",
+	"name": "@banavasi/onelib-monorepo",
 	"private": true,
 	"packageManager": "pnpm@10.18.1",
 	"scripts": {

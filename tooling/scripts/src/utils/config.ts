@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
-import type { OnelibConfig } from "onelib";
+import type { OnelibConfig } from "@banavasi/onelib";
 
 const CONFIG_FILENAME = "onelib.config.ts";
 

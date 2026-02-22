@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { type ScaffoldResult, scaffoldComponents } from "@onelib/components";
+import { type ScaffoldResult, scaffoldComponents } from "@banavasi/components";
 import fse from "fs-extra";
 import { TEMPLATE_FILES_WITH_PLACEHOLDERS, TEMPLATE_RENAME_MAP } from "../constants.js";
 import { type PlaceholderValues, replacePlaceholders } from "./placeholders.js";
