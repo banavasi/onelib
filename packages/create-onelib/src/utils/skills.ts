@@ -10,7 +10,7 @@ export interface SkillCommand {
 export function buildSkillInstallCommands(): SkillCommand[] {
 	return CURATED_SKILLS.map((skill) => ({
 		command: "npx",
-		args: ["skills", "add", skill],
+		args: ["skills", "add", skill, "--yes"],
 		label: skill,
 	}));
 }

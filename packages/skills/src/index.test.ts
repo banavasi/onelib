@@ -12,10 +12,10 @@ describe("CURATED_SKILLS", () => {
 		expect(CURATED_SKILLS.length).toBeGreaterThan(0);
 	});
 
-	it("each skill matches owner/repo/skill format", () => {
+	it("each skill matches owner/repo format", () => {
 		for (const skill of CURATED_SKILLS) {
 			const parts = skill.split("/");
-			expect(parts.length).toBeGreaterThanOrEqual(3);
+			expect(parts.length).toBe(2);
 		}
 	});
 
@@ -25,7 +25,7 @@ describe("CURATED_SKILLS", () => {
 	});
 
 	it("includes key curated skills", () => {
-		expect(CURATED_SKILLS).toContain("anthropics/skills/frontend-design");
-		expect(CURATED_SKILLS).toContain("obra/superpowers/brainstorming");
+		expect(CURATED_SKILLS).toContain("anthropics/skills");
+		expect(CURATED_SKILLS).toContain("obra/superpowers");
 	});
 });

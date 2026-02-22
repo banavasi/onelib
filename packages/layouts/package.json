@@ -1,6 +1,6 @@
 {
 	"name": "@banavasi/layouts",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "Layout and page templates",
 	"type": "module",
 	"main": "./dist/index.js",

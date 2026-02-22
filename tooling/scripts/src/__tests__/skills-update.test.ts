@@ -33,14 +33,14 @@ describe("buildSkillList", () => {
 			custom: ["my/custom/skill"],
 		});
 		expect(result).toContain("my/custom/skill");
-		expect(result).toContain("anthropics/skills/frontend-design");
+		expect(result).toContain("anthropics/skills");
 		expect(result.length).toBe(CURATED_SKILLS.length + 1);
 	});
 
 	it("deduplicates if custom skill overlaps with curated", () => {
 		const result = buildSkillList({
 			curated: true,
-			custom: ["anthropics/skills/frontend-design"],
+			custom: ["anthropics/skills"],
 		});
 		expect(result.length).toBe(CURATED_SKILLS.length);
 	});

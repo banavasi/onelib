@@ -16,5 +16,5 @@ export const TEMPLATE_RENAME_MAP: Record<string, string> = {
 };
 
 export const MIN_NODE_VERSION = 20;
-export const SKILL_INSTALL_TIMEOUT_MS = 30_000;
+export const SKILL_INSTALL_TIMEOUT_MS = 120_000;
 export const DEFAULT_PROJECT_NAME = "vibe-starter";

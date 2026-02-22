@@ -3,7 +3,7 @@ import { loadConfig } from "../utils/config.js";
 import { execCommand } from "../utils/exec.js";
 import * as logger from "../utils/logger.js";
 
-const SKILL_INSTALL_TIMEOUT_MS = 30_000;
+const SKILL_INSTALL_TIMEOUT_MS = 120_000;
 
 interface SkillsConfig {
 	curated: boolean;
@@ -57,7 +57,7 @@ export async function runSkillsUpdate(cwd?: string): Promise<SkillsUpdateResult>
 	const failed: string[] = [];
 
 	for (const skill of skillList) {
-		const result = await execCommand("npx", ["skills", "add", skill], {
+		const result = await execCommand("npx", ["skills", "add", skill, "--yes"], {
 			cwd: workDir,
 			timeoutMs: SKILL_INSTALL_TIMEOUT_MS,
 		});

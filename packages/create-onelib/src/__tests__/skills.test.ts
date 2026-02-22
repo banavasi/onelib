@@ -18,10 +18,10 @@ describe("buildSkillInstallCommands", () => {
 		}
 	});
 
-	it("includes the correct skill paths", () => {
+	it("includes the correct skill repos", () => {
 		const commands = buildSkillInstallCommands();
 		const skillPaths = commands.map((c) => c.args[2]);
-		expect(skillPaths).toContain("anthropics/skills/frontend-design");
-		expect(skillPaths).toContain("obra/superpowers/brainstorming");
+		expect(skillPaths).toContain("anthropics/skills");
+		expect(skillPaths).toContain("obra/superpowers");
 	});
 });

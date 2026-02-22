@@ -1,6 +1,6 @@
 {
 	"name": "@banavasi/scripts",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "Onelib update pipeline and project scripts",
 	"type": "module",
 	"main": "./dist/index.js",

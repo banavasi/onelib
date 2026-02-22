@@ -2,21 +2,21 @@ import { describe, expect, it } from "vitest";
 import { CURATED_SKILLS, TEMPLATE_FILES_WITH_PLACEHOLDERS } from "../constants.js";
 
 describe("CURATED_SKILLS", () => {
-	it("contains 9 skills", () => {
-		expect(CURATED_SKILLS).toHaveLength(9);
+	it("contains 6 skill repos", () => {
+		expect(CURATED_SKILLS).toHaveLength(6);
 	});
 
-	it("each skill has owner/repo/skill format", () => {
+	it("each skill has owner/repo format", () => {
 		for (const skill of CURATED_SKILLS) {
 			const parts = skill.split("/");
-			expect(parts.length).toBeGreaterThanOrEqual(3);
+			expect(parts.length).toBe(2);
 		}
 	});
 
 	it("includes expected skills", () => {
-		expect(CURATED_SKILLS).toContain("anthropics/skills/frontend-design");
-		expect(CURATED_SKILLS).toContain("obra/superpowers/brainstorming");
-		expect(CURATED_SKILLS).toContain("obra/superpowers/test-driven-development");
+		expect(CURATED_SKILLS).toContain("anthropics/skills");
+		expect(CURATED_SKILLS).toContain("obra/superpowers");
+		expect(CURATED_SKILLS).toContain("vercel-labs/next-skills");
 	});
 });
 
