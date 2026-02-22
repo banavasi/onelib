@@ -1,8 +1,13 @@
 {
 	"name": "@banavasi/templates",
-	"version": "0.1.0",
-	"private": true,
+	"version": "0.1.1",
 	"description": "Base Next.js template for generated projects",
+	"files": [
+		"base/"
+	],
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
+	},
 	"scripts": {
 		"build": "echo 'Template package – no build step'",
 		"lint": "biome check .",

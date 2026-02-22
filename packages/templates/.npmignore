@@ -1,0 +1,3 @@
+# Only ignore turbo cache and node_modules
+.turbo/
+node_modules/

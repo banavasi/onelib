@@ -58,6 +58,11 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Publish @banavasi/templates
+        run: pnpm --filter @banavasi/templates publish --no-git-checks --access restricted
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Publish @banavasi/onelib
         run: pnpm --filter @banavasi/onelib publish --no-git-checks --access restricted
         env:
