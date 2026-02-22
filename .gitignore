@@ -36,5 +36,9 @@ coverage/
 npm-debug.log*
 pnpm-debug.log*
 
+# Skills (installed per-project via npx skills add)
+.agents/
+.agent/
+
 # TypeScript
 *.tsbuildinfo
