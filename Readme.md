@@ -121,6 +121,14 @@ pnpm --filter create-onelib build
 pnpm --filter @banavasi/scripts test
 ```
 
+## Starter Builder (Hosted)
+
+The blueprint builder UI is available at:
+- `https://banavasi.github.io/onelib/starter/`
+
+Deployment is automated via:
+- `.github/workflows/deploy-website.yml` (runs on pushes to `main`)
+
 ## Architecture
 
 ### Dependency Graph
