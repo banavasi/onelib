@@ -1,6 +1,6 @@
 {
 	"name": "@banavasi/onelib",
-	"version": "0.1.2",
+	"version": "0.2.1",
 	"description": "Public wrapper package – re-exports Onelib registries",
 	"type": "module",
 	"main": "./dist/index.js",

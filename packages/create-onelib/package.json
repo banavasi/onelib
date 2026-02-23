@@ -1,6 +1,6 @@
 {
 	"name": "@banavasi/create-onelib",
-	"version": "0.1.2",
+	"version": "0.2.1",
 	"description": "CLI to scaffold Onelib projects",
 	"type": "module",
 	"bin": {

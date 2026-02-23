@@ -1,5 +1,5 @@
 // @banavasi/skills – curated skills & generators
-export const SKILLS_VERSION = "0.1.1";
+export const SKILLS_VERSION = "0.2.1";
 
 export const CURATED_SKILLS = [
 	"anthropics/skills",
