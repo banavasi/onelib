@@ -36,4 +36,4 @@ export type { BumpType } from "./utils/version.js";
 export { bumpVersion, compareVersions } from "./utils/version.js";
 
 // Constants
-export const REGISTRY_VERSION = "0.2.1";
+export const REGISTRY_VERSION = "0.2.2";

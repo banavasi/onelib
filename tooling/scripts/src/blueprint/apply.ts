@@ -2,7 +2,6 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { scaffoldComponents } from "@banavasi/components";
-import componentsRegistry from "@banavasi/components/registry.json";
 import type { OnelibConfig } from "@banavasi/onelib";
 import { THEME_CSS } from "./catalog.js";
 import type { BlueprintApplyResult, LayoutPreset, OnelibBlueprint } from "./types.js";
@@ -151,8 +150,16 @@ async function getComponentsSourcePath(): Promise<string> {
 }
 
 function getKnownComponents(): Set<string> {
-	const names = componentsRegistry.components.map((entry) => entry.name);
-	return new Set(names);
+	try {
+		const registryUrl = import.meta.resolve("@banavasi/components/registry.json");
+		const registryPath = fileURLToPath(registryUrl);
+		const parsed = JSON.parse(readFileSync(registryPath, "utf-8")) as {
+			components: Array<{ name: string }>;
+		};
+		return new Set(parsed.components.map((entry) => entry.name));
+	} catch {
+		return new Set<string>();
+	}
 }
 
 function toPreset(theme: OnelibBlueprint["theme"]): OnelibConfig["theme"]["preset"] {

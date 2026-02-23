@@ -1,5 +1,5 @@
 // @banavasi/scripts – update pipeline and project scripts
-export const SCRIPTS_VERSION = "0.2.1";
+export const SCRIPTS_VERSION = "0.2.2";
 
 export type { UpdateReport as ComponentsUpdateReport } from "@banavasi/components";
 export { runComponentsUpdate } from "./commands/components-update.js";
