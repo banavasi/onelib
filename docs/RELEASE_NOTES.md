@@ -28,17 +28,17 @@
 - Test coverage: 69 tests passing
 
 ### **Update Pipeline**: Auto-update skills and components  
-- `@onelib/scripts` package for updates
+- `@banavasi/scripts` package for updates
 - Component and skill update commands
 - Configuration management
 - Test coverage: 24 tests passing
 
 ### **Monorepo Structure**: 12 packages with Turbo + pnpm
-- **Core**: `onelib`, `@onelib/registry`
-- **Tools**: `create-onelib`, `@onelib/scripts`
-- **Content**: `@onelib/components`, `@onelib/skills`, `@onelib/templates`, `@onelib/layouts`
-- **Config**: `@onelib/config`
-- **Apps**: `@onelib/website`, `@onelib/storybook`
+- **Core**: `@banavasi/onelib`, `@banavasi/registry`
+- **Tools**: `@banavasi/create-onelib`, `@banavasi/scripts`
+- **Content**: `@banavasi/components`, `@banavasi/skills`, `@banavasi/templates`, `@banavasi/layouts`
+- **Config**: `@banavasi/config`
+- **Apps**: `@banavasi/website`, `@banavasi/storybook`
 - **Build**: Turbo caching, TypeScript builds
 
 ### **Testing**: 160+ tests across all packages
@@ -62,17 +62,17 @@
 
 | Package | Version | Tests | Build | Description |
 |---------|---------|-------|-------|-------------|
-| `create-onelib` | 0.1.0 | ✅ 37 | ✅ | Project scaffolding CLI |
-| `onelib` | 0.1.0 | ✅ 4 | ✅ | Config and types |
-| `@onelib/registry` | 0.1.0 | ✅ 69 | ✅ | Component/skill schemas |
-| `@onelib/skills` | 0.1.0 | ✅ 5 | ✅ | Curated skills list |
-| `@onelib/scripts` | 0.1.0 | ✅ 24 | ✅ | Update pipeline CLI |
-| `@onelib/templates` | 0.1.0 | N/A | ✅ | Base project template |
-| `@onelib/components` | 0.1.0 | ✅ 20 | ✅ | 53 registry components |
-| `@onelib/layouts` | 0.1.0 | ✅ 1 | ✅ | Layout templates |
-| `@onelib/config` | 0.1.0 | N/A | N/A | Shared configs |
-| `@onelib/website` | 0.0.0 | N/A | ✅ | Documentation site |
-| `@onelib/storybook` | 0.0.0 | N/A | ✅ | Component showcase |
+| `@banavasi/create-onelib` | 0.1.2 | ✅ 37 | ✅ | Project scaffolding CLI |
+| `@banavasi/onelib` | 0.1.2 | ✅ 4 | ✅ | Config and types |
+| `@banavasi/registry` | 0.1.2 | ✅ 69 | ✅ | Component/skill schemas |
+| `@banavasi/skills` | 0.1.2 | ✅ 5 | ✅ | Curated skills list |
+| `@banavasi/scripts` | 0.1.2 | ✅ 24 | ✅ | Update pipeline CLI |
+| `@banavasi/templates` | 0.1.2 | N/A | ✅ | Base project template |
+| `@banavasi/components` | 0.1.2 | ✅ 20 | ✅ | 53 registry components |
+| `@banavasi/layouts` | 0.1.2 | ✅ 1 | ✅ | Layout templates |
+| `@banavasi/config` | 0.1.0 | N/A | N/A | Shared configs |
+| `@banavasi/website` | 0.0.0 | N/A | ✅ | Documentation site |
+| `@banavasi/storybook` | 0.0.0 | N/A | ✅ | Component showcase |
 
 ## 🚀 Getting Started
 

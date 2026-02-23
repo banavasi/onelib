@@ -6,7 +6,7 @@ A Turbo + pnpm monorepo for building, scaffolding, and maintaining AI-ready Next
 
 ```bash
 # Create a new project
-npx create-onelib my-app
+npx @banavasi/create-onelib my-app
 
 # Keep skills up to date (inside a generated project)
 pnpm onelib:update
@@ -17,18 +17,18 @@ pnpm onelib:update
 ```
 onelib/
 ├── apps/
-│   ├── website/          # @onelib/website — docs site (coming soon)
-│   └── storybook/        # @onelib/storybook — component showcase (coming soon)
+│   ├── website/          # @banavasi/website — docs site
+│   └── storybook/        # @banavasi/storybook — component showcase
 ├── packages/
-│   ├── onelib/           # onelib — public API, defineConfig(), types
-│   ├── registry/         # @onelib/registry — Zod schemas for components, layouts, skills
-│   ├── skills/           # @onelib/skills — curated skills list and type exports
-│   ├── layouts/          # @onelib/layouts — layout and page templates
+│   ├── onelib/           # @banavasi/onelib — public API, defineConfig(), types
+│   ├── registry/         # @banavasi/registry — Zod schemas for components, layouts, skills
+│   ├── skills/           # @banavasi/skills — curated skills list and type exports
+│   ├── layouts/          # @banavasi/layouts — layout and page templates
 │   ├── create-onelib/    # create-onelib — interactive CLI scaffolder
-│   ├── templates/        # @onelib/templates — base Next.js project template
-│   └── config/           # @onelib/config — shared TypeScript configs
+│   ├── templates/        # @banavasi/templates — base Next.js project template
+│   └── config/           # @banavasi/config — shared TypeScript configs
 ├── tooling/
-│   └── scripts/          # @onelib/scripts — update pipeline CLI (onelib-scripts)
+│   └── scripts/          # @banavasi/scripts — update pipeline CLI (onelib-scripts)
 └── docs/
     └── plans/            # Design and implementation documents
 ```
@@ -39,26 +39,26 @@ onelib/
 
 | Package | Description |
 |---------|-------------|
-| `onelib` | Public wrapper — exports `defineConfig()` and `OnelibConfig` type |
-| `@onelib/registry` | Zod schemas and utilities for components, layouts, and skills |
-| `@onelib/skills` | Curated skills list (single source of truth) and type re-exports |
-| `@onelib/layouts` | Layout and page templates |
+| `@banavasi/onelib` | Public wrapper — exports `defineConfig()` and `OnelibConfig` type |
+| `@banavasi/registry` | Zod schemas and utilities for components, layouts, and skills |
+| `@banavasi/skills` | Curated skills list (single source of truth) and type re-exports |
+| `@banavasi/layouts` | Layout and page templates |
 
 ### Tooling
 
 | Package | Description |
 |---------|-------------|
 | `create-onelib` | Interactive CLI to scaffold new Onelib projects |
-| `@onelib/scripts` | Update pipeline — keeps generated projects' skills current |
-| `@onelib/config` | Shared TypeScript configs (base, library, Next.js) |
-| `@onelib/templates` | Base Next.js + Tailwind project template |
+| `@banavasi/scripts` | Update pipeline — keeps generated projects' skills current |
+| `@banavasi/config` | Shared TypeScript configs (base, library, Next.js) |
+| `@banavasi/templates` | Base Next.js + Tailwind project template |
 
 ### Apps
 
 | Package | Description |
 |---------|-------------|
-| `@onelib/website` | Documentation site (coming soon) |
-| `@onelib/storybook` | Component showcase (coming soon) |
+| `@banavasi/website` | Documentation site |
+| `@banavasi/storybook` | Component showcase |
 
 ## Development
 
@@ -85,12 +85,40 @@ pnpm dev          # Start dev mode (watch)
 pnpm clean        # Remove dist, node_modules, .turbo
 ```
 
+Generated projects also include:
+
+```bash
+pnpm onelib:update
+pnpm onelib:skills:update
+pnpm onelib:blueprint:apply -- --file onelib.blueprint.json
+```
+
+## Blueprint Workflow (CEO Demo)
+
+1. Open the starter builder at `/starter` in the website app.
+2. Pick theme, root layout, pages, and component IDs.
+3. Copy the generated JSON to `onelib.blueprint.json` in your generated project.
+4. Apply it with one command:
+
+```bash
+pnpm onelib:blueprint:apply -- --file onelib.blueprint.json
+```
+
+You can also apply during scaffold:
+
+```bash
+npx @banavasi/create-onelib my-app --blueprint ./onelib.blueprint.json
+```
+
+Full schema and examples:
+- `docs/blueprint-schema.md`
+
 ### Running for a specific package
 
 ```bash
-pnpm --filter @onelib/registry test
+pnpm --filter @banavasi/registry test
 pnpm --filter create-onelib build
-pnpm --filter @onelib/scripts test
+pnpm --filter @banavasi/scripts test
 ```
 
 ## Architecture
@@ -99,25 +127,25 @@ pnpm --filter @onelib/scripts test
 
 ```
 create-onelib
-  ├── @onelib/skills
-  │     └── @onelib/registry
-  └── @onelib/templates
+  ├── @banavasi/skills
+  │     └── @banavasi/registry
+  └── @banavasi/templates
 
-@onelib/scripts
-  ├── @onelib/skills
-  │     └── @onelib/registry
-  └── onelib
+@banavasi/scripts
+  ├── @banavasi/skills
+  │     └── @banavasi/registry
+  └── @banavasi/onelib
 
-onelib (standalone, zod)
-@onelib/registry (standalone, zod)
+@banavasi/onelib (standalone, zod)
+@banavasi/registry (standalone, zod)
 ```
 
 ### How It Works
 
-1. **`create-onelib`** scaffolds a new Next.js project from `@onelib/templates`, installs curated skills, and writes `onelib.config.ts`
+1. **`create-onelib`** scaffolds a new Next.js project from `@banavasi/templates`, installs curated skills, and writes `onelib.config.ts`
 2. **`onelib.config.ts`** defines project settings — which skills to use (curated, custom, or both), registry components, and theme
-3. **`@onelib/scripts`** (`onelib-scripts` CLI) reads the config and keeps skills up to date via `pnpm onelib:update` or `pnpm onelib:skills:update`
-4. **`@onelib/skills`** is the single source of truth for the curated skills list, shared by both `create-onelib` and `@onelib/scripts`
+3. **`@banavasi/scripts`** (`onelib-scripts` CLI) reads the config and keeps skills up to date via `pnpm onelib:update` or `pnpm onelib:skills:update`
+4. **`@banavasi/skills`** is the single source of truth for the curated skills list, shared by both `create-onelib` and `@banavasi/scripts`
 
 ### Generated Project
 
@@ -135,7 +163,7 @@ A scaffolded project includes:
 The `onelib.config.ts` file controls behavior:
 
 ```ts
-import { defineConfig } from "onelib";
+import { defineConfig } from "@banavasi/onelib";
 
 export default defineConfig({
   name: "my-app",

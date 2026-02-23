@@ -13,4 +13,5 @@ export default defineConfig({
 	theme: {
 		preset: "default",
 	},
+	layout: "blank",
 });

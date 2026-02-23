@@ -2,12 +2,25 @@
 	"name": "@banavasi/website",
 	"version": "0.0.0",
 	"private": true,
+	"type": "module",
 	"scripts": {
-		"build": "echo 'TODO: build website'",
-		"dev": "echo 'TODO: dev website'",
+		"build": "next build",
+		"dev": "next dev --turbopack",
+		"start": "next start",
 		"lint": "biome check .",
 		"format": "biome check --write .",
 		"check-types": "tsc --noEmit",
 		"clean": "rm -rf dist .next .turbo node_modules"
+	},
+	"dependencies": {
+		"next": "^15.5.12",
+		"react": "^19.2.0",
+		"react-dom": "^19.2.0"
+	},
+	"devDependencies": {
+		"@types/node": "^24.0.0",
+		"@types/react": "^19.1.0",
+		"@types/react-dom": "^19.1.0",
+		"typescript": "^5.8.0"
 	}
 }

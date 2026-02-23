@@ -1,3 +1,14 @@
+export type ThemePreset = "default" | "neutral" | "vibrant" | "corporate" | "custom";
+export type LayoutPreset =
+	| "blank"
+	| "marketing"
+	| "dashboard"
+	| "ecommerce"
+	| "blog"
+	| "auth"
+	| "docs"
+	| "portfolio";
+
 export interface OnelibConfig {
 	name: string;
 	registry: {
@@ -9,6 +20,7 @@ export interface OnelibConfig {
 		custom: string[];
 	};
 	theme: {
-		preset: "default" | "custom";
+		preset: ThemePreset;
 	};
+	layout?: LayoutPreset;
 }

@@ -3,6 +3,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
+import { fileURLToPath } from "node:url";
 import * as p from "@clack/prompts";
 import pc from "picocolors";
 import { DEFAULT_PROJECT_NAME } from "./constants.js";
@@ -11,7 +12,34 @@ import { checkNodeVersion, parseNodeVersion } from "./utils/preflight.js";
 import { scaffoldProject } from "./utils/scaffold.js";
 import { installSkills } from "./utils/skills.js";
 
+export interface CliArgs {
+	projectName?: string;
+	blueprintFile?: string;
+}
+
+export function parseCliArgs(argv: string[]): CliArgs {
+	const args: CliArgs = {};
+	for (let i = 0; i < argv.length; i++) {
+		const arg = argv[i];
+		if (!arg) continue;
+		if (arg === "--blueprint" || arg === "-b") {
+			const value = argv[i + 1];
+			if (value && !value.startsWith("-")) {
+				args.blueprintFile = value;
+				i++;
+			}
+			continue;
+		}
+
+		if (!arg.startsWith("-") && !args.projectName) {
+			args.projectName = arg;
+		}
+	}
+	return args;
+}
+
 export async function main(): Promise<void> {
+	const cliArgs = parseCliArgs(process.argv.slice(2));
 	p.intro(`${pc.cyan("create-onelib")} — scaffold an Onelib project`);
 
 	// Pre-flight: Node version
@@ -30,17 +58,19 @@ export async function main(): Promise<void> {
 	}
 
 	// Prompt: project name
-	const projectName = await p.text({
-		message: "What is your project name?",
-		placeholder: DEFAULT_PROJECT_NAME,
-		defaultValue: DEFAULT_PROJECT_NAME,
-		validate(value) {
-			if (!value?.trim()) return "Project name is required";
-			if (!/^[a-z0-9-]+$/.test(value.trim())) {
-				return "Project name must be lowercase alphanumeric with hyphens only";
-			}
-		},
-	});
+	const projectName =
+		cliArgs.projectName ??
+		(await p.text({
+			message: "What is your project name?",
+			placeholder: DEFAULT_PROJECT_NAME,
+			defaultValue: DEFAULT_PROJECT_NAME,
+			validate(value) {
+				if (!value?.trim()) return "Project name is required";
+				if (!/^[a-z0-9-]+$/.test(value.trim())) {
+					return "Project name must be lowercase alphanumeric with hyphens only";
+				}
+			},
+		}));
 
 	if (p.isCancel(projectName)) {
 		p.cancel("Cancelled.");
@@ -99,6 +129,32 @@ export async function main(): Promise<void> {
 		installSpinner.stop(pc.yellow("Dependency install failed — run `pnpm install` manually"));
 	}
 
+	// Optional blueprint application
+	if (cliArgs.blueprintFile) {
+		const blueprintSpinner = p.spinner();
+		blueprintSpinner.start(`Applying blueprint (${cliArgs.blueprintFile})...`);
+		try {
+			const applyResult = await execCommand(
+				"pnpm",
+				["onelib-scripts", "blueprint:apply", "--file", cliArgs.blueprintFile],
+				{
+					cwd: projectDir,
+				},
+			);
+			if (applyResult.ok) {
+				blueprintSpinner.stop("Blueprint applied");
+			} else {
+				blueprintSpinner.stop(pc.yellow(`Blueprint apply failed: ${applyResult.message}`));
+			}
+		} catch (error) {
+			blueprintSpinner.stop(
+				pc.yellow(
+					`Blueprint apply failed: ${error instanceof Error ? error.message : String(error)}`,
+				),
+			);
+		}
+	}
+
 	// Install skills
 	const skillsSpinner = p.spinner();
 	skillsSpinner.start("Installing curated skills...");
@@ -142,7 +198,11 @@ export async function main(): Promise<void> {
 	);
 }
 
-main().catch((error) => {
-	console.error(error);
-	process.exit(1);
-});
+const isDirectRun = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+
+if (isDirectRun) {
+	main().catch((error) => {
+		console.error(error);
+		process.exit(1);
+	});
+}

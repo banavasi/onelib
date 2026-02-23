@@ -10,7 +10,8 @@
 		"lint": "biome check .",
 		"format": "biome check --write .",
 		"onelib:update": "onelib-scripts update",
-		"onelib:skills:update": "onelib-scripts skills:update"
+		"onelib:skills:update": "onelib-scripts skills:update",
+		"onelib:blueprint:apply": "onelib-scripts blueprint:apply"
 	},
 	"dependencies": {
 		"next": "^15.3.0",

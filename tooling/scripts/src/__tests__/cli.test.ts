@@ -10,6 +10,10 @@ describe("parseCommand", () => {
 		expect(parseCommand(["node", "cli.js", "skills:update"])).toBe("skills:update");
 	});
 
+	it('parses "blueprint:apply" command', () => {
+		expect(parseCommand(["node", "cli.js", "blueprint:apply"])).toBe("blueprint:apply");
+	});
+
 	it("returns null for unknown command", () => {
 		expect(parseCommand(["node", "cli.js", "foobar"])).toBeNull();
 	});

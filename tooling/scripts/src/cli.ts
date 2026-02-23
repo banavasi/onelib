@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { parseBlueprintArgs, runBlueprintApply } from "./commands/blueprint-apply.js";
 import { runSkillsUpdate } from "./commands/skills-update.js";
 import { runUpdate } from "./commands/update.js";
 import * as logger from "./utils/logger.js";
 
-const VALID_COMMANDS = ["update", "skills:update"] as const;
+const VALID_COMMANDS = ["update", "skills:update", "blueprint:apply"] as const;
 type Command = (typeof VALID_COMMANDS)[number];
 
 export function parseCommand(argv: string[]): Command | null {
@@ -21,6 +22,7 @@ function printUsage(): void {
 	console.log("Commands:");
 	console.log("  update          Run all updates (skills, registry, templates)");
 	console.log("  skills:update   Update curated and custom skills");
+	console.log("  blueprint:apply Apply a JSON blueprint to generate pages/layouts/theme");
 }
 
 async function main(): Promise<void> {
@@ -40,6 +42,12 @@ async function main(): Promise<void> {
 		case "skills:update": {
 			const result = await runSkillsUpdate();
 			process.exit(result.failed.length > 0 ? 1 : 0);
+			break;
+		}
+		case "blueprint:apply": {
+			const options = parseBlueprintArgs(process.argv.slice(3));
+			const result = await runBlueprintApply(options);
+			process.exit(result.success ? 0 : 1);
 			break;
 		}
 	}

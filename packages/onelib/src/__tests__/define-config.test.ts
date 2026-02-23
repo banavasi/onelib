@@ -63,6 +63,28 @@ describe("defineConfig", () => {
 		expect(result.theme.preset).toBe("custom");
 		expect(result.skills.curated).toBe(false);
 	});
+
+	it("accepts layout and preset theme values", () => {
+		const config: OnelibConfig = {
+			name: "demo",
+			registry: {
+				components: [],
+				layouts: ["dashboard"],
+			},
+			skills: {
+				curated: true,
+				custom: [],
+			},
+			theme: {
+				preset: "vibrant",
+			},
+			layout: "dashboard",
+		};
+
+		const result = defineConfig(config);
+		expect(result.layout).toBe("dashboard");
+		expect(result.theme.preset).toBe("vibrant");
+	});
 });
 
 describe("VERSION", () => {
