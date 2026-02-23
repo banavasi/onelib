@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { scaffoldComponents } from "@banavasi/components";
@@ -11,6 +11,8 @@ const THEME_START = "/* onelib:theme:start */";
 const THEME_END = "/* onelib:theme:end */";
 const LAYOUT_START = "/* onelib:layout:start */";
 const LAYOUT_END = "/* onelib:layout:end */";
+const TAILWIND_START = "/* onelib:tailwind:start */";
+const TAILWIND_END = "/* onelib:tailwind:end */";
 
 function sanitizeSegment(value: string): string {
 	return value.replace(/[^a-zA-Z0-9-_]/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
@@ -41,6 +43,14 @@ function upsertBlock(content: string, start: string, end: string, block: string)
 	return `${content.trim()}\n\n${tagged}\n`;
 }
 
+function ensureTailwindImport(content: string): string {
+	const importStatement = '@import "tailwindcss";';
+	if (content.includes(importStatement)) {
+		return content;
+	}
+	return `${importStatement}\n${content}`;
+}
+
 function renderRootLayout(theme: string): string {
 	return `import type { Metadata } from "next";
 import "./globals.css";
@@ -69,7 +79,7 @@ function renderLayout(layout: LayoutPreset): string {
 		return `import type { ReactNode } from "react";
 
 export default function BlankLayout({ children }: { children: ReactNode }) {
-\treturn <>{children}</>;
+\treturn <div className="min-h-screen bg-[var(--onelib-surface,#ffffff)] text-[var(--onelib-text,#0f172a)]">{children}</div>;
 }
 `;
 	}
@@ -79,11 +89,11 @@ export default function BlankLayout({ children }: { children: ReactNode }) {
 
 export default function ${heading}Layout({ children }: { children: ReactNode }) {
 \treturn (
-\t\t<div className="onelib-layout onelib-layout-${layout}">
-\t\t\t<header className="onelib-layout-header">
-\t\t\t\t<strong>${heading} Layout</strong>
+\t\t<div className="onelib-layout onelib-layout-${layout} min-h-screen bg-[var(--onelib-surface,#ffffff)] text-[var(--onelib-text,#0f172a)]">
+\t\t\t<header className="onelib-layout-header border-b border-slate-200 px-6 py-4">
+\t\t\t\t<strong className="text-lg">${heading} Layout</strong>
 \t\t\t</header>
-\t\t\t<main className="onelib-layout-content">{children}</main>
+\t\t\t<main className="onelib-layout-content mx-auto w-full max-w-7xl px-6 py-10">{children}</main>
 \t\t</div>
 \t);
 }
@@ -92,22 +102,132 @@ export default function ${heading}Layout({ children }: { children: ReactNode }) 
 
 function renderPage(page: OnelibBlueprint["pages"][number]): string {
 	const title = page.title ?? page.name;
-	const componentItems = page.components
-		.map((component) => `\t\t\t\t<li><code>${component}</code></li>`)
-		.join("\n");
+	const componentJson = JSON.stringify(page.components);
 
 	return `export default function ${sanitizeSegment(page.name) || "Generated"}Page() {
 \treturn (
-\t\t<main style={{ padding: "2rem" }}>
-\t\t\t<h1>${title}</h1>
-\t\t\t<p>
-\t\t\t\tRoute: <code>${page.route}</code> | Layout: <code>${page.layout}</code>
-\t\t\t</p>
-\t\t\t<p>Selected components for this page:</p>
-\t\t\t<ul>
-${componentItems}
-\t\t\t</ul>
-\t\t</main>
+\t\t<section className="space-y-10">
+\t\t\t<header className="space-y-3">
+\t\t\t\t<p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">${page.layout} layout</p>
+\t\t\t\t<h1 className="text-4xl font-bold tracking-tight md:text-5xl">${title}</h1>
+\t\t\t\t<p className="text-sm text-slate-600">Route: <code>${page.route}</code></p>
+\t\t\t</header>
+\t\t\t<OnelibComponentRenderer componentIds={${componentJson}} />
+\t\t</section>
+\t);
+}
+
+import { OnelibComponentRenderer } from "@/components/onelib/component-renderer";
+`;
+}
+
+function renderComponentRenderer(componentPaths: Record<string, string>): string {
+	const entries = Object.entries(componentPaths)
+		.sort((a, b) => a[0].localeCompare(b[0]))
+		.map(([id, importPath]) => `\t${JSON.stringify(id)}: () => import(${JSON.stringify(importPath)}),`)
+		.join("\n");
+
+	return `"use client";
+
+import { useEffect, useState, type JSX } from "react";
+
+type LoadedModule = Record<string, unknown> & { default?: unknown };
+
+const loaders: Record<string, () => Promise<LoadedModule>> = {
+${entries}
+};
+
+function pickRenderable(mod: LoadedModule): ((props: Record<string, unknown>) => JSX.Element) | null {
+\tif (typeof mod.default === "function") {
+\t\treturn mod.default as (props: Record<string, unknown>) => JSX.Element;
+\t}
+\tfor (const key of Object.keys(mod)) {
+\t\tconst value = mod[key];
+\t\tif (typeof value === "function") {
+\t\t\treturn value as (props: Record<string, unknown>) => JSX.Element;
+\t\t}
+\t}
+\treturn null;
+}
+
+function MissingComponent({ id, reason }: { id: string; reason: string }) {
+\treturn (
+\t\t<div className="rounded-2xl border border-amber-200 bg-amber-50 p-6">
+\t\t\t<p className="text-sm font-semibold text-amber-900">Unable to render: {id}</p>
+\t\t\t<p className="mt-2 text-xs text-amber-800">{reason}</p>
+\t\t</div>
+\t);
+}
+
+function RenderComponent({ id }: { id: string }) {
+\tconst [state, setState] = useState<
+\t\t{ status: "loading" } | { status: "ready"; component: (props: Record<string, unknown>) => JSX.Element } | { status: "error"; reason: string }
+\t>({ status: "loading" });
+
+\tuseEffect(() => {
+\t\tlet active = true;
+\t\tconst loader = loaders[id];
+\t\tif (!loader) {
+\t\t\tsetState({ status: "error", reason: "Component is not registered in the generated renderer." });
+\t\t\treturn () => {
+\t\t\t\tactive = false;
+\t\t\t};
+\t\t}
+
+\t\tloader()
+\t\t\t.then((mod) => {
+\t\t\t\tif (!active) return;
+\t\t\t\tconst component = pickRenderable(mod);
+\t\t\t\tif (!component) {
+\t\t\t\t\tsetState({ status: "error", reason: "No renderable export found in module." });
+\t\t\t\t\treturn;
+\t\t\t\t}
+\t\t\t\tsetState({ status: "ready", component });
+\t\t\t})
+\t\t\t.catch((error: unknown) => {
+\t\t\t\tif (!active) return;
+\t\t\t\tconst reason = error instanceof Error ? error.message : "Unknown render error";
+\t\t\t\tsetState({ status: "error", reason });
+\t\t\t});
+
+\t\treturn () => {
+\t\t\tactive = false;
+\t\t};
+\t}, [id]);
+
+\tif (state.status === "loading") {
+\t\treturn (
+\t\t\t<div className="rounded-2xl border border-slate-200 bg-white p-6 text-sm text-slate-500">
+\t\t\t\tLoading <code>{id}</code>...
+\t\t\t</div>
+\t\t);
+\t}
+
+\tif (state.status === "error") {
+\t\treturn <MissingComponent id={id} reason={state.reason} />;
+\t}
+
+\tconst Component = state.component;
+\treturn (
+\t\t<div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+\t\t\t<Component />
+\t\t</div>
+\t);
+}
+
+export function OnelibComponentRenderer({ componentIds }: { componentIds: string[] }) {
+\tif (componentIds.length === 0) {
+\t\treturn (
+\t\t\t<div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-sm text-slate-600">
+\t\t\t\tNo components selected for this page.
+\t\t\t</div>
+\t\t);
+\t}
+
+\treturn (
+\t\t<div className="grid gap-6">
+\t\t\t{componentIds.map((id) => <RenderComponent key={id} id={id} />)}
+\t\t</div>
 \t);
 }
 `;
@@ -159,6 +279,30 @@ function getKnownComponents(): Set<string> {
 		return new Set(parsed.components.map((entry) => entry.name));
 	} catch {
 		return new Set<string>();
+	}
+}
+
+function getComponentImportPaths(): Record<string, string> {
+	try {
+		const registryUrl = import.meta.resolve("@banavasi/components/registry.json");
+		const registryPath = fileURLToPath(registryUrl);
+		const parsed = JSON.parse(readFileSync(registryPath, "utf-8")) as {
+			components: Array<{ name: string; files?: string[] }>;
+		};
+		const map: Record<string, string> = {};
+		for (const component of parsed.components) {
+			const tsxFile = component.files?.find((file) => file.endsWith(".tsx"));
+			if (!tsxFile) continue;
+			const parts = tsxFile.split("/");
+			if (parts.length < 3) continue;
+			const category = parts[0];
+			const fileBase = parts[parts.length - 1]?.replace(/\.tsx$/, "");
+			if (!category || !fileBase) continue;
+			map[component.name] = `@/components/${category}/${fileBase}`;
+		}
+		return map;
+	} catch {
+		return {};
 	}
 }
 
@@ -223,7 +367,14 @@ export async function applyBlueprint(
 
 	const globalsPath = join(appDir, "globals.css");
 	const currentGlobals = existsSync(globalsPath) ? readFileSync(globalsPath, "utf-8") : "";
-	const withTheme = upsertBlock(currentGlobals, THEME_START, THEME_END, THEME_CSS[blueprint.theme]);
+	const withTailwindImport = ensureTailwindImport(currentGlobals);
+	const withTailwindSources = upsertBlock(
+		withTailwindImport,
+		TAILWIND_START,
+		TAILWIND_END,
+		'@source "../components/**/*.{js,ts,jsx,tsx,mdx}";',
+	);
+	const withTheme = upsertBlock(withTailwindSources, THEME_START, THEME_END, THEME_CSS[blueprint.theme]);
 	const withLayoutHelpers = upsertBlock(
 		withTheme,
 		LAYOUT_START,
@@ -235,6 +386,28 @@ export async function applyBlueprint(
 	const selectedComponents = Array.from(
 		new Set(blueprint.pages.flatMap((page) => page.components).sort((a, b) => a.localeCompare(b))),
 	);
+	const componentImportPaths = getComponentImportPaths();
+	const rendererMap = Object.fromEntries(
+		selectedComponents
+			.map((id) => [id, componentImportPaths[id]])
+			.filter((entry): entry is [string, string] => typeof entry[1] === "string"),
+	);
+
+	const rendererDir = join(cwd, "src/components/onelib");
+	ensureDir(rendererDir);
+	writeFileSync(
+		join(rendererDir, "component-renderer.tsx"),
+		renderComponentRenderer(rendererMap),
+		"utf-8",
+	);
+
+	const hasRootPage = blueprint.pages.some((page) => page.route === "/");
+	if (hasRootPage) {
+		const defaultRootPage = join(appDir, "page.tsx");
+		if (existsSync(defaultRootPage)) {
+			rmSync(defaultRootPage);
+		}
+	}
 
 	const nextConfig: OnelibConfig = {
 		name: config?.name ?? blueprint.name,

@@ -40,5 +40,9 @@ describe("applyBlueprint", () => {
 
 		const rootLayout = readFileSync(join(cwd, "src/app/layout.tsx"), "utf-8");
 		expect(rootLayout).toContain("data-onelib-theme=\"neutral\"");
+
+		const globals = readFileSync(join(cwd, "src/app/globals.css"), "utf-8");
+		expect(globals).toContain('@import "tailwindcss";');
+		expect(globals).toContain("onelib:tailwind:start");
 	});
 });

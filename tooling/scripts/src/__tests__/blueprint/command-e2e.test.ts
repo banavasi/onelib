@@ -64,6 +64,8 @@ describe("blueprint:apply command integration", () => {
 		expect(rootLayout).toContain("data-onelib-theme=\"vibrant\"");
 
 		const globals = readFileSync(join(cwd, "src/app/globals.css"), "utf-8");
+		expect(globals).toContain('@import "tailwindcss";');
+		expect(globals).toContain("onelib:tailwind:start");
 		expect(globals).toContain("onelib:theme:start");
 		expect(globals).toContain("onelib:layout:start");
 
