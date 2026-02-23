@@ -1,4 +1,4 @@
-export const COMPONENTS_VERSION = "0.2.3";
+export const COMPONENTS_VERSION = "0.2.4";
 export { computeChecksum } from "./checksum.js";
 export type { ComponentRegistry, ValidationResult } from "./registry.js";
 export { loadComponentRegistry, validateComponentRegistry } from "./registry.js";

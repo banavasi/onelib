@@ -1,6 +1,6 @@
 {
 	"name": "@banavasi/skills",
-	"version": "0.2.3",
+	"version": "0.2.4",
 	"description": "Curated skills and generators",
 	"type": "module",
 	"main": "./dist/index.js",

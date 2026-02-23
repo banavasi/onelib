@@ -1,6 +1,6 @@
 {
 	"name": "@banavasi/templates",
-	"version": "0.2.3",
+	"version": "0.2.4",
 	"description": "Base Next.js template for generated projects",
 	"files": [
 		"base/"

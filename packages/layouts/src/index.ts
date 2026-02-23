@@ -1,2 +1,2 @@
 // @banavasi/layouts – layout & page templates
-export const LAYOUTS_VERSION = "0.2.3";
+export const LAYOUTS_VERSION = "0.2.4";

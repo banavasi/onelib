@@ -1,6 +1,7 @@
-import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { basename, dirname, join } from "node:path";
 import { computeChecksum } from "./checksum.js";
+import { getComponentFilesFromRegistry, readComponentsRegistry } from "./registry-files.js";
 
 export interface LockEntry {
 	version: string;
@@ -47,8 +48,13 @@ export function scaffoldComponents(
 			const componentPath = join(categoryPath, componentDir);
 			const files = readdirSync(componentPath);
 
-			// Find .tsx files that are NOT stories and NOT index files
-			const sourceFiles = files.filter((f) => f.endsWith(".tsx") && !f.endsWith(".stories.tsx"));
+			// Prefer registry-declared file list so sidecar files (e.g. CSS) are copied too.
+			const sourceFiles = getComponentFilesFromRegistry(
+				sourceDir,
+				category,
+				componentDir,
+				componentDir,
+			) ?? files.filter((f) => f.endsWith(".tsx") && !f.endsWith(".stories.tsx"));
 
 			for (const file of sourceFiles) {
 				const content = readFileSync(join(componentPath, file), "utf-8");
@@ -57,14 +63,16 @@ export function scaffoldComponents(
 				writeFileSync(join(targetCategoryDir, file), content, "utf-8");
 
 				// Add to lockfile
-				const componentName = basename(file, ".tsx");
-				lock.components[componentName] = {
-					version: componentVersion,
-					checksum: computeChecksum(content),
-					installedAt: new Date().toISOString(),
-				};
-				componentsInstalled++;
-				installedComponentNames.push(componentName);
+				if (file.endsWith(".tsx")) {
+					const componentName = basename(file, ".tsx");
+					lock.components[componentName] = {
+						version: componentVersion,
+						checksum: computeChecksum(content),
+						installedAt: new Date().toISOString(),
+					};
+					componentsInstalled++;
+					installedComponentNames.push(componentName);
+				}
 			}
 		}
 	}
@@ -76,21 +84,15 @@ export function scaffoldComponents(
 
 	// Collect peer dependencies from registry for scaffolded components
 	const peerDependencies: Record<string, string> = {};
-	const registryCandidates = [
-		join(sourceDir, "registry.json"),
-		join(sourceDir, "../registry.json"),
-	];
-	const registryPath = registryCandidates.find((p) => existsSync(p));
-	if (registryPath) {
-		const registryData = JSON.parse(readFileSync(registryPath, "utf-8"));
-		if (Array.isArray(registryData.components)) {
-			for (const entry of registryData.components) {
-				if (
-					installedComponentNames.includes(entry.name) &&
-					entry.peerDependencies
-				) {
-					Object.assign(peerDependencies, entry.peerDependencies);
-				}
+	const registryData = readComponentsRegistry(sourceDir);
+	if (Array.isArray(registryData?.components)) {
+		for (const entry of registryData.components) {
+			if (
+				installedComponentNames.includes(entry.name) &&
+				"peerDependencies" in entry &&
+				entry.peerDependencies
+			) {
+				Object.assign(peerDependencies, entry.peerDependencies as Record<string, string>);
 			}
 		}
 	}

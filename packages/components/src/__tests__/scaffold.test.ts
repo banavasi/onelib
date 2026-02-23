@@ -53,6 +53,31 @@ function setupFixture(): void {
 		'export { DomeGallery } from "./dome-gallery";',
 	);
 
+	mkdirSync(join(COMPONENTS_SRC, "gallery/chroma-grid"), { recursive: true });
+	writeFileSync(
+		join(COMPONENTS_SRC, "gallery/chroma-grid/chroma-grid.tsx"),
+		"import './chroma-grid.css'; export function ChromaGrid() { return <div />; }",
+	);
+	writeFileSync(
+		join(COMPONENTS_SRC, "gallery/chroma-grid/chroma-grid.css"),
+		".chroma-grid { display: grid; }",
+	);
+	writeFileSync(
+		join(COMPONENTS_SRC, "registry.json"),
+		JSON.stringify({
+			version: "0.1.0",
+			components: [
+				{
+					name: "chroma-grid",
+					files: [
+						"gallery/chroma-grid/chroma-grid.tsx",
+						"gallery/chroma-grid/chroma-grid.css",
+					],
+				},
+			],
+		}),
+	);
+
 	mkdirSync(TARGET_DIR, { recursive: true });
 }
 
@@ -99,6 +124,12 @@ describe("scaffoldComponents", () => {
 		expect(existsSync(join(TARGET_DIR, "backgrounds/aurora.tsx"))).toBe(true);
 		expect(existsSync(join(TARGET_DIR, "sections/marquee.tsx"))).toBe(true);
 		expect(existsSync(join(TARGET_DIR, "gallery/dome-gallery.tsx"))).toBe(true);
+	});
+
+	it("copies sidecar css files when present", () => {
+		scaffoldComponents(COMPONENTS_SRC, TARGET_DIR);
+
+		expect(existsSync(join(TARGET_DIR, "gallery/chroma-grid.css"))).toBe(true);
 	});
 
 	it("creates a lockfile at .onelib/components.lock", () => {

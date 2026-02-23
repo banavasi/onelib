@@ -171,4 +171,41 @@ describe("updateComponents", () => {
 		expect(report.added).toContain("aurora");
 		expect(report.peerDependencies).toEqual({ ogl: "^1.0.0" });
 	});
+
+	it("installs registry-declared sidecar css files for new components", () => {
+		mkdirSync(join(SOURCE_DIR, "gallery/chroma-grid"), { recursive: true });
+		writeFileSync(
+			join(SOURCE_DIR, "gallery/chroma-grid/chroma-grid.tsx"),
+			"import './chroma-grid.css'; export function ChromaGrid() { return <div />; }",
+		);
+		writeFileSync(
+			join(SOURCE_DIR, "gallery/chroma-grid/chroma-grid.css"),
+			".chroma-grid { display: grid; }",
+		);
+		writeFileSync(
+			join(SOURCE_DIR, "registry.json"),
+			JSON.stringify({
+				version: "0.1.0",
+				components: [
+					{
+						name: "chroma-grid",
+						files: [
+							"gallery/chroma-grid/chroma-grid.tsx",
+							"gallery/chroma-grid/chroma-grid.css",
+						],
+					},
+				],
+			}),
+		);
+
+		mkdirSync(COMPONENTS_DIR, { recursive: true });
+		const lock: ComponentsLock = { version: "0.1.0", components: {} };
+		mkdirSync(join(PROJECT_DIR, ".onelib"), { recursive: true });
+		writeFileSync(LOCK_PATH, JSON.stringify(lock), "utf-8");
+
+		const report = updateComponents(SOURCE_DIR, PROJECT_DIR);
+
+		expect(report.added).toContain("chroma-grid");
+		expect(existsSync(join(COMPONENTS_DIR, "gallery/chroma-grid.css"))).toBe(true);
+	});
 });
