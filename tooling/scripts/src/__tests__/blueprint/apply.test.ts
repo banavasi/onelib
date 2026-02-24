@@ -33,6 +33,8 @@ describe("applyBlueprint", () => {
 
 		expect(result.pagesCreated.length).toBe(1);
 		expect(result.layoutsCreated.length).toBeGreaterThan(0);
+		expect(result.componentsInstalled).toBe(2);
+		expect(result.peerDependenciesInstall.attempted).toBe(false);
 
 		const config = readFileSync(join(cwd, "onelib.config.ts"), "utf-8");
 		expect(config).toContain('layout: "dashboard"');

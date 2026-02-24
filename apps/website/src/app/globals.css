@@ -176,6 +176,11 @@ a {
 	font: inherit;
 }
 
+.field-textarea {
+	min-height: 130px;
+	resize: vertical;
+}
+
 .page-toolbar {
 	margin-top: 1rem;
 	display: flex;
@@ -237,4 +242,59 @@ a {
 	display: block;
 	font-size: 0.8rem;
 	color: #475569;
+}
+
+.panel-title {
+	margin: 0 0 0.5rem;
+	font-size: 1rem;
+	font-weight: 700;
+}
+
+.helper {
+	font-size: 0.8rem;
+	color: #475569;
+}
+
+.split-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 0.8rem;
+}
+
+.output-grid {
+	display: grid;
+	gap: 1rem;
+}
+
+@media (min-width: 980px) {
+	.split-grid {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.output-grid {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+.output-card {
+	border: 1px solid #e2e8f0;
+	border-radius: 0.9rem;
+	background: #fff;
+	padding: 0.9rem;
+}
+
+.output-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.8rem;
+}
+
+.output-header button {
+	border: 1px solid #cbd5e1;
+	background: #f8fafc;
+	border-radius: 0.5rem;
+	padding: 0.35rem 0.65rem;
+	font: inherit;
+	cursor: pointer;
 }

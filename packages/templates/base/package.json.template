@@ -11,15 +11,16 @@
 		"format": "biome check --write .",
 		"onelib:update": "onelib-scripts update",
 		"onelib:skills:update": "onelib-scripts skills:update",
-		"onelib:blueprint:apply": "onelib-scripts blueprint:apply"
+		"onelib:blueprint:apply": "onelib-scripts blueprint:apply",
+		"onelib:agent:apply": "onelib-scripts agent:apply"
 	},
 	"dependencies": {
 		"next": "^15.3.0",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0",
-		"@banavasi/onelib": "^0.2.2",
-		"@banavasi/components": "^0.2.2",
-		"@banavasi/skills": "^0.2.2",
+		"@banavasi/onelib": "^0.2.5",
+		"@banavasi/components": "^0.2.5",
+		"@banavasi/skills": "^0.2.5",
 		"clsx": "^2.1.0",
 		"tailwind-merge": "^3.0.0",
 		"motion": "^11.0.0",
@@ -37,6 +38,6 @@
 		"eslint": "^9.0.0",
 		"eslint-config-next": "^15.3.0",
 		"prettier": "^3.5.0",
-		"@banavasi/scripts": "^0.2.2"
+		"@banavasi/scripts": "^0.2.5"
 	}
 }

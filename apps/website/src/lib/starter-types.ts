@@ -16,11 +16,3 @@ export interface ThemeOption {
 	label: string;
 	description: string;
 }
-
-export interface DraftPage {
-	name: string;
-	route: string;
-	layout: string;
-	components: string[];
-	title: string;
-}

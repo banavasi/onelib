@@ -91,6 +91,7 @@ Generated projects also include:
 pnpm onelib:update
 pnpm onelib:skills:update
 pnpm onelib:blueprint:apply -- --file onelib.blueprint.json
+pnpm onelib:agent:apply -- --file onelib.plan.json
 ```
 
 ## Blueprint Workflow (CEO Demo)
@@ -112,6 +113,18 @@ npx @banavasi/create-onelib my-app --blueprint ./onelib.blueprint.json
 
 Full schema and examples:
 - `docs/blueprint-schema.md`
+
+## Agent Plan Workflow (Recommended)
+
+1. Open `/starter` and generate the agent pack ZIP.
+2. Save `onelib.plan.json` into your client project.
+3. Apply everything with one command:
+
+```bash
+pnpm onelib:agent:apply -- --file onelib.plan.json
+```
+
+This applies pages/layout/theme/components, updates `onelib.config.ts` skills, installs integration dependencies, and writes `.env.local` when provided.
 
 ### Running for a specific package
 

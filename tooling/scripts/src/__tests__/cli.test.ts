@@ -14,6 +14,10 @@ describe("parseCommand", () => {
 		expect(parseCommand(["node", "cli.js", "blueprint:apply"])).toBe("blueprint:apply");
 	});
 
+	it('parses "agent:apply" command', () => {
+		expect(parseCommand(["node", "cli.js", "agent:apply"])).toBe("agent:apply");
+	});
+
 	it("returns null for unknown command", () => {
 		expect(parseCommand(["node", "cli.js", "foobar"])).toBeNull();
 	});

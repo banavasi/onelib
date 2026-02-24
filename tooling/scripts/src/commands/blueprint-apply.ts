@@ -38,6 +38,20 @@ export async function runBlueprintApply(options: BlueprintApplyOptions = {}): Pr
 	logger.log(`Created ${result.pagesCreated.length} page(s)`);
 	logger.log(`Created ${result.layoutsCreated.length} layout wrapper(s)`);
 	logger.log(`Scaffolded ${result.componentsInstalled} component file(s)`);
+	if (Object.keys(result.peerDependencies).length > 0) {
+		logger.log(
+			`Peer dependencies: ${Object.entries(result.peerDependencies)
+				.map(([name, version]) => `${name}@${version}`)
+				.join(", ")}`,
+		);
+		if (result.peerDependenciesInstall.success) {
+			logger.success("Installed peer dependencies");
+		} else if (result.peerDependenciesInstall.command) {
+			logger.warn(
+				`Peer dependency install failed (${result.peerDependenciesInstall.error ?? "unknown error"}). Run: ${result.peerDependenciesInstall.command}`,
+			);
+		}
+	}
 	logger.log(`Updated config: ${result.configPath}`);
 
 	return { success: true };

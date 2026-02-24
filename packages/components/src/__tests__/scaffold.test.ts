@@ -182,4 +182,12 @@ describe("scaffoldComponents", () => {
 		expect(result.componentsInstalled).toBeGreaterThanOrEqual(2);
 		expect(result.peerDependencies).toEqual({ ogl: "^1.0.0" });
 	});
+
+	it("copies only selected components when include filter is provided", () => {
+		scaffoldComponents(COMPONENTS_SRC, TARGET_DIR, "0.1.0", { include: ["basic-button"] });
+
+		expect(existsSync(join(TARGET_DIR, "buttons/basic-button.tsx"))).toBe(true);
+		expect(existsSync(join(TARGET_DIR, "backgrounds/aurora.tsx"))).toBe(false);
+		expect(existsSync(join(TARGET_DIR, "sections/marquee.tsx"))).toBe(false);
+	});
 });

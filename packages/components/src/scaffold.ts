@@ -19,6 +19,10 @@ export interface ScaffoldResult {
 	peerDependencies: Record<string, string>;
 }
 
+export interface ScaffoldOptions {
+	include?: string[];
+}
+
 /**
  * Copies component .tsx files (excluding stories and index barrels) from
  * a source directory into a target directory, organized by category.
@@ -28,10 +32,12 @@ export function scaffoldComponents(
 	sourceDir: string,
 	targetDir: string,
 	componentVersion = "0.1.0",
+	options: ScaffoldOptions = {},
 ): ScaffoldResult {
 	const lock: ComponentsLock = { version: "0.1.0", components: {} };
 	let componentsInstalled = 0;
 	const installedComponentNames: string[] = [];
+	const include = options.include ? new Set(options.include) : null;
 
 	// Read category directories
 	const categories = readdirSync(sourceDir).filter((entry) =>
@@ -55,6 +61,11 @@ export function scaffoldComponents(
 				componentDir,
 				componentDir,
 			) ?? files.filter((f) => f.endsWith(".tsx") && !f.endsWith(".stories.tsx"));
+			const mainTsxFile = sourceFiles.find((file) => file.endsWith(".tsx"));
+			const mainName = mainTsxFile ? basename(mainTsxFile, ".tsx") : componentDir;
+			if (include && !include.has(componentDir) && !include.has(mainName)) {
+				continue;
+			}
 
 			for (const file of sourceFiles) {
 				const content = readFileSync(join(componentPath, file), "utf-8");

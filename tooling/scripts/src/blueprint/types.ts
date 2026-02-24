@@ -35,6 +35,13 @@ export interface BlueprintApplyResult {
 	pagesCreated: string[];
 	layoutsCreated: string[];
 	componentsInstalled: number;
+	peerDependencies: Record<string, string>;
+	peerDependenciesInstall: {
+		attempted: boolean;
+		command: string;
+		success: boolean;
+		error?: string;
+	};
 	theme: ThemePreset;
 	rootLayout: LayoutPreset;
 }

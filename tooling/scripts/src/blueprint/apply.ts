@@ -3,6 +3,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { scaffoldComponents } from "@banavasi/components";
 import type { OnelibConfig } from "@banavasi/onelib";
+import { execCommand } from "../utils/exec.js";
 import { THEME_CSS } from "./catalog.js";
 import type { BlueprintApplyResult, LayoutPreset, OnelibBlueprint } from "./types.js";
 import { validateBlueprint } from "./validate.js";
@@ -67,7 +68,7 @@ export default function RootLayout({
 }>) {
 \treturn (
 \t\t<html lang="en" data-onelib-theme="${theme}">
-\t\t\t<body>{children}</body>
+\t\t\t<body className="bg-[var(--onelib-bg)] text-[var(--onelib-text)] antialiased">{children}</body>
 \t\t</html>
 \t);
 }
@@ -79,19 +80,141 @@ function renderLayout(layout: LayoutPreset): string {
 		return `import type { ReactNode } from "react";
 
 export default function BlankLayout({ children }: { children: ReactNode }) {
-\treturn <div className="min-h-screen bg-[var(--onelib-surface,#ffffff)] text-[var(--onelib-text,#0f172a)]">{children}</div>;
+\treturn <div className="onelib-layout onelib-layout-blank min-h-screen text-[var(--onelib-text,#0f172a)]">{children}</div>;
 }
 `;
 	}
 
 	const heading = layout.charAt(0).toUpperCase() + layout.slice(1);
+	if (layout === "dashboard") {
+		return `import type { ReactNode } from "react";
+
+export default function DashboardLayout({ children }: { children: ReactNode }) {
+\treturn (
+\t\t<div className="onelib-layout onelib-layout-dashboard min-h-screen text-[var(--onelib-text,#0f172a)]">
+\t\t\t<div className="mx-auto grid min-h-screen w-full max-w-[96rem] lg:grid-cols-[260px_1fr]">
+\t\t\t\t<aside className="border-r border-[var(--onelib-border)] bg-[var(--onelib-panel)]/80 px-6 py-7">
+\t\t\t\t\t<p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--onelib-muted)]">Workspace</p>
+\t\t\t\t\t<p className="mt-3 text-xl font-semibold">Dashboard</p>
+\t\t\t\t\t<nav className="mt-8 space-y-3 text-sm text-[var(--onelib-muted)]">
+\t\t\t\t\t\t<p>Overview</p>
+\t\t\t\t\t\t<p>Reports</p>
+\t\t\t\t\t\t<p>Settings</p>
+\t\t\t\t\t</nav>
+\t\t\t\t</aside>
+\t\t\t\t<main className="onelib-layout-content px-6 py-8 md:px-10 md:py-10">{children}</main>
+\t\t\t</div>
+\t\t</div>
+\t);
+}
+`;
+	}
+
+	if (layout === "docs") {
+		return `import type { ReactNode } from "react";
+
+export default function DocsLayout({ children }: { children: ReactNode }) {
+\treturn (
+\t\t<div className="onelib-layout onelib-layout-docs min-h-screen text-[var(--onelib-text,#0f172a)]">
+\t\t\t<div className="mx-auto grid min-h-screen w-full max-w-[96rem] lg:grid-cols-[280px_1fr]">
+\t\t\t\t<aside className="border-r border-[var(--onelib-border)] bg-[var(--onelib-panel)] px-6 py-8">
+\t\t\t\t\t<p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--onelib-muted)]">Documentation</p>
+\t\t\t\t\t<nav className="mt-7 space-y-3 text-sm">
+\t\t\t\t\t\t<p>Getting Started</p>
+\t\t\t\t\t\t<p>Components</p>
+\t\t\t\t\t\t<p>Themes</p>
+\t\t\t\t\t\t<p>Blueprints</p>
+\t\t\t\t\t</nav>
+\t\t\t\t</aside>
+\t\t\t\t<main className="onelib-layout-content px-6 py-10 md:px-12">{children}</main>
+\t\t\t</div>
+\t\t</div>
+\t);
+}
+`;
+	}
+
+	if (layout === "auth") {
+		return `import type { ReactNode } from "react";
+
+export default function AuthLayout({ children }: { children: ReactNode }) {
+\treturn (
+\t\t<div className="onelib-layout onelib-layout-auth flex min-h-screen items-center justify-center px-6 py-12 text-[var(--onelib-text,#0f172a)]">
+\t\t\t<div className="w-full max-w-2xl rounded-3xl border border-[var(--onelib-border)] bg-[var(--onelib-panel)] p-6 shadow-[var(--onelib-shadow)] md:p-10">
+\t\t\t\t{children}
+\t\t\t</div>
+\t\t</div>
+\t);
+}
+`;
+	}
+
+	if (layout === "blog") {
+		return `import type { ReactNode } from "react";
+
+export default function BlogLayout({ children }: { children: ReactNode }) {
+\treturn (
+\t\t<div className="onelib-layout onelib-layout-blog min-h-screen text-[var(--onelib-text,#0f172a)]">
+\t\t\t<header className="border-b border-[var(--onelib-border)] px-6 py-5">
+\t\t\t\t<div className="mx-auto max-w-3xl">
+\t\t\t\t\t<p className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--onelib-muted)]">Editorial</p>
+\t\t\t\t</div>
+\t\t\t</header>
+\t\t\t<main className="onelib-layout-content mx-auto w-full max-w-3xl px-6 py-12">{children}</main>
+\t\t</div>
+\t);
+}
+`;
+	}
+
+	if (layout === "ecommerce") {
+		return `import type { ReactNode } from "react";
+
+export default function EcommerceLayout({ children }: { children: ReactNode }) {
+\treturn (
+\t\t<div className="onelib-layout onelib-layout-ecommerce min-h-screen text-[var(--onelib-text,#0f172a)]">
+\t\t\t<div className="border-b border-[var(--onelib-border)] bg-[var(--onelib-panel)]/90 px-6 py-3 text-center text-sm">
+\t\t\t\tFree shipping on orders above $100
+\t\t\t</div>
+\t\t\t<header className="border-b border-[var(--onelib-border)] px-6 py-5">
+\t\t\t\t<div className="mx-auto flex w-full max-w-7xl items-center justify-between">
+\t\t\t\t\t<p className="text-lg font-semibold">Storefront</p>
+\t\t\t\t\t<p className="text-sm text-[var(--onelib-muted)]">Catalog • Cart • Checkout</p>
+\t\t\t\t</div>
+\t\t\t</header>
+\t\t\t<main className="onelib-layout-content mx-auto w-full max-w-7xl px-6 py-10">{children}</main>
+\t\t</div>
+\t);
+}
+`;
+	}
+
+	if (layout === "portfolio") {
+		return `import type { ReactNode } from "react";
+
+export default function PortfolioLayout({ children }: { children: ReactNode }) {
+\treturn (
+\t\t<div className="onelib-layout onelib-layout-portfolio min-h-screen text-[var(--onelib-text,#0f172a)]">
+\t\t\t<header className="px-6 pt-10">
+\t\t\t\t<div className="mx-auto w-full max-w-7xl">
+\t\t\t\t\t<p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--onelib-muted)]">Portfolio</p>
+\t\t\t\t\t<p className="mt-3 text-3xl font-semibold tracking-tight md:text-5xl">Selected Work</p>
+\t\t\t\t</div>
+\t\t\t</header>
+\t\t\t<main className="onelib-layout-content mx-auto w-full max-w-7xl px-6 pb-12 pt-8">{children}</main>
+\t\t</div>
+\t);
+}
+`;
+	}
+
 	return `import type { ReactNode } from "react";
 
 export default function ${heading}Layout({ children }: { children: ReactNode }) {
 \treturn (
-\t\t<div className="onelib-layout onelib-layout-${layout} min-h-screen bg-[var(--onelib-surface,#ffffff)] text-[var(--onelib-text,#0f172a)]">
-\t\t\t<header className="onelib-layout-header border-b border-slate-200 px-6 py-4">
-\t\t\t\t<strong className="text-lg">${heading} Layout</strong>
+\t\t<div className="onelib-layout onelib-layout-${layout} min-h-screen text-[var(--onelib-text,#0f172a)]">
+\t\t\t<header className="onelib-layout-header border-b border-[var(--onelib-border)] px-6 py-5">
+\t\t\t\t<strong className="text-lg">${heading}</strong>
 \t\t\t</header>
 \t\t\t<main className="onelib-layout-content mx-auto w-full max-w-7xl px-6 py-10">{children}</main>
 \t\t</div>
@@ -106,11 +229,11 @@ function renderPage(page: OnelibBlueprint["pages"][number]): string {
 
 	return `export default function ${sanitizeSegment(page.name) || "Generated"}Page() {
 \treturn (
-\t\t<section className="space-y-10">
-\t\t\t<header className="space-y-3">
-\t\t\t\t<p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">${page.layout} layout</p>
-\t\t\t\t<h1 className="text-4xl font-bold tracking-tight md:text-5xl">${title}</h1>
-\t\t\t\t<p className="text-sm text-slate-600">Route: <code>${page.route}</code></p>
+\t\t<section className="space-y-8">
+\t\t\t<header className="rounded-3xl border border-[var(--onelib-border)] bg-[var(--onelib-panel)] p-6 shadow-[var(--onelib-shadow)] md:p-8">
+\t\t\t\t<p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--onelib-muted)]">${page.layout} layout</p>
+\t\t\t\t<h1 className="mt-3 text-4xl font-bold tracking-tight md:text-5xl">${title}</h1>
+\t\t\t\t<p className="mt-3 text-sm text-[var(--onelib-muted)]">Route: <code>${page.route}</code></p>
 \t\t\t</header>
 \t\t\t<OnelibComponentRenderer componentIds={${componentJson}} />
 \t\t</section>
@@ -152,7 +275,7 @@ function pickRenderable(mod: LoadedModule): ((props: Record<string, unknown>) =>
 
 function MissingComponent({ id, reason }: { id: string; reason: string }) {
 \treturn (
-\t\t<div className="rounded-2xl border border-amber-200 bg-amber-50 p-6">
+\t\t<div className="rounded-2xl border border-amber-200 bg-amber-50/80 p-6">
 \t\t\t<p className="text-sm font-semibold text-amber-900">Unable to render: {id}</p>
 \t\t\t<p className="mt-2 text-xs text-amber-800">{reason}</p>
 \t\t</div>
@@ -197,7 +320,7 @@ function RenderComponent({ id }: { id: string }) {
 
 \tif (state.status === "loading") {
 \t\treturn (
-\t\t\t<div className="rounded-2xl border border-slate-200 bg-white p-6 text-sm text-slate-500">
+\t\t\t<div className="rounded-2xl border border-[var(--onelib-border)] bg-[var(--onelib-panel)] p-6 text-sm text-[var(--onelib-muted)]">
 \t\t\t\tLoading <code>{id}</code>...
 \t\t\t</div>
 \t\t);
@@ -209,16 +332,19 @@ function RenderComponent({ id }: { id: string }) {
 
 \tconst Component = state.component;
 \treturn (
-\t\t<div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-\t\t\t<Component />
-\t\t</div>
+\t\t<section className="overflow-hidden rounded-3xl border border-[var(--onelib-border)] bg-[var(--onelib-panel)] p-5 shadow-[var(--onelib-shadow)]">
+\t\t\t<p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--onelib-muted)]">{id}</p>
+\t\t\t<div className="onelib-component-stage">
+\t\t\t\t<Component />
+\t\t\t</div>
+\t\t</section>
 \t);
 }
 
 export function OnelibComponentRenderer({ componentIds }: { componentIds: string[] }) {
 \tif (componentIds.length === 0) {
 \t\treturn (
-\t\t\t<div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-sm text-slate-600">
+\t\t\t<div className="rounded-2xl border border-dashed border-[var(--onelib-border)] bg-[var(--onelib-panel)]/70 p-6 text-sm text-[var(--onelib-muted)]">
 \t\t\t\tNo components selected for this page.
 \t\t\t</div>
 \t\t);
@@ -312,6 +438,30 @@ function toPreset(theme: OnelibBlueprint["theme"]): OnelibConfig["theme"]["prese
 	return "custom";
 }
 
+type PackageManager = "pnpm" | "npm" | "yarn" | "bun";
+
+function detectPackageManager(cwd: string): PackageManager {
+	if (existsSync(join(cwd, "pnpm-lock.yaml"))) return "pnpm";
+	if (existsSync(join(cwd, "yarn.lock"))) return "yarn";
+	if (existsSync(join(cwd, "bun.lockb")) || existsSync(join(cwd, "bun.lock"))) return "bun";
+	if (existsSync(join(cwd, "package-lock.json"))) return "npm";
+	return "pnpm";
+}
+
+function installArgs(manager: PackageManager, packages: string[]): { command: string; args: string[]; printable: string } {
+	switch (manager) {
+		case "npm":
+			return { command: "npm", args: ["install", "--save", ...packages], printable: `npm install --save ${packages.join(" ")}` };
+		case "yarn":
+			return { command: "yarn", args: ["add", ...packages], printable: `yarn add ${packages.join(" ")}` };
+		case "bun":
+			return { command: "bun", args: ["add", ...packages], printable: `bun add ${packages.join(" ")}` };
+		case "pnpm":
+		default:
+			return { command: "pnpm", args: ["add", ...packages], printable: `pnpm add ${packages.join(" ")}` };
+	}
+}
+
 export function parseBlueprintFile(path: string): OnelibBlueprint {
 	const raw = readFileSync(path, "utf-8");
 	const json = JSON.parse(raw) as unknown;
@@ -334,7 +484,12 @@ export async function applyBlueprint(
 	const sourceComponentsDir = await getComponentsSourcePath();
 	const targetComponentsDir = join(cwd, "src/components");
 	ensureDir(targetComponentsDir);
-	const scaffoldResult = scaffoldComponents(sourceComponentsDir, targetComponentsDir);
+	const selectedComponents = Array.from(
+		new Set(blueprint.pages.flatMap((page) => page.components).sort((a, b) => a.localeCompare(b))),
+	);
+	const scaffoldResult = scaffoldComponents(sourceComponentsDir, targetComponentsDir, "0.1.0", {
+		include: selectedComponents,
+	});
 
 	const appDir = join(cwd, "src/app");
 	ensureDir(appDir);
@@ -379,13 +534,9 @@ export async function applyBlueprint(
 		withTheme,
 		LAYOUT_START,
 		LAYOUT_END,
-		`.onelib-layout { min-height: 100vh; background: var(--onelib-surface, #ffffff); }\n.onelib-layout-header { padding: 1rem 1.5rem; border-bottom: 1px solid #e2e8f0; }\n.onelib-layout-content { padding: 1.5rem; }`,
+		`:root {\n\t--onelib-bg: #f8fafc;\n\t--onelib-panel: #ffffff;\n\t--onelib-text: #0f172a;\n\t--onelib-muted: #475569;\n\t--onelib-border: #e2e8f0;\n\t--onelib-shadow: 0 14px 34px rgb(15 23 42 / 10%);\n}\n\nhtml, body {\n\tmargin: 0;\n\tpadding: 0;\n\tmin-height: 100%;\n}\n\nbody {\n\tbackground:\n\t\tradial-gradient(1200px 500px at 12% 0%, color-mix(in oklab, var(--onelib-accent) 18%, transparent), transparent 60%),\n\t\tradial-gradient(800px 420px at 88% 10%, color-mix(in oklab, var(--onelib-muted) 14%, transparent), transparent 62%),\n\t\tvar(--onelib-bg);\n}\n\n.onelib-layout {\n\tbackground: transparent;\n}\n\n.onelib-layout-content {\n\tposition: relative;\n}\n\n.onelib-component-stage {\n\tposition: relative;\n\tisolation: isolate;\n\tmin-height: clamp(280px, 52vh, 680px);\n\tmax-height: 680px;\n\toverflow: hidden;\n\tborder-radius: 1rem;\n}\n\ncode {\n\tpadding: 0.12rem 0.35rem;\n\tborder-radius: 0.35rem;\n\tbackground: color-mix(in oklab, var(--onelib-panel) 65%, var(--onelib-accent) 8%);\n}`,
 	);
 	writeFileSync(globalsPath, withLayoutHelpers, "utf-8");
-
-	const selectedComponents = Array.from(
-		new Set(blueprint.pages.flatMap((page) => page.components).sort((a, b) => a.localeCompare(b))),
-	);
 	const componentImportPaths = getComponentImportPaths();
 	const rendererMap = Object.fromEntries(
 		selectedComponents
@@ -440,11 +591,35 @@ export async function applyBlueprint(
 		"utf-8",
 	);
 
+	const dependencySpecs = Object.entries(scaffoldResult.peerDependencies)
+		.sort(([a], [b]) => a.localeCompare(b))
+		.map(([name, version]) => `${name}@${version}`);
+	let installCommand = "";
+	let installSuccess = true;
+	let installError = "";
+	if (dependencySpecs.length > 0) {
+		const manager = detectPackageManager(cwd);
+		const install = installArgs(manager, dependencySpecs);
+		installCommand = install.printable;
+		const installResult = await execCommand(install.command, install.args, { cwd, timeoutMs: 180_000 });
+		if (!installResult.ok) {
+			installSuccess = false;
+			installError = installResult.message;
+		}
+	}
+
 	return {
 		configPath,
 		pagesCreated,
 		layoutsCreated,
 		componentsInstalled: scaffoldResult.componentsInstalled,
+		peerDependencies: scaffoldResult.peerDependencies,
+		peerDependenciesInstall: {
+			attempted: dependencySpecs.length > 0,
+			command: installCommand,
+			success: installSuccess,
+			error: installError || undefined,
+		},
 		theme: blueprint.theme,
 		rootLayout: blueprint.rootLayout,
 	};

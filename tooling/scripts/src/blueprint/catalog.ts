@@ -31,8 +31,8 @@ export const THEME_CATALOG: ThemePresetMeta[] = [
 ];
 
 export const THEME_CSS: Record<ThemePreset, string> = {
-	default: `:root {\n\t--onelib-accent: #0f172a;\n\t--onelib-muted: #475569;\n}\n`,
-	neutral: `:root {\n\t--onelib-accent: #334155;\n\t--onelib-muted: #64748b;\n\t--onelib-surface: #f8fafc;\n}\n`,
-	vibrant: `:root {\n\t--onelib-accent: #1d4ed8;\n\t--onelib-muted: #0f766e;\n\t--onelib-surface: #eff6ff;\n}\n`,
-	corporate: `:root {\n\t--onelib-accent: #1e3a8a;\n\t--onelib-muted: #334155;\n\t--onelib-surface: #f1f5f9;\n}\n`,
+	default: `:root {\n\t--onelib-bg: #f6f7fb;\n\t--onelib-panel: #ffffff;\n\t--onelib-text: #0f172a;\n\t--onelib-muted: #475569;\n\t--onelib-border: #e2e8f0;\n\t--onelib-accent: #0f172a;\n}\n`,
+	neutral: `:root {\n\t--onelib-bg: #f7f9fb;\n\t--onelib-panel: #ffffff;\n\t--onelib-text: #111827;\n\t--onelib-muted: #4b5563;\n\t--onelib-border: #dbe2ea;\n\t--onelib-accent: #334155;\n}\n`,
+	vibrant: `:root {\n\t--onelib-bg: #f1f7ff;\n\t--onelib-panel: #ffffff;\n\t--onelib-text: #082f49;\n\t--onelib-muted: #0f766e;\n\t--onelib-border: #bfdbfe;\n\t--onelib-accent: #1d4ed8;\n}\n`,
+	corporate: `:root {\n\t--onelib-bg: #f2f5fb;\n\t--onelib-panel: #ffffff;\n\t--onelib-text: #0f172a;\n\t--onelib-muted: #334155;\n\t--onelib-border: #cbd5e1;\n\t--onelib-accent: #1e3a8a;\n}\n`,
 };
